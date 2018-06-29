@@ -10,15 +10,12 @@
 
 <div class="{{ $userCardBg }} mdl-card__title @if (Auth::user()->profile->user_profile_bg == NULL) @endif" @if (Auth::user()->profile->user_profile_bg != NULL) style="background: url('{{Auth::user()->profile->user_profile_bg}}') center/cover;" @endif>
     <h2 class="mdl-card__title-text mdl-title-username mdl-color-text--white text-center">
-        Hi {{ Auth::user()->name }}
+        Olá {{ Auth::user()->name }}
     </h2>
 </div>
 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
     <p>
-        <em>Thank you</em> for checking out this Laravel Material Design Lite project. <strong>Please remember to star this repository!</strong>
-    </p>
-    <p>
-        This page route is protected by <code>activated</code> middleware. Only accounts with activated emails are able pass this middleware.
+        <em>Seja Bem Vindo</em> ao nosso novo painel principal.
     </p>
     <p>
         <small>
@@ -27,7 +24,7 @@
     </p>
     <hr>
     <p>
-        You have
+        Nível
         <span class="mdl-chip mdl-chip--contact {{ $levelBgClass }} mdl-color-text--white md-chip">
             <span class="mdl-chip__contact {{ $leveIconlBgClass }} mdl-color-text--white">
                 <i class="material-icons">{{ $levelIcon }}</i>
@@ -37,7 +34,7 @@
     </p>
     <hr>
     <p>
-        You have access to {{ $levelAmount }}:
+        Nível de Acesso {{ $levelAmount }}:
         @level(5)
             <span class="mdl-chip sm-chip {{ $accessLevel5Bg }} mdl-color-text--white">
                 <span class="mdl-chip__text">5</span>
@@ -72,7 +69,7 @@
    @permission('view.users', 'create.users', 'edit.users', 'delete.users')
         <hr>
         <p>
-            You have permissions:
+            Suas Permissões:
             @permission('view.users')
                 <span class="mdl-chip mdl-chip--contact {{ $userPermDetails['view']['bg'] }} mdl-color-text--white sm-chip">
                     <span class="mdl-chip__contact {{ $userPermDetails['view']['iconBg'] }} mdl-color-text--white">
@@ -111,10 +108,5 @@
         </p>
 
     @endpermission
-
-    <br />
-    <br />
-
-    <iframe src="https://ghbtns.com/github-btn.html?user=jeremykenedy&repo=laravel-material-design&type=star&count=true" frameborder="0" scrolling="0" class="star-count"></iframe>
 
 </div>

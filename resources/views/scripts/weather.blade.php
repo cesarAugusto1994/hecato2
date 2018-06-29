@@ -1,7 +1,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-      var userLocation = '{{ Auth::user()->profile->location }}' ? '{{ Auth::user()->profile->location }}' : 'Portland, OR, United States';
+      var userLocation = '{{ Auth::user()->profile->location }}' ? '{{ Auth::user()->profile->location }}' : 'Joinville SC, OR, Santa Catarina';
       loadWeather(userLocation);
     });
 
@@ -9,7 +9,7 @@
       $.simpleWeather({
         location: location,
         woeid: woeid,
-        unit: 'f',
+        unit: 'c',
         success: function(weather) {
           show_weather(weather);
         },
@@ -102,10 +102,27 @@
             weatherClass = 'freezing';
           }
 
+          if (weather.forecast[i].day == 'Fri') {
+            nomeDia = 'Sex';
+          } else if(weather.forecast[i].day == 'Sat') {
+            nomeDia = 'Sáb';
+          } else if(weather.forecast[i].day == 'Sun') {
+            nomeDia = 'Dom';
+          } else if(weather.forecast[i].day == 'Mon') {
+            nomeDia = 'Seg';
+          } else if(weather.forecast[i].day == 'Tue') {
+            nomeDia = 'Ter';
+          } else if(weather.forecast[i].day == 'Wed') {
+            nomeDia = 'Qua';
+          } else if(weather.forecast[i].day == 'Thu') {
+            nomeDia = 'Qui';
+          } else {
+            nomeDia = 'Seg';
+          }
 
           htmlForcast += '<li class="forecast-item ' + weatherClass + '">';
-          htmlForcast += '<span class="day">' + weather.forecast[i].day + '</span><i class="wi wi-fw icon-'+weather.forecast[i].code+'"></i> High: '+weather.forecast[i].high+'&deg;'+weather.units.temp+' | ';
-          htmlForcast += ' Low: '+weather.forecast[i].low+'&deg;'+weather.units.temp;
+          htmlForcast += '<span class="day">' + nomeDia + '</span><i class="wi wi-fw icon-'+weather.forecast[i].code+'"></i> max: '+weather.forecast[i].high+'&deg;'+weather.units.temp+' | ';
+          htmlForcast += ' min: '+weather.forecast[i].low+'&deg;'+weather.units.temp;
           htmlForcast += '</li>';
         }
       htmlForcast += '</ul>';

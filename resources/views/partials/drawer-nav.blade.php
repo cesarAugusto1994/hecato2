@@ -8,9 +8,7 @@
 @endphp
 <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
 	<a href="/" class="dashboard-logo mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white">
-		Laravel
-			<i class="material-icons " role="presentation">whatshot</i>
-		Material
+		<b>h</b>ECATO
 	</a>
 	<header class="demo-drawer-header">
 		<img id="drawer_avatar" src="{{ $userGravImage }}" alt="{{ Auth::user()->name }}" class="demo-avatar mdl-list__item-avatar">
@@ -72,7 +70,7 @@
 
 		<div class="mdl-layout-spacer"></div>
 
-		<a class="mdl-navigation__link" href="https://github.com/jeremykenedy/laravel-material-design" target="_blank">
+		<a class="mdl-navigation__link" href="https://hecato.com" target="_blank">
 			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i>
 			<span class="visuallyhidden">Help</span>
 		</a>

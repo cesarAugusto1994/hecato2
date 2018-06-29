@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    Create New Task
+    Nova Tarefa
 @endsection
 
 @section('header')
-    Create New Task
+    Nova Tarefa
 @endsection
 
 @section('breadcrumbs')
@@ -21,7 +21,7 @@
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="/tasks">
             <span itemprop="name">
-                My Tasks
+                Minhas Tarefas
             </span>
         </a>
         <i class="material-icons">chevron_right</i>
@@ -30,7 +30,7 @@
     <li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="/tasks/create">
             <span itemprop="name">
-                Create New Task
+                Nova Tarefa
             </span>
         </a>
         <meta itemprop="position" content="3" />
@@ -46,7 +46,7 @@
 
                 <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
                     <h2 class="mdl-card__title-text">
-                        Create New Task
+                        Nova Tarefa
                     </h2>
                 </div>
 

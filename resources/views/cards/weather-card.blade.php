@@ -1,7 +1,7 @@
 <div class="mdl-card mdl-shadow--2dp mdl-cell margin-top-0-tablet-important mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-desktop weather-container">
     <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
         <h2 class="mdl-card__title-text">
-            Your Weather
+            Tempo
         </h2>
     </div>
 
@@ -11,10 +11,10 @@
     </div>
     <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect show-forecast">
-            Show Forecast
+            Mostrar previsão
         </a>
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect show-weather">
-            Show Current
+            Agora
         </a>
     </div>
     <div class="mdl-card__menu">
@@ -26,8 +26,8 @@
                 <li class="mdl-menu__item show-forecast">Forecast</li>
                 <li class="mdl-menu__item show-weather">Current</li>
             --}}
-            <li class="mdl-menu__item js-geolocation">Current Location</li>
-            <li class="mdl-menu__item js-user-location">User Location</li>
+            <li class="mdl-menu__item js-geolocation">Local Atual</li>
+            <li class="mdl-menu__item js-user-location">Local do usuário</li>
 
         </ul>
     </div>
