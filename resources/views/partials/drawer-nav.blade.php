@@ -33,11 +33,11 @@
 		</a>
 		<a class="mdl-navigation__link {{ Request::is('tasks') ? 'mdl-navigation__link--current' : null }}" href="/tasks">
 			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($incompleteTasks) != 0) data-badge="{{ count($incompleteTasks) }}" @endif role="presentation">view_list</i>
-			My Tasks
+			Minhas Tarefas
 		</a>
 		<a class="mdl-navigation__link {{ Request::is('tasks/create') ? 'mdl-navigation__link--current' : null }}" href="/tasks/create">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">playlist_add</i>
-			Create Task
+			Nova Tarefa
 		</a>
 		@role('admin')
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">

@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
 
+        $this->call(TiposContatoTableSeeder::class);
+        $this->call(TiposPessoaTableSeeder::class);
+
         Model::reguard();
     }
 }

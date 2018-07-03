@@ -13,6 +13,15 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+        if (Role::where('name', '=', 'Owner')->first() === null) {
+            $adminRole = Role::create([
+                'name'        => 'Owner',
+                'slug'        => 'owner',
+                'description' => 'Owner Role',
+                'level'       => 7,
+            ]);
+        }
+
         /*
          * Add Roles
          *

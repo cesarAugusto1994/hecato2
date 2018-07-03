@@ -21,9 +21,9 @@ return [
 
     'editProfile'	  => 'Editar Perfil',
     'createProfile'	=> 'Criar Perfil',
-    'adminUserList'	=> 'Contatos',
-    'adminEditUsers'=> 'Editar Contato',
-    'adminNewUser'	 => 'Novo Contato',
+    'adminUserList'	=> 'Usuários',
+    'adminEditUsers'=> 'Editar Usuários',
+    'adminNewUser'	 => 'Novo Usuários',
 
     'adminThemesList' => 'Temas',
     'adminThemesAdd'  => 'Novo Tema',

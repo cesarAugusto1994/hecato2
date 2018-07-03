@@ -171,6 +171,12 @@ return [
         App\Providers\LocalEnvironmentServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         jeremykenedy\laravelexceptionnotifier\LaravelExceptionNotifier::class,
+        crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
+
+        Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
+        Amranidev\Ajaxis\AjaxisServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+        Pusher\Laravel\PusherServiceProvider::class,
 
     ],
 
