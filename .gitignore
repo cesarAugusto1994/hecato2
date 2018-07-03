@@ -31,7 +31,6 @@ composer.lock
 /node_modules
 /public/storage
 /storage/*.key
-/vendor
 Homestead.yaml
 Homestead.json
 /storage/debugbar
