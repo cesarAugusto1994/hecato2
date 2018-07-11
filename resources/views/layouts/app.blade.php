@@ -77,5 +77,8 @@
 
         @yield('footer_scripts')
 
+        <script src="{{asset('js/plugins/fullcalendar/moment.min.js')}}"></script>
+        <script src="{{asset('js/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
+
     </body>
 </html>

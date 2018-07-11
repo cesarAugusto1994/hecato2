@@ -10,7 +10,7 @@
 
         <title>@if (trim($__env->yieldContent('template_title')))@yield('template_title') | @endif {{ config('app.name', Lang::get('titles.app')) }}</title>
         <meta name="description" content="">
-        <meta name="author" content="Jeremy Kenedy">
+        <meta name="author" content="Cesar Augusto">
         <link rel="shortcut icon" href="/favicon.ico">
 
         {{-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --}}
@@ -36,6 +36,10 @@
 
         @yield('template_linked_css')
 
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/getmdl-select.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/material-datetime-picker.css') }}" rel="stylesheet">
+
         <style type="text/css">
             @yield('template_fastload_css')
 
@@ -56,6 +60,8 @@
         </script>
 
         @yield('head')
+
+
 
     </head>
     <body class="mdl-color--grey-100">
@@ -110,6 +116,9 @@
 
         <script src="{{ mix('/js/app.js') }}"></script>
         <script src="{{ mix('/js/mdl.js') }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 
         {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
 

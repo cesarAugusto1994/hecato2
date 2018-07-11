@@ -8,20 +8,20 @@
 
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                            {!! Form::text('name', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--white')) !!}
-                            {!! Form::label('name', 'Nome', array('class' => 'mdl-textfield__label mdl-color-text--white')); !!}
-                            <span class="mdl-textfield__error">Task name is required</span>
+                            {!! Form::text('name', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
+                            {!! Form::label('name', 'Nome', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
+                            <span class="mdl-textfield__error">Este campo é obrigatório</span>
                         </div>
                     </div>
 
                     {{--
                         <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('user_level') ? 'is-invalid' :'' }}">
-                                {!! Form::select('completed', array('1' => 'Complete', '0' => 'Incomplete'), '0', array('class' => 'mdl-selectfield__select mdl-textfield__input mdl-color-text--white', 'id' => 'status')) !!}
+                                {!! Form::select('completed', array('1' => 'Complete', '0' => 'Incomplete'), '0', array('class' => 'mdl-selectfield__select mdl-textfield__input mdl-color-text--grey-700', 'id' => 'status')) !!}
                                 <label for="completed">
                                     <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                                 </label>
-                                {!! Form::label('completed', 'Task Status', array('class' => 'mdl-textfield__label mdl-selectfield__label mdl-color-text--white')); !!}
+                                {!! Form::label('completed', 'Task Status', array('class' => 'mdl-textfield__label mdl-selectfield__label mdl-color-text--grey-700')); !!}
                                 <span class="mdl-textfield__error"></span>
                             </div>
                         </div>
@@ -29,8 +29,8 @@
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
-                            {!! Form::textarea('description', NULL, array('id' => 'task-description', 'class' => 'mdl-textfield__input mdl-color-text--white')) !!}
-                            {!! Form::label('description', 'Descrição', array('class' => 'mdl-textfield__label mdl-color-text--white')); !!}
+                            {!! Form::textarea('description', NULL, array('id' => 'task-description', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
+                            {!! Form::label('description', 'Descrição', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
                             <span class="mdl-textfield__error"></span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             <div class="mdl-cell mdl-cell--12-col padding-top-0 margin-top-0 margin-left-1-1">
 
                 <span class="save-actions">
-                    {!! Form::button('salvar Tarefa', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+                    {!! Form::button('Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                 </span>
 
             </div>

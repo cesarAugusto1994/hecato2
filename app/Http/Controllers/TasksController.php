@@ -113,6 +113,8 @@ class TasksController extends Controller
         $task = $request->all();
         $task['user_id'] = $user->id;
 
+        $task['company_id'] = \Auth::user()->company_id;
+
         Task::create($task);
 
         return redirect('/tasks')->with('status', 'Task created');
@@ -167,6 +169,8 @@ class TasksController extends Controller
             $task->completed = 0;
             $return_msg = 'Task Updated';
         }
+
+        $task->company_id = \Auth::user()->company_id;
 
         $task->save();
 

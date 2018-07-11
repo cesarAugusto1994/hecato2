@@ -17,11 +17,12 @@
     <p>
         <em>Seja Bem Vindo</em> ao nosso novo painel principal.
     </p>
-    <p>
+    <!--<p>
         <small>
             <i class="material-icons md-18 vertical-align-minus-4">verified_user</i> Users registered via Social providers are by default activated.
         </small>
     </p>
+  -->
     <hr>
     <p>
         Nível

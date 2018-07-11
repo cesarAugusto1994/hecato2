@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-  Create New User
+  Novo Usuário
 @endsection
 
 @section('header')
-  Create New User
+  Novo Usuário
 @endsection
 
 @section('breadcrumbs')
@@ -21,7 +21,7 @@
   <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     <a itemprop="item" href="/users">
       <span itemprop="name">
-        Users List
+        Usuários
       </span>
     </a>
     <i class="material-icons">chevron_right</i>
@@ -30,7 +30,7 @@
   <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     <a itemprop="item" href="/users/create">
       <span itemprop="name">
-        Create New User
+        Novo Usuário
       </span>
     </a>
     <meta itemprop="position" content="3" />
@@ -44,7 +44,7 @@
         <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
         <div class="mdl-card__title mdl-card--expand mdl-color--green mdl-color-text--white">
-          <h2 class="mdl-card__title-text logo-style">Create New User</h2>
+          <h2 class="mdl-card__title-text logo-style">Novo Usuário</h2>
         </div>
 
         {!! Form::open(array('action' => 'UsersManagementController@store', 'method' => 'POST', 'role' => 'form')) !!}
@@ -57,7 +57,7 @@
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                      {!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z,0-9]*')) !!}
+                      {!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z,0-9]*', 'autocomplete' => 'off')) !!}
                       {!! Form::label('name', trans('auth.name') , array('class' => 'mdl-textfield__label')); !!}
                       <span class="mdl-textfield__error">Letters and numbers only</span>
                     </div>
@@ -72,15 +72,15 @@
                   </div>
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('first_name') ? 'is-invalid' :'' }}">
-                            {!! Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')) !!}
-                            {!! Form::label('first_name', 'First Name', array('class' => 'mdl-textfield__label')); !!}
+                            {!! Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'mdl-textfield__input')) !!}
+                            {!! Form::label('first_name', 'Primeiro Nome', array('class' => 'mdl-textfield__label')); !!}
                             <span class="mdl-textfield__error">Letters only</span>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('last_name') ? 'is-invalid' :'' }}">
                           {!! Form::text('last_name', NULL, array('id' => 'last_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')) !!}
-                          {!! Form::label('last_name', 'Last Name', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::label('last_name', 'Último Nome', array('class' => 'mdl-textfield__label')); !!}
                           <span class="mdl-textfield__error">Letters only</span>
                       </div>
                     </div>
@@ -100,7 +100,7 @@
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
                         {!! Form::text('location', NULL, array('id' => 'location', 'class' => 'mdl-textfield__input' )) !!}
-                        {!! Form::label('location', 'User Location', array('class' => 'mdl-textfield__label')); !!}
+                        {!! Form::label('location', 'Localização', array('class' => 'mdl-textfield__label')); !!}
                       <span class="mdl-textfield__error">Please Enter a Valid Location</span>
                     </div>
                   </div>
@@ -126,7 +126,7 @@
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('password') ? 'is-invalid' :'' }}">
                           {!! Form::password('password', array('id' => 'password', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('password', 'Password', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::label('password', 'Senha', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Please enter a valid password</span>
                       </div>
                   </div>
@@ -134,7 +134,7 @@
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('password_confirmation') ? 'is-invalid' :'' }}">
                           {!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('password_confirmation', 'Confirm Password', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::label('password_confirmation', 'Confirmar Senha', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Must match password</span>
                       </div>
                   </div>
@@ -142,7 +142,7 @@
                   <div class="mdl-cell mdl-cell--12-col">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('bio') ? 'is-invalid' :'' }}">
                           {!! Form::textarea('bio',  NULL, array('id' => 'bio', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('bio', 'Bio', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::label('bio', 'Informações', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                   </div>
                 </div>
@@ -157,7 +157,7 @@
 
                 {{-- SAVE BUTTON--}}
                 <span class="save-actions">
-                  {!! Form::button('<i class="material-icons">save</i> Save New User', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                 </span>
 
               </div>

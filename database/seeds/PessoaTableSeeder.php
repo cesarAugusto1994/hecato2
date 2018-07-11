@@ -30,6 +30,7 @@ class PessoaTableSeeder extends Seeder
 
         $pessoa = new Pessoa();
         $pessoa->tipo_id = 1;
+        $pessoa->empresa_id = 1;
         $pessoa->save()
 
         $fisica = new Fisica();

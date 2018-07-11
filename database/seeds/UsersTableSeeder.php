@@ -33,6 +33,7 @@ class UsersTableSeeder extends Seeder
                 'activated'                      => true,
                 'signup_confirmation_ip_address' => $faker->ipv4,
                 'admin_ip_address'               => $faker->ipv4,
+                'company_id'                     => 1,
             ]);
 
             $user->profile()->save($profile);
@@ -54,6 +55,7 @@ class UsersTableSeeder extends Seeder
                 'activated'                      => true,
                 'signup_confirmation_ip_address' => $faker->ipv4,
                 'admin_ip_address'               => $faker->ipv4,
+                'company_id'                     => 1,
             ]);
 
             $user->profile()->save($profile);
@@ -74,6 +76,7 @@ class UsersTableSeeder extends Seeder
                 'activated'                      => true,
                 'signup_ip_address'              => $faker->ipv4,
                 'signup_confirmation_ip_address' => $faker->ipv4,
+                'company_id'                     => 1,
             ]);
 
             $user->profile()->save(new Profile());

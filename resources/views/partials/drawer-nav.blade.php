@@ -31,6 +31,15 @@
 			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>
 			{{ Lang::get('titles.profile') }}
 		</a>
+		@php
+
+				$agendamentos = \App\Models\Schedule::whereIn('status_id', [1,2])->where('empresa_id', \Auth::user()->company_id)->count();
+
+		@endphp
+		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
+			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($agendamentos) != 0) data-badge="{{ count($agendamentos) }}" @endif role="presentation">alarm</i>
+			Agenda
+		</a>
 		<a class="mdl-navigation__link {{ Request::is('tasks') ? 'mdl-navigation__link--current' : null }}" href="/tasks">
 			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($incompleteTasks) != 0) data-badge="{{ count($incompleteTasks) }}" @endif role="presentation">view_list</i>
 			Minhas Tarefas

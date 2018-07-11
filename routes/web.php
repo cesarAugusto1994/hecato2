@@ -216,4 +216,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('scaffold-permissions/create', '\App\Http\Controllers\ScaffoldInterface\PermissionController@create');
     Route::post('scaffold-permissions/store', '\App\Http\Controllers\ScaffoldInterface\PermissionController@store');
     Route::get('scaffold-permissions/delete/{role_id}', '\App\Http\Controllers\ScaffoldInterface\PermissionController@destroy');
+
+    Route::resource('schedule', '\App\Http\Controllers\ScheduleController');
+    Route::resource('empresa', '\App\Http\Controllers\EmpresaController');
 });

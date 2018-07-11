@@ -75,7 +75,7 @@ return [
     'label-useremail'					=> 'User Email',
     'ph-useremail'						  => 'User Email',
 
-    'label-userrole_id'					=> 'User Access Level',
+    'label-userrole_id'					=> 'Nível de Acesso',
     'option-label'						    => 'Select a Level',
     'option-user'						     => 'User',
     'option-editor'						   => 'Editor',

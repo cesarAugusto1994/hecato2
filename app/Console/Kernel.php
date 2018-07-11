@@ -30,6 +30,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('activations:clean')
                  ->daily();
+
+        $schedule->command('inspire')->everyTenMinutes();
+
+        $schedule->command('route:list')->dailyAt('02:00');
     }
 
     /**

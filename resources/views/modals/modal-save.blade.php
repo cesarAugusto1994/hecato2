@@ -6,7 +6,7 @@
         <h4 class="modal-title">{{ Lang::get('modals.confirm_modal_title_text') }} </h4>
       </div>
       <div class="modal-body">
-        <p>{{ Lang::get('modals.confirm_modal_title_text') }} </p>
+        <p>{{ Lang::get('modals.confirm_modal_title_text') }}</p>
       </div>
       <div class="modal-footer">
         {!! Form::button('<i class="fa fa-fw '.Lang::get('modals.confirm_modal_button_cancel_icon').'" aria-hidden="true"></i> ' . Lang::get('modals.confirm_modal_button_cancel_text'), array('class' => 'btn btn-outline pull-left btn-flat', 'type' => 'button', 'data-dismiss' => 'modal' )) !!}

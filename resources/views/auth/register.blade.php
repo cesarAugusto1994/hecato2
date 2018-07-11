@@ -67,9 +67,11 @@
                                     </div>
 
                                     @if(config('settings.reCaptchStatus'))
+                                        <!--
                                         <div class="mdl-cell mdl-cell--12-col">
                                             <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                                         </div>
+                                        -->
                                     @endif
 
                                     <div class="mdl-cell mdl-cell--12-col">

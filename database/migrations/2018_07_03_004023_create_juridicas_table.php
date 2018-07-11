@@ -18,11 +18,10 @@ class CreateJuridicasTable extends Migration
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
 
-            $table->string('razao_social');
             $table->string('fantasia')->nullable();
             $table->string('cnpj');
             $table->string('ie')->nullable();
-            
+
             $table->timestamps();
         });
     }

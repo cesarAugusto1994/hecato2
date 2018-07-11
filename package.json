@@ -26,9 +26,13 @@
   },
   "dependencies": {
     "dropzone": "^5.4.0",
+    "getmdl-select": "^2.0.1",
     "hideshowpassword": "^2.1.1",
+    "material-datepicker": "0.0.1",
+    "material-datetime-picker": "^2.4.0",
+    "md-date-time-picker": "^2.3.0",
     "password-strength-meter": "^1.2.1",
-    "pusher-js": "^4.2.2",
-    "prismjs": "^1.6.0"
+    "prismjs": "^1.6.0",
+    "pusher-js": "^4.2.2"
   }
 }

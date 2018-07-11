@@ -45,9 +45,9 @@
                 <a href="#complete" class="mdl-tabs__tab">Completadas</a>
             </div>
 
-            @include('tasks/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'All Tasks', 'status' => 'is-active'])
-            @include('tasks/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Incomplete Tasks'])
-            @include('tasks/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Complete Tasks'])
+            @include('tasks/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Todas Tarefas', 'status' => 'is-active'])
+            @include('tasks/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Tarefas Incompletas'])
+            @include('tasks/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Tarefas Completadas'])
 
         </div>
 
@@ -57,11 +57,11 @@
 
     <div class="mdl-grid full-grid margin-top-0 padding-0">
         <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
-            <div class="mdl-color--grey-700 mdl-color-text--white mdl-card mdl-shadow--2dp" style="width:100%;" itemscope itemtype="https://schema.org/Person">
+            <div class="mdl-color--grey-50 mdl-color-text--white mdl-card mdl-shadow--2dp" style="width:100%;" itemscope itemtype="https://schema.org/Person">
 
                 <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
                     <h4 class="mdl-card__title-text">
-                        Iniciar criação da nova tarefa
+                        Nova Tarefa
                     </h4>
                 </div>
 
