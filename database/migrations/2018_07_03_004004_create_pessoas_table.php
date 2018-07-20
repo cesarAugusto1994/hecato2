@@ -22,8 +22,20 @@ class CreatePessoasTable extends Migration
             $table->integer('grupo_id')->nullable();
             $table->string('nome');
             $table->string('email');
+
+            $table->string('ramo_atividade')->nullable();
             $table->text('informacoes')->nullable();
             $table->string('site')->nullable();
+
+            $table->uuid('uuid');
+
+            $table->boolean('cliente')->default(true);
+            $table->boolean('fornecedor')->default(false);
+            $table->boolean('funcionario')->default(false);
+            $table->boolean('prospecto')->default(false);
+
+            $table->string('identificacao_estrangeiro')->nullable();
+
             $table->boolean('ativo')->default(true);
             $table->timestamps();
             $table->softDeletes();

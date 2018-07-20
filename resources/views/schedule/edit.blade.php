@@ -91,7 +91,7 @@
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                                            {!! Form::text('start', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black c-datepicker-btn')) !!}
+                                            {!! Form::text('start', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
                                             {!! Form::label('start', 'Início', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                                             <span class="mdl-textfield__error">Task name is required</span>
                                         </div>
@@ -99,7 +99,7 @@
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                                            {!! Form::text('end', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black c-datepicker-btn')) !!}
+                                            {!! Form::text('end', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
                                             {!! Form::label('end', 'Fim', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                                             <span class="mdl-textfield__error">Task name is required</span>
                                         </div>

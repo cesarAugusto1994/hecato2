@@ -37,7 +37,7 @@
 
 		@endphp
 		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
-			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($agendamentos) != 0) data-badge="{{ count($agendamentos) }}" @endif role="presentation">alarm</i>
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">alarm</i>
 			Agenda
 		</a>
 		<a class="mdl-navigation__link {{ Request::is('tasks') ? 'mdl-navigation__link--current' : null }}" href="/tasks">
@@ -48,6 +48,12 @@
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">playlist_add</i>
 			Nova Tarefa
 		</a>
+
+		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="/contatos">
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">people</i>
+			Contatos
+		</a>
+
 		@role('admin')
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" data-badge="{{ $totalUsers }}" role="presentation">contacts</i>

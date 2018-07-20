@@ -39,6 +39,7 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'empresa_id',
         'password',
         'activated',
         'token',
@@ -112,5 +113,10 @@ class User extends Authenticatable
     public function removeProfile($profile)
     {
         return $this->profiles()->detach($profile);
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo('App\Models\Empresa', 'empresa_id');
     }
 }

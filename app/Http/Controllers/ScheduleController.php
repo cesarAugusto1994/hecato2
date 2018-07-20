@@ -22,7 +22,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $tasks = Schedule::all();
+        $tasks = Schedule::where('empresa_id', \Auth::user()->empresa_id)->orderByDesc('id')->get();
         $status = Status::all();
 
         $tasksInComplete = $tasks->filter(function($task) {
@@ -33,7 +33,146 @@ class ScheduleController extends Controller
             return $task->status_id == 3;
         });
 
-        return view('schedule.index', compact('tasks', 'tasksInComplete', 'tasksComplete', 'status'));
+        $tasksCancelados = $tasks->filter(function($task) {
+            return $task->status_id == 4;
+        });
+
+        return view('schedule.index', compact('tasks', 'tasksInComplete', 'tasksComplete', 'status', 'tasksCancelados'));
+    }
+
+    public function agendamentos(Request $request)
+    {
+        $data = $request->request->all();
+
+        $user = \Auth::user();
+
+        $empresa = $user->empresa_id;
+
+        $inicio = new \DateTime($data['start']);
+        $fim = new \DateTime($data['end']);
+
+        $agendamentos = Schedule::where('empresa_id', $empresa)->where('inicio', '>=', $inicio)->where('fim', '<=', $fim)->get();
+
+        $cardCollor = "#008080";
+        $editable = true;
+
+        $agenda = $agendamentos->map(function($agenda) use ($cardCollor, $editable) {
+
+            switch($agenda->status_id) {
+              case 2:
+                $cardCollor = "#3498DB";
+              break;
+              case 3:
+                $cardCollor = "#CD5C5C";
+                $editable = false;
+              break;
+              case 4:
+                $cardCollor = "#FA8072";
+                $editable = false;
+              break;
+            }
+
+            return [
+                'id' => $agenda->id,
+                'pessoaId' => $agenda->pessoa->id,
+                'pessoa' => $agenda->pessoa->nome,
+                'status' => $agenda->confirmada,
+                'status_id' => $agenda->status_id,
+                'title' => $agenda->pessoa->nome,
+                'start' => $agenda->inicio->format('Y-m-d H:i'),
+                'end' => $agenda->fim->format('Y-m-d H:i'),
+                'color'  => $cardCollor,
+                'editable' => $editable,
+                'notas' => $agenda->notas,
+                'selectable' => $editable,
+                'droppable' => $editable
+            ];
+        });
+
+        return $agenda->toJson();
+    }
+
+    public function iniciarAgendamento(Request $request, $id)
+    {
+          $data = $request->request->all();
+
+          $agenda = Schedule::uuid($id);
+          $agenda->status_id = 2;
+          $agenda->save();
+
+          return redirect()->route('schedule.index');
+    }
+
+    public function finalizarAgendamento(Request $request, $id)
+    {
+          $data = $request->request->all();
+
+          $agenda = Schedule::uuid($id);
+          $agenda->status_id = 3;
+          $agenda->save();
+
+          return redirect()->route('schedule.index');
+    }
+
+    public function cancelarAgendamento(Request $request, $id)
+    {
+          $data = $request->request->all();
+
+          $agenda = Schedule::uuid($id);
+          $agenda->status_id = 4;
+          $agenda->save();
+
+          return redirect()->route('schedule.index');
+    }
+
+    public function updateData(Request $request)
+    {
+      try {
+
+        $data = $request->request->all();
+
+        $validator = \Illuminate\Support\Facades\Validator::make($data, [
+          'inicio' => 'required',
+          'fim' => 'required',
+          /*'status' => 'required',*/
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return response()->json(
+                [
+                    'code' => 501,
+                    'message' => $errors->all(),
+                ]
+            );
+        }
+
+        $agenda = Schedule::findOrFail($data['id']);
+        $agenda->inicio = \DateTime::createFromFormat('d/m/Y H:i', $data['inicio']);
+        $agenda->fim = \DateTime::createFromFormat('d/m/Y H:i', $data['fim']);
+        //$agenda->confirmada = $data['status'];
+        $agenda->pessoa_id = $data['pessoa'];
+        $agenda->notas = $data['notas'];
+        $agenda->save();
+
+        return response()->json(
+            [
+                'code' => 201,
+                'message' => 'Consulta reagendada com sucesso.',
+            ]
+        );
+
+      } catch(Exception $e) {
+
+        return response()->json(
+            [
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]
+        );
+
+      }
     }
 
     /**
@@ -58,13 +197,14 @@ class ScheduleController extends Controller
 
         $this->validate($request, $this->rules);
 
-        $data['inicio'] = $data['fim'] = now();
+        $data['inicio'] = \DateTime::createFromFormat('d/m/Y H:i', $data['inicio']);
+        $data['fim'] = \DateTime::createFromFormat('d/m/Y H:i', $data['fim']);
         $data['user_id'] = \Auth::user()->id;
-        $data['empresa_id'] = \Auth::user()->company_id;
+        $data['empresa_id'] = \Auth::user()->empresa_id;
         $data['status_id'] = 1;
         $schedule = Schedule::create($data);
 
-        return redirect()->back();
+        return redirect()->route('schedule.index')->with('success', 'Agendado com sucesso!');
     }
 
     /**

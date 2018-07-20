@@ -16,7 +16,7 @@ class CreateSchedulesTable extends Migration
         Schema::create('agenda', function (Blueprint $table) {
 
             $table->increments('id');
-            
+
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
 
@@ -35,6 +35,9 @@ class CreateSchedulesTable extends Migration
 
             $table->boolean('lembrete')->default(true);
             $table->boolean('confirmada')->default(true);
+
+            $table->uuid('uuid');
+
             $table->boolean('ativo')->default(true);
 
             $table->timestamps();

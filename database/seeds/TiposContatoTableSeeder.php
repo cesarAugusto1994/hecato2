@@ -12,7 +12,7 @@ class TiposContatoTableSeeder extends Seeder
      */
     public function run()
     {
-        $itens = ['Telefone Fixo', 'Celular', 'Fax'];
+        $itens = ['Telefone Fixo', 'Telefone Comercial', 'Celular', 'Fax'];
 
         foreach ($itens as $key => $item) {
             $tipo = new TipoContato();

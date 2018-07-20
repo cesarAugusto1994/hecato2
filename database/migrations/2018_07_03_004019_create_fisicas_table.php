@@ -18,9 +18,9 @@ class CreateFisicasTable extends Migration
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
 
-            $table->string('cpf');
+            $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->date('aniversario')->nullable();
+            $table->date('nascimento')->nullable();
 
             $table->timestamps();
         });

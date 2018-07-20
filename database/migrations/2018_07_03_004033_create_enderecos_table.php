@@ -18,11 +18,11 @@ class CreateEnderecosTable extends Migration
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
 
-            $table->string('endereco');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('cep');
-            $table->string('uf');
+            $table->string('endereco')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('uf')->nullable();
             $table->string('pais')->nullable();
 
             $table->timestamps();

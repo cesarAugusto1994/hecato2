@@ -21,12 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password');
 
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('empresas');
+            $table->integer('empresa_id')->unsigned();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
 
             $table->rememberToken();
             $table->boolean('activated')->default(false);
-            $table->string('token');
+            $table->string('token')->nullable();;
             $table->ipAddress('signup_ip_address')->nullable();
             $table->ipAddress('signup_confirmation_ip_address')->nullable();
             $table->ipAddress('signup_sm_ip_address')->nullable();

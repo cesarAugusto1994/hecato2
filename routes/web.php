@@ -219,4 +219,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::resource('schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('empresa', '\App\Http\Controllers\EmpresaController');
+    Route::resource('contatos', '\App\Http\Controllers\PessoasController');
+
+    Route::post('schedule/update-data', 'ScheduleController@updateData')->name('atualizar_agendamento');
+    Route::get('agendamentos/json', 'ScheduleController@agendamentos')->name('agendamentos_json');
+
+    Route::put('schedule/{id}/start', 'ScheduleController@iniciarAgendamento')->name('iniciar_agendamento');
+    Route::put('schedule/{id}/finish', 'ScheduleController@finalizarAgendamento')->name('finalizar_agendamento');
+    Route::put('schedule/{id}/cancel', 'ScheduleController@cancelarAgendamento')->name('cancelar_agendamento');
+
+
 });

@@ -36,7 +36,8 @@
 
         @yield('template_linked_css')
 
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/_materialFullCalendar.css') }}" rel="stylesheet">
         <link href="{{ asset('css/getmdl-select.css') }}" rel="stylesheet">
         <link href="{{ asset('css/material-datetime-picker.css') }}" rel="stylesheet">
 
@@ -49,6 +50,29 @@
                     background-size: auto 100%;
                 }
             @endif
+
+            .mdl-button--file {
+                input {
+                  cursor: pointer;
+                  height: 100%;
+                  right: 0;
+                  opacity: 0;
+                  position: absolute;
+                  top: 0;
+                  width: 300px;
+                  z-index: 4;
+                }
+              }
+
+              .mdl-textfield--file {
+                .mdl-textfield__input {
+                  box-sizing: border-box;
+                  width: calc(100% - 32px);
+                }
+                .mdl-button--file {
+                  right: 0;
+                }
+              }
 
         </style>
 
@@ -119,6 +143,16 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+        <script>
+
+            $(function() {
+              $('.date').mask('00/00/0000');
+              $('.datetime').mask('00/00/0000 00:00');
+            })
+
+        </script>
 
         {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
 

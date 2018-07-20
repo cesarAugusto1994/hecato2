@@ -113,7 +113,7 @@ class TasksController extends Controller
         $task = $request->all();
         $task['user_id'] = $user->id;
 
-        $task['company_id'] = \Auth::user()->company_id;
+        $task['company_id'] = \Auth::user()->empresa_id;
 
         Task::create($task);
 

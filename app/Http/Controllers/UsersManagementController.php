@@ -101,7 +101,7 @@ class UsersManagementController extends Controller
                     'token'            => str_random(64),
                     'admin_ip_address' => $ipAddress->getClientIp(),
                     'activated'        => 1,
-                    'company_id'       => \Auth::user()->company_id,
+                    'empresa_id'       => \Auth::user()->empresa_id,
                 ]);
 
             $user->profile()->save($profile);

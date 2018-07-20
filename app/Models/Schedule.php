@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Schedule\Status;
 use App\Models\Pessoa;
+use Emadadly\LaravelUuid\Uuids;
 
 class Schedule extends Model
 {
+    use Uuids;
+    
     protected $table = 'agenda';
 
     protected $dates = ['inicio', 'fim'];

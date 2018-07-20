@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-  Showing Users
+  Usuários
 @endsection
 
 @section('template_linked_css')
 @endsection
 
 @section('header')
-    Showing All Users
+    Usuários
 @endsection
 
 @section('breadcrumbs')

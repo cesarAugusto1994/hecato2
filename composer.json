@@ -34,7 +34,7 @@
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/twitch": "^3.0",
         "socialiteproviders/youtube": "^3.0",
-        "webpatser/laravel-uuid": "^2.0"
+        "emadadly/laravel-uuid": "1.*"
     },
     "require-dev": {
         "crestapps/laravel-code-generator": "^2.2",

@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    Welcome {{ Auth::user()->name }}
+    Bem Vindo {{ Auth::user()->name }}
 @endsection
 
 @section('header')
-	{{ trans('auth.loggedIn', ['name' => Auth::user()->name]) }}
+	{{ Auth::user()->empresa }}
 @endsection
 
 @section('breadcrumbs')

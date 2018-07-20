@@ -177,6 +177,7 @@ return [
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Pusher\Laravel\PusherServiceProvider::class,
+        Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
 
     ],
 
