@@ -220,6 +220,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('empresa', '\App\Http\Controllers\EmpresaController');
     Route::resource('contatos', '\App\Http\Controllers\PessoasController');
+    Route::resource('guias', '\App\Http\Controllers\GuiasController');
+
+    Route::get('/guia/{id}/confimar-pagamento', 'GuiasController@confirmarPagamento')->name('confirmar_pagamento');
 
     Route::post('schedule/update-data', 'ScheduleController@updateData')->name('atualizar_agendamento');
     Route::get('agendamentos/json', 'ScheduleController@agendamentos')->name('agendamentos_json');

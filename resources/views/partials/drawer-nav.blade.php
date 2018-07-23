@@ -31,11 +31,6 @@
 			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>
 			{{ Lang::get('titles.profile') }}
 		</a>
-		@php
-
-				$agendamentos = \App\Models\Schedule::whereIn('status_id', [1,2])->where('empresa_id', \Auth::user()->company_id)->count();
-
-		@endphp
 		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">alarm</i>
 			Agenda
@@ -52,6 +47,11 @@
 		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="/contatos">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">people</i>
 			Contatos
+		</a>
+
+		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="{{ route('guias.index') }}">
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">assignment</i>
+			Guias
 		</a>
 
 		@role('admin')

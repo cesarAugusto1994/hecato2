@@ -84,18 +84,7 @@
                           <span class="mdl-textfield__error">Letters only</span>
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('twitter_username', NULL, array('id' => 'twitter_username', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('twitter_username', 'Twitter Username', array('class' => 'mdl-textfield__label')); !!}
-                      </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('github_username', NULL, array('id' => 'github_username', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('github_username', 'GitHub Username', array('class' => 'mdl-textfield__label')); !!}
-                      </div>
-                    </div>
+
 
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">

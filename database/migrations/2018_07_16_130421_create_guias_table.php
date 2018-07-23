@@ -31,6 +31,8 @@ class CreateGuiasTable extends Migration
             $table->foreign('agendamento_id')->references('id')->on('agenda');
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
+            $table->integer('empresa_id')->unsigned();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
 
             $table->uuid('uuid');
 

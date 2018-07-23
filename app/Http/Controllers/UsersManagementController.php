@@ -92,6 +92,8 @@ class UsersManagementController extends Controller
             $ipAddress = new CaptureIpTrait();
             $profile = new Profile();
 
+            $currentUser = Auth::user();
+
             $user = User::create([
                     'name'             => $request->input('name'),
                     'first_name'       => $request->input('first_name'),
@@ -100,8 +102,9 @@ class UsersManagementController extends Controller
                     'password'         => bcrypt($request->input('password')),
                     'token'            => str_random(64),
                     'admin_ip_address' => $ipAddress->getClientIp(),
+                    'empresa_id'       => $currentUser->empresa_id,
                     'activated'        => 1,
-                    'empresa_id'       => \Auth::user()->empresa_id,
+
                 ]);
 
             $user->profile()->save($profile);

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Schedule\Status;
-use Redirect;
+use App\Models\Agendamento\Guia;
+use Redirect, Auth;
 
 class ScheduleController extends Controller
 {
@@ -203,6 +204,15 @@ class ScheduleController extends Controller
         $data['empresa_id'] = \Auth::user()->empresa_id;
         $data['status_id'] = 1;
         $schedule = Schedule::create($data);
+
+        $guia = new Guia();
+        $guia->valor = 150;
+        $guia->status_id = 1;
+        $guia->agendamento_id = $schedule->id;
+        $guia->empresa_id = Auth::user()->empresa_id;
+        $guia->pessoa_id = $data['pessoa_id'];
+        $guia->data_vencimento = (now()->modify('+ 7 days'));
+        $guia->save();
 
         return redirect()->route('schedule.index')->with('success', 'Agendado com sucesso!');
     }
