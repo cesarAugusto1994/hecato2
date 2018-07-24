@@ -2,7 +2,6 @@
 
 namespace Illuminate\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Support\Arrayable;
 use Symfony\Component\Console\Helper\Table;
@@ -281,7 +280,7 @@ class Command extends SymfonyCommand
     /**
      * Get the value of a command option.
      *
-     * @param  string|null  $key
+     * @param  string  $key
      * @return string|array
      */
     public function option($key = null)
@@ -319,7 +318,7 @@ class Command extends SymfonyCommand
      * Prompt the user for input.
      *
      * @param  string  $question
-     * @param  string|null  $default
+     * @param  string  $default
      * @return string
      */
     public function ask($question, $default = null)
@@ -332,7 +331,7 @@ class Command extends SymfonyCommand
      *
      * @param  string  $question
      * @param  array   $choices
-     * @param  string|null  $default
+     * @param  string  $default
      * @return string
      */
     public function anticipate($question, array $choices, $default = null)
@@ -345,7 +344,7 @@ class Command extends SymfonyCommand
      *
      * @param  string  $question
      * @param  array   $choices
-     * @param  string|null  $default
+     * @param  string  $default
      * @return string
      */
     public function askWithCompletion($question, array $choices, $default = null)
@@ -378,9 +377,9 @@ class Command extends SymfonyCommand
      *
      * @param  string  $question
      * @param  array   $choices
-     * @param  string|null  $default
-     * @param  mixed|null   $attempts
-     * @param  bool|null    $multiple
+     * @param  string  $default
+     * @param  mixed   $attempts
+     * @param  bool    $multiple
      * @return string
      */
     public function choice($question, array $choices, $default = null, $attempts = null, $multiple = null)
@@ -507,11 +506,9 @@ class Command extends SymfonyCommand
      */
     public function alert($string)
     {
-        $length = Str::length(strip_tags($string)) + 12;
-
-        $this->comment(str_repeat('*', $length));
+        $this->comment(str_repeat('*', strlen($string) + 12));
         $this->comment('*     '.$string.'     *');
-        $this->comment(str_repeat('*', $length));
+        $this->comment(str_repeat('*', strlen($string) + 12));
 
         $this->output->newLine();
     }
@@ -530,7 +527,7 @@ class Command extends SymfonyCommand
     /**
      * Get the verbosity level in terms of Symfony's OutputInterface level.
      *
-     * @param  string|int|null  $level
+     * @param  string|int  $level
      * @return int
      */
     protected function parseVerbosity($level = null)

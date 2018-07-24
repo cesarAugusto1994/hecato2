@@ -184,7 +184,13 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function is(...$patterns)
     {
-        return Str::is($patterns, $this->decodedPath());
+        foreach ($patterns as $pattern) {
+            if (Str::is($pattern, $this->decodedPath())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -304,20 +310,6 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
-     * This method belongs to Symfony HttpFoundation and is not usually needed when using Laravel.
-     *
-     * Instead, you may use the "input" method.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
-     */
-    public function get($key, $default = null)
-    {
-        return parent::get($key, $default);
-    }
-
-    /**
      * Get the JSON payload for the request.
      *
      * @param  string  $key
@@ -348,45 +340,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
             return $this->json();
         }
 
-        return in_array($this->getRealMethod(), ['GET', 'HEAD']) ? $this->query : $this->request;
-    }
-
-    /**
-     * Create a new request instance from the given Laravel request.
-     *
-     * @param  \Illuminate\Http\Request  $from
-     * @param  \Illuminate\Http\Request|null  $to
-     * @return static
-     */
-    public static function createFrom(self $from, $to = null)
-    {
-        $request = $to ?: new static;
-
-        $files = $from->files->all();
-
-        $files = is_array($files) ? array_filter($files) : $files;
-
-        $request->initialize(
-            $from->query->all(),
-            $from->request->all(),
-            $from->attributes->all(),
-            $from->cookies->all(),
-            $files,
-            $from->server->all(),
-            $from->getContent()
-        );
-
-        $request->setJson($from->json());
-
-        if ($session = $from->getSession()) {
-            $request->setLaravelSession($session);
-        }
-
-        $request->setUserResolver($from->getUserResolver());
-
-        $request->setRouteResolver($from->getRouteResolver());
-
-        return $request;
+        return $this->getRealMethod() == 'GET' ? $this->query : $this->request;
     }
 
     /**
@@ -461,17 +415,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
             throw new RuntimeException('Session store not set on request.');
         }
 
-        return $this->session;
-    }
-
-    /**
-     * Get the session associated with the request.
-     *
-     * @return \Illuminate\Session\Store|null
-     */
-    public function getSession()
-    {
-        return $this->session;
+        return $this->getSession();
     }
 
     /**
@@ -528,8 +472,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
         }
 
         return sha1(implode('|', array_merge(
-            $route->methods(),
-            [$route->getDomain(), $route->uri(), $this->ip()]
+            $route->methods(), [$route->getDomain(), $route->uri(), $this->ip()]
         )));
     }
 
@@ -615,8 +558,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     public function offsetExists($offset)
     {
         return array_key_exists(
-            $offset,
-            $this->all() + $this->route()->parameters()
+            $offset, $this->all() + $this->route()->parameters()
         );
     }
 
