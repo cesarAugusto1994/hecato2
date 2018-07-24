@@ -76,7 +76,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     /**
      * @throws InvalidArgumentException If a locale contains invalid characters
      */
-    public function __construct(?string $locale, MessageFormatterInterface $formatter = null, string $cacheDir = null, bool $debug = false)
+    public function __construct($locale, MessageFormatterInterface $formatter = null, string $cacheDir = null, bool $debug = false)
     {
         $this->setLocale($locale);
 
@@ -275,7 +275,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
         $this->loadFallbackCatalogues($locale);
     }
 
-    private function initializeCacheCatalogue(string $locale): void
+    private function initializeCacheCatalogue(string $locale)
     {
         if (isset($this->catalogues[$locale])) {
             /* Catalogue already initialized. */
@@ -298,7 +298,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
         $this->catalogues[$locale] = include $cache->getPath();
     }
 
-    private function dumpCatalogue($locale, ConfigCacheInterface $cache): void
+    private function dumpCatalogue($locale, ConfigCacheInterface $cache)
     {
         $this->initializeCatalogue($locale);
         $fallbackContent = $this->getFallbackContent($this->catalogues[$locale]);
@@ -323,7 +323,7 @@ EOF
         $cache->write($content, $this->catalogues[$locale]->getResources());
     }
 
-    private function getFallbackContent(MessageCatalogue $catalogue): string
+    private function getFallbackContent(MessageCatalogue $catalogue)
     {
         $fallbackContent = '';
         $current = '';
@@ -358,7 +358,7 @@ EOF
         return $this->cacheDir.'/catalogue.'.$locale.'.'.strtr(substr(base64_encode(hash('sha256', serialize($this->fallbackLocales), true)), 0, 7), '/', '_').'.php';
     }
 
-    private function doLoadCatalogue($locale): void
+    private function doLoadCatalogue($locale)
     {
         $this->catalogues[$locale] = new MessageCatalogue($locale);
 
@@ -372,7 +372,7 @@ EOF
         }
     }
 
-    private function loadFallbackCatalogues($locale): void
+    private function loadFallbackCatalogues($locale)
     {
         $current = $this->catalogues[$locale];
 
