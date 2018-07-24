@@ -11,7 +11,6 @@ use Mail;
 use Response;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
-use Encore\Admin\Reporter\Reporter;
 
 class Handler extends ExceptionHandler
 {
@@ -48,10 +47,6 @@ class Handler extends ExceptionHandler
 
         if ($enableEmailExceptions && $this->shouldReport($exception)) {
             $this->sendEmail($exception);
-        }
-
-        if ($this->shouldReport($exception)) {
-            Reporter::report($exception);
         }
 
         parent::report($exception);
