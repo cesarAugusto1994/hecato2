@@ -20,12 +20,6 @@
 namespace Doctrine\DBAL\Driver\SQLAnywhere;
 
 use Doctrine\DBAL\Driver\AbstractDriverException;
-use function is_resource;
-use function sasql_error;
-use function sasql_errorcode;
-use function sasql_sqlstate;
-use function sasql_stmt_errno;
-use function sasql_stmt_error;
 
 /**
  * SAP Sybase SQL Anywhere driver exception.
@@ -48,11 +42,11 @@ class SQLAnywhereException extends AbstractDriverException
      */
     public static function fromSQLAnywhereError($conn = null, $stmt = null)
     {
-        if (null !== $conn && ! (is_resource($conn))) {
+        if (null !== $conn && ! (is_resource($conn) && get_resource_type($conn) === 'SQLAnywhere connection')) {
             throw new \InvalidArgumentException('Invalid SQL Anywhere connection resource given: ' . $conn);
         }
 
-        if (null !== $stmt && ! (is_resource($stmt))) {
+        if (null !== $stmt && ! (is_resource($stmt) && get_resource_type($stmt) === 'SQLAnywhere statement')) {
             throw new \InvalidArgumentException('Invalid SQL Anywhere statement resource given: ' . $stmt);
         }
 

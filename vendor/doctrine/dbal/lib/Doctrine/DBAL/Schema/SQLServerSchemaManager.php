@@ -19,17 +19,8 @@
 
 namespace Doctrine\DBAL\Schema;
 
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Driver\DriverException;
+use Doctrine\DBAL\Driver\SQLSrv\SQLSrvException;
 use Doctrine\DBAL\Types\Type;
-use function count;
-use function in_array;
-use function preg_replace;
-use function sprintf;
-use function str_replace;
-use function strpos;
-use function strtok;
-use function trim;
 
 /**
  * SQL Server Schema Manager.
@@ -46,37 +37,9 @@ class SQLServerSchemaManager extends AbstractSchemaManager
     /**
      * {@inheritdoc}
      */
-    public function dropDatabase($database)
-    {
-        try {
-            parent::dropDatabase($database);
-        } catch (DBALException $exception) {
-            $exception = $exception->getPrevious();
-
-            if (! $exception instanceof DriverException) {
-                throw $exception;
-            }
-
-            // If we have a error code 3702, the drop database operation failed
-            // because of active connections on the database.
-            // To force dropping the database, we first have to close all active connections
-            // on that database and issue the drop database operation again.
-            if ($exception->getErrorCode() !== 3702) {
-                throw $exception;
-            }
-
-            $this->closeActiveDatabaseConnections($database);
-
-            parent::dropDatabase($database);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function _getPortableSequenceDefinition($sequence)
     {
-        return new Sequence($sequence['name'], (int) $sequence['increment'], (int) $sequence['start_value']);
+        return new Sequence($sequence['name'], $sequence['increment'], $sequence['start_value']);
     }
 
     /**
@@ -124,8 +87,8 @@ class SQLServerSchemaManager extends AbstractSchemaManager
         $type                   = $this->extractDoctrineTypeFromComment($tableColumn['comment'], $type);
         $tableColumn['comment'] = $this->removeDoctrineTypeFromComment($tableColumn['comment'], $type);
 
-        $options = [
-            'length'        => ($length == 0 || !in_array($type, ['text', 'string'])) ? null : $length,
+        $options = array(
+            'length'        => ($length == 0 || !in_array($type, array('text', 'string'))) ? null : $length,
             'unsigned'      => false,
             'fixed'         => (bool) $fixed,
             'default'       => $default !== 'NULL' ? $default : null,
@@ -134,7 +97,7 @@ class SQLServerSchemaManager extends AbstractSchemaManager
             'precision'     => $tableColumn['precision'],
             'autoincrement' => (bool) $tableColumn['autoincrement'],
             'comment'       => $tableColumn['comment'] !== '' ? $tableColumn['comment'] : null,
-        ];
+        );
 
         $column = new Column($tableColumn['name'], Type::getType($type), $options);
 
@@ -150,20 +113,20 @@ class SQLServerSchemaManager extends AbstractSchemaManager
      */
     protected function _getPortableTableForeignKeysList($tableForeignKeys)
     {
-        $foreignKeys = [];
+        $foreignKeys = array();
 
         foreach ($tableForeignKeys as $tableForeignKey) {
             if ( ! isset($foreignKeys[$tableForeignKey['ForeignKey']])) {
-                $foreignKeys[$tableForeignKey['ForeignKey']] = [
-                    'local_columns' => [$tableForeignKey['ColumnName']],
+                $foreignKeys[$tableForeignKey['ForeignKey']] = array(
+                    'local_columns' => array($tableForeignKey['ColumnName']),
                     'foreign_table' => $tableForeignKey['ReferenceTableName'],
-                    'foreign_columns' => [$tableForeignKey['ReferenceColumnName']],
+                    'foreign_columns' => array($tableForeignKey['ReferenceColumnName']),
                     'name' => $tableForeignKey['ForeignKey'],
-                    'options' => [
+                    'options' => array(
                         'onUpdate' => str_replace('_', ' ', $tableForeignKey['update_referential_action_desc']),
                         'onDelete' => str_replace('_', ' ', $tableForeignKey['delete_referential_action_desc'])
-                    ]
-                ];
+                    )
+                );
             } else {
                 $foreignKeys[$tableForeignKey['ForeignKey']]['local_columns'][] = $tableForeignKey['ColumnName'];
                 $foreignKeys[$tableForeignKey['ForeignKey']]['foreign_columns'][] = $tableForeignKey['ReferenceColumnName'];
@@ -181,7 +144,7 @@ class SQLServerSchemaManager extends AbstractSchemaManager
         foreach ($tableIndexRows as &$tableIndex) {
             $tableIndex['non_unique'] = (boolean) $tableIndex['non_unique'];
             $tableIndex['primary'] = (boolean) $tableIndex['primary'];
-            $tableIndex['flags'] = $tableIndex['flags'] ? [$tableIndex['flags']] : null;
+            $tableIndex['flags'] = $tableIndex['flags'] ? array($tableIndex['flags']) : null;
         }
 
         return parent::_getPortableTableIndexesList($tableIndexRows, $tableName);
@@ -206,10 +169,6 @@ class SQLServerSchemaManager extends AbstractSchemaManager
      */
     protected function _getPortableTableDefinition($table)
     {
-        if (isset($table['schema_name']) && $table['schema_name'] !== 'dbo') {
-            return $table['schema_name'] . '.' . $table['name'];
-        }
-
         return $table['name'];
     }
 
@@ -247,15 +206,15 @@ class SQLServerSchemaManager extends AbstractSchemaManager
 
         try {
             $tableIndexes = $this->_conn->fetchAll($sql);
-        } catch (\PDOException $e) {
+        } catch(\PDOException $e) {
             if ($e->getCode() == "IMSSP") {
-                return [];
+                return array();
             } else {
                 throw $e;
             }
-        } catch (DBALException $e) {
+        } catch(SQLSrvException $e) {
             if (strpos($e->getMessage(), 'SQLSTATE [01000, 15472]') === 0) {
-                return [];
+                return array();
             } else {
                 throw $e;
             }
@@ -298,26 +257,5 @@ class SQLServerSchemaManager extends AbstractSchemaManager
             INNER JOIN SysColumns Col ON Col.[ColID] = DefCons.[parent_column_id] AND Col.[ID] = Tab.[ID]
             WHERE Col.[Name] = " . $this->_conn->quote($column) ." AND Tab.[Name] = " . $this->_conn->quote($table) . "
             ORDER BY Col.[Name]";
-    }
-
-    /**
-     * Closes currently active connections on the given database.
-     *
-     * This is useful to force DROP DATABASE operations which could fail because of active connections.
-     *
-     * @param string $database The name of the database to close currently active connections for.
-     *
-     * @return void
-     */
-    private function closeActiveDatabaseConnections($database)
-    {
-        $database = new Identifier($database);
-
-        $this->_execSql(
-            sprintf(
-                'ALTER DATABASE %s SET SINGLE_USER WITH ROLLBACK IMMEDIATE',
-                $database->getQuotedName($this->_platform)
-            )
-        );
     }
 }
