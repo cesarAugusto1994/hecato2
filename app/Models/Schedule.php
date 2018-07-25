@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Schedule\Status;
 use App\Models\Pessoa;
 use Emadadly\LaravelUuid\Uuids;
+use App\Models\Agendamento\Guia;
 
 class Schedule extends Model
 {
     use Uuids;
-    
+
     protected $table = 'agenda';
 
     protected $dates = ['inicio', 'fim'];
@@ -36,5 +37,10 @@ class Schedule extends Model
     public function pessoa()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_id');
+    }
+
+    public function guias()
+    {
+        return $this->hasMany(Guia::class, 'agendamento_id');
     }
 }

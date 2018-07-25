@@ -282,6 +282,16 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $agenda = Schedule::findOrFail($id);
+
+        $agenda->guias->map(function($guia) {
+          $guia->delete();
+        });
+
+        $agenda->delete();
+
+        $return_msg = 'Compromisso Finalizado !!!';
+
+        return Redirect::back()->with('status', $return_msg);
     }
 }
