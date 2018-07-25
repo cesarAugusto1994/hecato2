@@ -150,7 +150,8 @@
 										    </div>
 									  	</div>
 
-									  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+									  	<!--
+											<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 										    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
 										        {!! Form::text('twitter_username', $user->profile->twitter_username, array('id' => 'twitter_username', 'class' => 'mdl-textfield__input')) !!}
 										        {!! Form::label('twitter_username', trans('profile.label-twitter_username') , array('class' => 'mdl-textfield__label')); !!}
@@ -163,7 +164,7 @@
 										        {!! Form::label('github_username', trans('profile.label-github_username') , array('class' => 'mdl-textfield__label')); !!}
 										    </div>
 									  	</div>
-
+										-->
 										<div class="mdl-cell mdl-cell--12-col">
 										    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('bio') ? 'is-invalid' :'' }}">
 										        {!! Form::textarea('bio',  $user->profile->bio, array('id' => 'bio', 'class' => 'mdl-textfield__input')) !!}
