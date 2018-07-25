@@ -67,4 +67,18 @@
         mdl_dialog('.dialog-button-icon-save');
     </script>
 
+    <script type="text/javascript">
+
+      const picker = new MaterialDatePicker({})
+      .on('submit', (d) => {
+      output.innerText = d;
+      });
+
+      const el = document.querySelector('.c-datepicker-btn');
+      el.addEventListener('click', () => {
+      picker.open();
+      }, false);
+
+    </script>
+
 @endsection

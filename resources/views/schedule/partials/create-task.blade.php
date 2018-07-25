@@ -22,7 +22,7 @@
 
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start') ? 'is-invalid' :'' }}">
-                            {!! Form::text('inicio', NULL, array('id' => 'task-start', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
+                            {!! Form::text('inicio', NULL, array('id' => 'task-start', 'class' => 'mdl-textfield__input mdl-color-text--black')) !!}
                             {!! Form::label('inicio', 'Início', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                             <span class="mdl-textfield__error">Task name is required</span>
                         </div>
@@ -30,7 +30,7 @@
 
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start') ? 'is-invalid' :'' }}">
-                            {!! Form::text('fim', NULL, array('id' => 'task-end', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
+                            {!! Form::text('fim', NULL, array('id' => 'task-end', 'class' => 'mdl-textfield__input mdl-color-text--black')) !!}
                             {!! Form::label('fim', 'Fim', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                             <span class="mdl-textfield__error">Task name is required</span>
                         </div>

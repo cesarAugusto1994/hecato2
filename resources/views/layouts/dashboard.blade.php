@@ -33,6 +33,7 @@
 
         {{-- Custom App Styles --}}
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/material-datetime-picker.css') }}" rel="stylesheet">
 
         @yield('template_linked_css')
 
@@ -144,6 +145,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script src="{{ asset('/js/material-datetime-picker.js') }}"></script>
 
         <script>
 
