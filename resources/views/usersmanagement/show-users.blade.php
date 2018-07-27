@@ -52,14 +52,14 @@
               <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">ID</th>
-                    <th class="mdl-data-table__cell--non-numeric">Username</th>
+                    <th class="mdl-data-table__cell--non-numeric">Usuário</th>
                     <th class="mdl-data-table__cell--non-numeric">Email</th>
-                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">First Name</th>
-                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Last Name</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Nome</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Sobrenome</th>
                     <th class="mdl-data-table__cell--non-numeric">Role</th>
-                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Created</th>
-                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Updated</th>
-                    <th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Criado em</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Editado em</th>
+                    <th class="mdl-data-table__cell--non-numeric no-sort no-search">Ações</th>
                 </tr>
               </thead>
               <tbody>

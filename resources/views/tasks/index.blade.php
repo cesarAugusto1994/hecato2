@@ -35,8 +35,6 @@
 
 @section('content')
 
-    @if (count($tasks) > 0)
-
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
             <div class="mdl-tabs__tab-bar">
@@ -51,27 +49,9 @@
 
         </div>
 
-        @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirm Task Deletion', 'dialogSaveBtnText' => 'Delete'])
+        @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirmar Exclusão', 'dialogSaveBtnText' => 'Remover'])
 
-    @else
 
-    <div class="mdl-grid full-grid margin-top-0 padding-0">
-        <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
-            <div class="mdl-color--grey-50 mdl-color-text--white mdl-card mdl-shadow--2dp" style="width:100%;" itemscope itemtype="https://schema.org/Person">
-
-                <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-                    <h4 class="mdl-card__title-text">
-                        Nova Tarefa
-                    </h4>
-                </div>
-
-                @include('tasks.partials.create-task')
-
-            </div>
-        </div>
-    </div>
-
-    @endif
 
 @endsection
 

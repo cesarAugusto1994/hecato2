@@ -53,5 +53,78 @@ class PermissionsTableSeeder extends Seeder
                 'model'       => 'Permission',
             ]);
         }
+
+        if (Permission::where('name', '=', 'Can View Agenda')->first() === null) {
+            Permission::create([
+                'name'        => 'Can View Agenda',
+                'slug'        => 'view.agenda',
+                'description' => 'Can view agenda',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Create Agenda')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Create Agenda',
+                'slug'        => 'create.agenda',
+                'description' => 'Can create new agenda',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Edit Agenda')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Edit Agenda',
+                'slug'        => 'edit.agenda',
+                'description' => 'Can edit agenda',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Delete Agenda')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Delete Agenda',
+                'slug'        => 'delete.agenda',
+                'description' => 'Can delete agenda',
+                'model'       => 'Permission',
+            ]);
+        }
+
+
+        if (Permission::where('name', '=', 'Can View Contato')->first() === null) {
+            Permission::create([
+                'name'        => 'Can View Contato',
+                'slug'        => 'view.contato',
+                'description' => 'Can view contato',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Create Contato')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Create Contato',
+                'slug'        => 'create.contato',
+                'description' => 'Can create new contato',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Edit Contato')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Edit Contato',
+                'slug'        => 'edit.contato',
+                'description' => 'Can edit contato',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Delete Contato')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Delete Contato',
+                'slug'        => 'delete.contato',
+                'description' => 'Can delete contato',
+                'model'       => 'Permission',
+            ]);
+        }
     }
 }

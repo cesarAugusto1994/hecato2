@@ -101,6 +101,7 @@
                     </div>
                   </div>
 
+                  <!--
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--2-col-desktop">
                        <label class = "mdl-checkbox mdl-js-checkbox" for = "checkbox1">
                           <input type="checkbox" name="cliente" id="checkbox1" class="mdl-checkbox__input" value="1" checked>
@@ -115,6 +116,14 @@
                           <span class = "mdl-checkbox__label">Fornecedor</span>
                        </label>
                   </div>
+                -->
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--2-col-desktop">
+                       <label class = "mdl-checkbox mdl-js-checkbox" for = "checkbox2">
+                          <input type = "checkbox" name="paciente" id = "checkbox2"
+                             class = "mdl-checkbox__input" value="1">
+                          <span class = "mdl-checkbox__label">Paciente</span>
+                       </label>
+                  </div>
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--2-col-desktop">
                        <label class="mdl-checkbox mdl-js-checkbox" for = "checkbox3">
@@ -123,7 +132,7 @@
                           <span class="mdl-checkbox__label">Funcionário</span>
                        </label>
                   </div>
-
+                  <!--
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--2-col-desktop">
                        <label class = "mdl-checkbox mdl-js-checkbox" for = "checkbox4">
                           <input type = "checkbox" name="prospecto" id = "checkbox4"
@@ -131,7 +140,7 @@
                           <span class = "mdl-checkbox__label">Propecto</span>
                        </label>
                   </div>
-
+                -->
                   <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                     <span class="mdl-chip mdl-chip--contact">
                         <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">C</span>

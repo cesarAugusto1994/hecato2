@@ -29,7 +29,8 @@ class CreatePessoasTable extends Migration
 
             $table->uuid('uuid');
 
-            $table->boolean('cliente')->default(true);
+            $table->boolean('paciente')->default(false);
+            $table->boolean('cliente')->default(false);
             $table->boolean('fornecedor')->default(false);
             $table->boolean('funcionario')->default(false);
             $table->boolean('prospecto')->default(false);

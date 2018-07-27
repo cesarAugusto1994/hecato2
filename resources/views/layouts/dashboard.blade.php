@@ -142,9 +142,10 @@
         <script src="{{ mix('/js/app.js') }}"></script>
         <script src="{{ mix('/js/mdl.js') }}"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js', array('type' => 'text/javascript')) !!}
+        {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js', array('type' => 'text/javascript')) !!}
+        {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js', array('type' => 'text/javascript')) !!}
+
         <script src="{{ asset('/js/material-datetime-picker.js') }}"></script>
 
         <script>

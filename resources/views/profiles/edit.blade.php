@@ -109,10 +109,10 @@
 
 								<div class="mdl-tabs__tab-bar">
 									<a href="#profile-panel" class="mdl-tabs__tab is-active">
-										Profile
+										Perfil
 									</a>
 									<a href="#theme-panel" class="mdl-tabs__tab">
-										Theme
+										Tema
 									</a>
 								</div>
 
@@ -256,17 +256,9 @@
 													</div>
 												</div>
 
-									            <div class="mdl-gen__panel--right mdl-gen__panel mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col">
-													<div class="mdl-gen__desc docs-text-styling">
-														<strong>
-															Custom CSS theme builder
-														</strong>
-														<p>
-															Click on the color wheel to choose a primary (1) and accent (2) color to preview the theme below.
-															When you’ve selected a color combination you like, simply click save.
-														</p>
-													</div>
-													<div class="mdl-demo-card mdl-card mdl-shadow--2dp">
+								            <div class="mdl-gen__panel--right mdl-gen__panel mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col">
+															
+															<div class="mdl-demo-card mdl-card mdl-shadow--2dp">
 				                						<div class="mdl-gen__preview">
 				                  							<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 																<header class="mdl-layout__header">
@@ -320,7 +312,9 @@
 				                  							</div>
 				                						</div>
 													</div>
-				              					</div>
+		              					</div>
+
+
 				            				</div>
 				          				</div>
 									</div>
@@ -390,6 +384,10 @@
 	@include('scripts.gmaps-address-lookup-api3')
 	@include('scripts.google-maps-geocode-and-map')
 	@include('scripts.mdl-save-ajax')
+
+	<script src="https://getmdl.io/material.min.js"></script>
+	<script src="https://getmdl.io/assets/customizer.js"></script>
+	<script src="https://getmdl.io/assets/main.js"></script>
 
 	<script type="text/javascript">
 
