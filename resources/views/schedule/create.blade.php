@@ -69,6 +69,8 @@
 
     <script type="text/javascript">
 
+      $('.datemask').mask("00/00/0000 00:00");
+
       const picker = new MaterialDatePicker({})
       .on('submit', (d) => {
       output.innerText = d;

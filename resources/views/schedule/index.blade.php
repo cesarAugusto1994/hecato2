@@ -100,7 +100,7 @@
 
           <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start') ? 'is-invalid' :'' }}">
-                  {!! Form::text('inicio', NULL, array('id' => 'schedule-inicio', 'class' => 'mdl-textfield__input mdl-color-text--grey-700 datetime')) !!}
+                  {!! Form::text('inicio', NULL, array('id' => 'schedule-inicio', 'class' => 'mdl-textfield__input mdl-color-text--grey-700 datemask')) !!}
                   {!! Form::label('inicio', 'Início', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
                   <span class="mdl-textfield__error">Task name is required</span>
               </div>
@@ -108,7 +108,7 @@
 
           <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start') ? 'is-invalid' :'' }}">
-                  {!! Form::text('fim', NULL, array('id' => 'schedule-fim', 'class' => 'mdl-textfield__input mdl-color-text--grey-700 datetime')) !!}
+                  {!! Form::text('fim', NULL, array('id' => 'schedule-fim', 'class' => 'mdl-textfield__input mdl-color-text--grey-700 datemask')) !!}
                   {!! Form::label('fim', 'Fim', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
                   <span class="mdl-textfield__error">Task name is required</span>
               </div>
@@ -150,6 +150,7 @@
 
     <script type="text/javascript">
 
+      $('.datemask').mask("00/00/0000 00:00");
 
       var atualizarAgendamento = $("#atualizar-agendamento-route").val();
       var adicionarAgendamento = $("#store-agendamento-route").val();
