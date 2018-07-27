@@ -16,7 +16,7 @@ class Task extends Model
         'name',
         'description',
         'completed',
-        'company_id'
+        'empresa_id'
     ];
 
     /**

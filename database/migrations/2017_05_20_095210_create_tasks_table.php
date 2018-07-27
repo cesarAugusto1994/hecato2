@@ -21,9 +21,9 @@ class CreateTasksTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('completed')->default(false);
 
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('empresas');
-            
+            $table->integer('empresa_id')->unsigned();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
+
             $table->timestamps();
         });
     }

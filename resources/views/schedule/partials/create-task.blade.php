@@ -9,7 +9,7 @@
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
                           <input type="text" value="" name="pessoa" class="mdl-textfield__input" id="sample5" readonly>
-                          <input type="hidden" value="" name="pessoa_id">
+                          <input type="hidden" value="" name="pessoa_id" required>
                           <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                           <label for="sample5" class="mdl-textfield__label">Cliente</label>
                           <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
@@ -17,6 +17,7 @@
                               <li class="mdl-menu__item" data-val="{{ $pessoa->id }}">{{ $pessoa->nome }}</li>
                             @endforeach
                           </ul>
+                          <span class="mdl-textfield__error">Informe o Paciente</span>
                       </div>
                     </div>
 

@@ -112,8 +112,7 @@ class TasksController extends Controller
         $user = Auth::user();
         $task = $request->all();
         $task['user_id'] = $user->id;
-
-        $task['company_id'] = \Auth::user()->empresa_id;
+        $task['empresa_id'] = \Auth::user()->empresa_id;
 
         Task::create($task);
 
@@ -170,7 +169,7 @@ class TasksController extends Controller
             $return_msg = 'Task Updated';
         }
 
-        $task->company_id = \Auth::user()->company_id;
+        $task->empresa_id = \Auth::user()->empresa_id;
 
         $task->save();
 
