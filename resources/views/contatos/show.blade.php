@@ -95,7 +95,7 @@
 
           <div class="mdl-card__menu">
 
-          <a href="{{ route('contatos.edit', $pessoa->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <a href="{{ route('contatos.edit', $pessoa->uuid) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
             <i class="material-icons">edit</i>
           </a>
 
@@ -182,11 +182,11 @@
                         <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.viewProfile') }}</span>
                       </a>
 
-                      <a href="/users/{{$pessoa->id}}/edit" class="btn btn-sm btn-warning">
+                      <a href="/users/{{$pessoa->uuid}}/edit" class="btn btn-sm btn-warning">
                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.editUser') }} </span>
                       </a>
 
-                      {!! Form::open(array('url' => 'users/' . $pessoa->id, 'class' => 'form-inline')) !!}
+                      {!! Form::open(array('url' => 'users/' . $pessoa->uuid, 'class' => 'form-inline')) !!}
                         {!! Form::hidden('_method', 'DELETE') !!}
                         {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
                       {!! Form::close() !!}

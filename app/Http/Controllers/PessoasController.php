@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{User, Role};
 use App\Models\Pessoa;
-use App\Models\Pessoa\{Tipo, Grupo, Fisica as PessoaFisica, Endereco as PessoaEndereco, Telefone as PessoaTelefone};
+use App\Models\Pessoa\{Tipo, Grupo, Fisica as PessoaFisica, Juridica as PessoaJuridica, Endereco as PessoaEndereco, Telefone as PessoaTelefone};
 
 class PessoasController extends Controller
 {
@@ -55,15 +55,20 @@ class PessoasController extends Controller
         if($data['tipo_id'] == 1) {
 
             if(!empty($data['nascimento'])) {
-                $data['nascimento'] = \DateTime::createFromFormat('Y-m-d', $data['nascimento']);
+                $data['nascimento'] = \DateTime::createFromFormat('d/m/Y', $data['nascimento']);
+            } else {
+              $data['nascimento'] = null;
             }
 
             $pf = PessoaFisica::create($data);
 
-        } else {
+        } elseif($data['tipo_id'] == 2) {
 
+          if(!empty($data['funcacao'])) {
+              $data['funcacao'] = \DateTime::createFromFormat('Y-m-d', $data['funcacao']);
+          }
 
-
+          $pj = PessoaJuridica::create($data);
 
         }
 
@@ -128,6 +133,8 @@ class PessoasController extends Controller
             'tipos' => $tipos,
             'grupos' => $grupos
         ];
+
+        #dd($pessoa->juridica);
 
         return view('contatos.edit')->with($data);
     }

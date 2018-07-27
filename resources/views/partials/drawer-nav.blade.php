@@ -63,6 +63,8 @@
 					<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
 					{{ Lang::get('titles.adminNewUser') }}
 				</a>
+		@endrole
+		@role('owner')
 			<a class="mdl-navigation__link {{ Request::is('roles.index') ? 'mdl-navigation__link--current' : null }}" href="{{ route('roles.index') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
 				Roles
@@ -83,7 +85,8 @@
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings_ethernet</i>
 				{{ Lang::get('titles.adminRoutes') }}
 			</a>
-		@endrole
+			@endrole
+
 
 		<div class="mdl-layout-spacer"></div>
 

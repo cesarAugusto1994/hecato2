@@ -64,9 +64,9 @@
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                      {!! Form::text('nome', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input')) !!}
+                      {!! Form::text('nome', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'required' => 'required')) !!}
                       {!! Form::label('nome', Nome , array('class' => 'mdl-textfield__label')); !!}
-                      <span class="mdl-textfield__error">Letters and numbers only</span>
+                      <span class="mdl-textfield__error">Informa o nome do contato</span>
                     </div>
                   </div>
 
@@ -80,7 +80,7 @@
 
                   <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--2-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
-                      <select class="mdl-selectfield__select mdl-textfield__input" name="tipo_id" id="role">
+                      <select class="mdl-selectfield__select mdl-textfield__input" name="tipo_id" id="tipo-pessoa">
                         @foreach($tipos as $tipo)
                           <option value="{{ $tipo->id }}"> {{ $tipo->nome }} </option>
                         @endforeach
@@ -170,7 +170,7 @@
                   </div>
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
                       <select class="mdl-selectfield__select mdl-textfield__input" name="grupo_id" id="role">
                         @foreach($grupos as $grupo)
                           <option value="{{ $grupo->id }}"> {{ $grupo->nome }} </option>
@@ -184,33 +184,57 @@
                     </div>
                   </div>
 
-                    <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
                           <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PF</span>
                           <span class="mdl-chip__text">Pessoa Fisica</span>
                       </span>
                     </div>
-
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
                           {!! Form::text('cpf', NULL, array('id' => 'cpf', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('cpf', 'CPF', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
                           {!! Form::text('rg', NULL, array('id' => 'rg', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('rg', 'RG', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
-                          {!! Form::date('nascimento', NULL, array('id' => 'nascimento', 'class' => 'mdl-textfield__input' )) !!}
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('nascimento') ? 'is-invalid' :'' }}">
+                          {!! Form::text('nascimento', NULL, array('id' => 'nascimento', 'class' => 'mdl-textfield__input datemask' )) !!}
                           {!! Form::label('nascimento', 'Nascimento', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Informe uma data de nascimento válida</span>
                       </div>
                     </div>
 
+                    <div class="pj-content mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                      <span class="mdl-chip mdl-chip--contact">
+                          <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PF</span>
+                          <span class="mdl-chip__text">Pessoa Jurídica</span>
+                      </span>
+                    </div>
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
+                          {!! Form::text('cnpj', NULL, array('id' => 'cpf', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::label('cnpj', 'CNPJ', array('class' => 'mdl-textfield__label')); !!}
+                      </div>
+                    </div>
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
+                          {!! Form::text('ie', NULL, array('id' => 'rg', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::label('ie', 'Inscrição Estadual', array('class' => 'mdl-textfield__label')); !!}
+                      </div>
+                    </div>
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
+                          {!! Form::text('fundacao', NULL, array('id' => 'fundacao', 'class' => 'mdl-textfield__input date' )) !!}
+                          {!! Form::label('fundacao', 'Funcação', array('class' => 'mdl-textfield__label')); !!}
+                        <span class="mdl-textfield__error">Informe uma data de fundação válida</span>
+                      </div>
+                    </div>
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
@@ -264,8 +288,8 @@
 
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('estrangeiro', NULL, array('id' => 'estrangeiro', 'class' => 'mdl-textfield__input')) !!}
-                          {!! Form::label('estrangeiro', 'Identificador Estrangeiro', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::text('identificacao_estrangeiro', NULL, array('id' => 'estrangeiro', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::label('identificacao_estrangeiro', 'Identificador Estrangeiro', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
 
@@ -344,6 +368,29 @@
   <script type="text/javascript">
     mdl_dialog('.dialog-button-save');
     mdl_dialog('.dialog-button-icon-save');
+
+    $('.datemask').mask("00/00/0000");
+
+    $('.pf-content').show();
+    $('.pj-content').hide();
+
+    $("#tipo-pessoa").change(function() {
+      var item = $(this).val();
+
+      if(item == 1) {
+
+        $('.pf-content').show();
+        $('.pj-content').hide();
+
+      } else {
+
+        $('.pf-content').hide();
+        $('.pj-content').show();
+
+      }
+
+    });
+
   </script>
 
 @endsection

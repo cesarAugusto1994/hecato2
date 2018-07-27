@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Pessoa\{Tipo, Fisica, Telefone, Endereco};
+use App\Models\Pessoa\{Tipo, Fisica, Juridica, Telefone, Endereco};
 use App\Models\Schedule;
 use Emadadly\LaravelUuid\Uuids;
 
@@ -16,7 +16,7 @@ class Pessoa extends Model
       'empresa_id', 'ramo_atividade',
       'informacoes', 'site', 'grupo_id',
       'fornecedor', 'cliente', 'identificacao_estrangeiro',
-      'funcionario', 'prospecto'
+      'funcionario', 'prospecto', 'paciente'
     ];
 
     public function tipo()
@@ -27,6 +27,11 @@ class Pessoa extends Model
     public function fisica()
     {
         return $this->hasOne(Fisica::class, 'pessoa_id');
+    }
+
+    public function juridica()
+    {
+        return $this->hasOne(Juridica::class, 'pessoa_id');
     }
 
     public function telefones()

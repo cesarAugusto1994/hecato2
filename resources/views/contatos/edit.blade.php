@@ -185,6 +185,8 @@
                     </div>
                   </div>
 
+                  @if($pessoa->tipo_id == 1)
+
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
                           <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PF</span>
@@ -211,6 +213,37 @@
                         <span class="mdl-textfield__error">Informe uma data de nascimento válida</span>
                       </div>
                     </div>
+
+                  @else
+
+                    <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                      <span class="mdl-chip mdl-chip--contact">
+                          <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PJ</span>
+                          <span class="mdl-chip__text">Pessoa Jurídica</span>
+                      </span>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
+                          {!! Form::text('cnpj', $pessoa->juridica->cnpj, array('id' => 'cnpj', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::label('cnpj', 'CNPJ', array('class' => 'mdl-textfield__label')); !!}
+                      </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
+                          {!! Form::text('ie', $pessoa->juridica->ie, array('id' => 'ie', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::label('ie', 'Inscrição Estadual', array('class' => 'mdl-textfield__label')); !!}
+                      </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
+                          {!! Form::text('fundacao', $pessoa->juridica->fundacao ? $pessoa->juridica->fundacao->format('d/m/Y') : '', array('id' => 'funcacao', 'class' => 'mdl-textfield__input date' )) !!}
+                          {!! Form::label('fundacao', 'Funcação', array('class' => 'mdl-textfield__label')); !!}
+                        <span class="mdl-textfield__error">Informe uma data de fundação válida</span>
+                      </div>
+                    </div>
+
+                  @endif
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
@@ -342,6 +375,8 @@
   <script type="text/javascript">
     mdl_dialog('.dialog-button-save');
     mdl_dialog('.dialog-button-icon-save');
+
+    $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   </script>
 
 @endsection

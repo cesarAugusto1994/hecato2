@@ -17,10 +17,9 @@ class CreateJuridicasTable extends Migration
             $table->increments('id');
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
-
-            $table->string('fantasia')->nullable();
             $table->string('cnpj');
             $table->string('ie')->nullable();
+            $table->date('fundacao')->nullable();
 
             $table->timestamps();
         });
