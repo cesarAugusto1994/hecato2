@@ -170,6 +170,8 @@
 
      dialogButtonClose.addEventListener('click', function() {
        dialog.close();
+
+       $(".formAgendamento").prop('action', adicionarAgendamento);
      });
 
      function popularModal(event) {
@@ -218,17 +220,12 @@
 
      function popularModalAndShow(event) {
        $(".formAgendamento").prop('action', atualizarAgendamento);
-
-       //$("#cadastra-consulta-modal").modal('show');
-       //$("#cadastra-consulta-modal").find('#title').val(event.title);
-
        $("#schedule-inicio").val(event.start.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
        $("#schedule-fim").val(event.end.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
        $('#schedule-status').val(event.status);
        $('#schedule-pessoa-id').val(event.pessoaId);
        $('#schedule-pessoa').val(event.pessoa);
        $("#schedule-notas").val(event.notas).parent().addClass('is-dirty');
-
        dialog.showModal();
 
      }

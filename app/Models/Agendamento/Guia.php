@@ -11,6 +11,8 @@ class Guia extends Model
 
     protected $table = 'guia_agendamento';
 
+    protected $fillable = ['pessoa_id', 'status_id', 'data_vencimento', 'data_pagamento', 'valor', 'empresa_id'];
+
     protected $dates = ['data_vencimento', 'data_pagamento'];
 
     public function pessoa()

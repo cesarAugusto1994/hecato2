@@ -22,13 +22,12 @@ class CreateGuiasTable extends Migration
 
         Schema::create('guia_agendamento', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('valor')->default(0);
+            $table->float('valor', 12, 2)->default(0);
             $table->datetime('data_vencimento')->nullable();
             $table->datetime('data_pagamento')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status_guia');
-            $table->integer('agendamento_id')->unsigned();
-            $table->foreign('agendamento_id')->references('id')->on('agenda');
+            $table->integer('agendamento_id')->nullable();
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->integer('empresa_id')->unsigned();

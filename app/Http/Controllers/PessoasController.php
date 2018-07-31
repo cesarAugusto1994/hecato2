@@ -64,8 +64,8 @@ class PessoasController extends Controller
 
         } elseif($data['tipo_id'] == 2) {
 
-          if(!empty($data['funcacao'])) {
-              $data['funcacao'] = \DateTime::createFromFormat('Y-m-d', $data['funcacao']);
+          if(!empty($data['fundacao'])) {
+              $data['fundacao'] = \DateTime::createFromFormat('d/m/Y', $data['fundacao']);
           }
 
           $pj = PessoaJuridica::create($data);

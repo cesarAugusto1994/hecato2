@@ -64,13 +64,13 @@
               <tbody>
                     @foreach ($guias as $guia)
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{$guia->id}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('schedule.show', $guia->agendamento->id) }}">#{{$guia->agendamento->id}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{$guia->status->nome}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{$guia->pessoa->nome}} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{number_format($guia->valor, 2, '.', ',')}} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{$guia->data_vencimento ? $guia->data_vencimento->format('d/m/Y') : '' }} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('guias/' . $guia->uuid) }}">{{$guia->data_pagamento ? $guia->data_pagamento->format('d/m/Y') : '' }} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->id}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a >{{$guia->status->nome}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.show', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a>{{number_format($guia->valor, 2, ',', '.')}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_vencimento ? $guia->data_vencimento->format('d/m/Y') : '' }} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_pagamento ? $guia->data_pagamento->format('d/m/Y') : '' }} </a></td>
                             <td class="mdl-data-table__cell--non-numeric">
 
                               @if($guia->status_id == 1)
@@ -101,14 +101,20 @@
     </div>
     <div class="mdl-card__menu" style="top: -4px;">
 
+        <a href="{{ URL::to('guias/create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <i class="material-icons mdl-color-text--white">add</i>
+        </a>
+
         @include('partials.mdl-highlighter')
 
         @include('partials.mdl-search')
 
+        <!--
         <a href="{{ URL::to('/guias/deleted') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Show Deleted Users">
             <i class="material-icons" aria-hidden="true">delete_sweep</i>
             <span class="sr-only">Show Deleted Users</span>
         </a>
+        -->
 
     </div>
 </div>

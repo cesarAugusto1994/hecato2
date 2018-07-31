@@ -70,10 +70,12 @@
 
           @if($task->status_id != 3 && $task->status_id != 4)
 
+              <!--
               <a href="{{ route('schedule.edit', $task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                   <i class="material-icons mdl-color-text--grey-700">edit</i>
                   <span class="sr-only">Edit Task</span>
               </a>
+            -->
               {!! Form::open(array('class' => 'inline-block', 'id' => 'delete_'.$task->id, 'method' => 'DELETE', 'route' => array('schedule.destroy', $task->id))) !!}
                   {{ method_field('DELETE') }}
                   <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-taskid="{{$task->id}}">
