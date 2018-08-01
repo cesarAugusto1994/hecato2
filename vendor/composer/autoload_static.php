@@ -693,6 +693,7 @@ class ComposerStaticInit1eb99721bd3182545611aa4d97b1eaaf
         'App\\Models\\Empresa' => __DIR__ . '/../..' . '/app/Models/Empresa.php',
         'App\\Models\\Empresa\\Contato' => __DIR__ . '/../..' . '/app/Models/Empresa/Contato.php',
         'App\\Models\\Pessoa' => __DIR__ . '/../..' . '/app/Models/Pessoa.php',
+        'App\\Models\\Pessoa\\Contato' => __DIR__ . '/../..' . '/app/Models/Pessoa/Contato.php',
         'App\\Models\\Pessoa\\Endereco' => __DIR__ . '/../..' . '/app/Models/Pessoa/Endereco.php',
         'App\\Models\\Pessoa\\Fisica' => __DIR__ . '/../..' . '/app/Models/Pessoa/Fisica.php',
         'App\\Models\\Pessoa\\Grupo' => __DIR__ . '/../..' . '/app/Models/Pessoa/Grupo.php',

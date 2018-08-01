@@ -109,6 +109,7 @@ return array(
     'App\\Models\\Empresa' => $baseDir . '/app/Models/Empresa.php',
     'App\\Models\\Empresa\\Contato' => $baseDir . '/app/Models/Empresa/Contato.php',
     'App\\Models\\Pessoa' => $baseDir . '/app/Models/Pessoa.php',
+    'App\\Models\\Pessoa\\Contato' => $baseDir . '/app/Models/Pessoa/Contato.php',
     'App\\Models\\Pessoa\\Endereco' => $baseDir . '/app/Models/Pessoa/Endereco.php',
     'App\\Models\\Pessoa\\Fisica' => $baseDir . '/app/Models/Pessoa/Fisica.php',
     'App\\Models\\Pessoa\\Grupo' => $baseDir . '/app/Models/Pessoa/Grupo.php',

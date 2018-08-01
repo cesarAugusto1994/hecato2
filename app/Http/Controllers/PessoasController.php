@@ -134,8 +134,6 @@ class PessoasController extends Controller
             'grupos' => $grupos
         ];
 
-        #dd($pessoa->juridica);
-
         return view('contatos.edit')->with($data);
     }
 
@@ -233,6 +231,10 @@ class PessoasController extends Controller
 
             $pessoa->enderecos->map(function($endereco) {
                 $endereco->delete();
+            });
+
+            $pessoa->contatos->map(function($contato) {
+                $contato->delete();
             });
 
             $pessoa->delete();

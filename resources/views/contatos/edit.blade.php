@@ -149,20 +149,20 @@
                     </span>
                   </div>
 
-                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('last_name') ? 'is-invalid' :'' }}">
                         {!! Form::text('telefone', $pessoa->telefones ? $pessoa->telefones->first()->numero : '', array('id' => 'telefone', 'class' => 'mdl-textfield__input')) !!}
                         {!! Form::label('telefone', 'Telefone', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Letters only</span>
                     </div>
                   </div>
-                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
                         {!! Form::text('telefone_comercial', $pessoa->telefones ? $pessoa->telefones->where('tipo_contato_id', 2)->first()->numero : '', array('id' => 'telefone_comercial', 'class' => 'mdl-textfield__input')) !!}
                         {!! Form::label('telefone_comercial', 'Telefone Comercial', array('class' => 'mdl-textfield__label')); !!}
                     </div>
                   </div>
-                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('first_name') ? 'is-invalid' :'' }}">
                           {!! Form::text('celular', $pessoa->telefones ? $pessoa->telefones->where('tipo_contato_id', 3)->first()->numero : '', array('id' => 'celular', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('celular', 'Celular', array('class' => 'mdl-textfield__label')); !!}
@@ -170,7 +170,7 @@
                       </div>
                   </div>
 
-                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
                       <select class="mdl-selectfield__select mdl-textfield__input" name="grupo_id" id="role">
                         @foreach($grupos as $grupo)
@@ -184,6 +184,70 @@
                       <span class="mdl-textfield__error">Select user access level</span>
                     </div>
                   </div>
+
+                  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--12-col-desktop margin-top-0">
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600 padding-0 context">
+
+                      <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+                          <h2 class="mdl-card__title-text logo-style">Contatos</h2>
+                      </div>
+
+                      <div class="mdl-card__menu mdl-color-text--white">
+
+                          <a href="{{ route('contato.create', ['pessoa' => $pessoa->id]) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect btnOpenModal">
+                              <i class="material-icons mdl-color-text--white">add</i>
+                          </a>
+
+                      </div>
+
+                      <div class="table-responsive material-table">
+                          <table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                            <th class="mdl-data-table__cell--non-numeric">Email</th>
+                            <th class="mdl-data-table__cell--non-numeric">Telefone</th>
+                            <th class="mdl-data-table__cell--non-numeric">Celular</th>
+                            <th class="mdl-data-table__cell--non-numeric">Aniversário</th>
+                            <th class="mdl-data-table__cell--non-numeric">Cargo - Atividade</th>
+                            <th class="mdl-data-table__cell--non-numeric">Opções</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach($pessoa->contatos as $contato)
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->nome }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->email }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->telefone }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->celular }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->aniversario }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->cargo }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+
+                              <a href="{{ route('contato.edit', $contato->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect btnEditOpenModal">
+                                  <i class="material-icons mdl-color-text--orange">edit</i>
+                              </a>
+                              <!--
+                              {{-- DELETE ICON BUTTON AND FORM CALL --}}
+                              {!! Form::open(array('url' => route('contato.destroy', $contato->id), 'class' => 'inline-block', 'id' => 'delete_'.$contato->id)) !!}
+                                  {!! Form::hidden('_method', 'DELETE') !!}
+                                  <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$contato->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$contato->id}}">
+                                      <i class="material-icons mdl-color-text--red">delete</i>
+                                  </a>
+                              {!! Form::close() !!}
+                            -->
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+
+                      </table>
+                      </div>
+
+                    </div>
+                  </div>
+
 
                   @if($pessoa->tipo_id == 1)
 
@@ -347,12 +411,12 @@
             <div class="mdl-card__menu mdl-color-text--white">
 
               <span class="save-actions">
-                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New User')) !!}
+                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Salvar Contato')) !!}
               </span>
 
-              <a href="{{ url('/contatos/') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Back to Users">
+              <a href="{{ url('/contatos/') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Voltar aos contatos">
                   <i class="material-icons">reply</i>
-                  <span class="sr-only">Back to Users</span>
+                  <span class="sr-only">Voltar aos contatos</span>
               </a>
 
             </div>
@@ -365,18 +429,35 @@
     </div>
   </div>
 
+  @include('dialogs.dialog-delete')
+
 @endsection
 
 @section('footer_scripts')
 
   @include('scripts.mdl-required-input-fix')
-  @include('scripts.gmaps-address-lookup-api3')
+  @include('scripts.mdl-datatables')
 
   <script type="text/javascript">
     mdl_dialog('.dialog-button-save');
     mdl_dialog('.dialog-button-icon-save');
 
     $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
+
+    @foreach ($pessoa->contatos as $contato)
+        mdl_dialog('.dialiog-trigger{{$contato->id}}','','#dialog_delete');
+    @endforeach
+
+    var userid;
+    $('.dialiog-trigger-delete').click(function(event) {
+        event.preventDefault();
+        userid = $(this).attr('data-userid');
+    });
+
+    $('#confirm').click(function(event) {
+        $('form#delete_'+userid).submit();
+    });
+
   </script>
 
 @endsection

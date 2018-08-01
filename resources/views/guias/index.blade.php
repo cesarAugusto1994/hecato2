@@ -55,9 +55,13 @@
                     <th class="mdl-data-table__cell--non-numeric">Agendamento</th>
                     <th class="mdl-data-table__cell--non-numeric">Status</th>
                     <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                    @role('admin')
                     <th class="mdl-data-table__cell--non-numeric">Valor</th>
+                    @endrole
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Vencimento</th>
+                    @role('admin')
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Pago em</th>
+                    @endrole
                     <th class="mdl-data-table__cell--non-numeric no-sort no-search">Opções</th>
                 </tr>
               </thead>
@@ -68,15 +72,21 @@
                             <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a >{{$guia->status->nome}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.show', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
+                            @role('admin')
                             <td class="mdl-data-table__cell--non-numeric"><a>{{number_format($guia->valor, 2, ',', '.')}} </a></td>
+                            @endrole
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_vencimento ? $guia->data_vencimento->format('d/m/Y') : '' }} </a></td>
+                            @role('admin')
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_pagamento ? $guia->data_pagamento->format('d/m/Y') : '' }} </a></td>
+                            @endrole
                             <td class="mdl-data-table__cell--non-numeric">
 
                               @if($guia->status_id == 1)
                                 <a title="Confirmar Pagamento" href="{{ route('confirmar_pagamento', $guia->uuid) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="material-icons mdl-color-text--green">money</i>
                                 </a>
+
+                                @role('admin')
 
                                 {{-- EDIT USER ICON BUTTON --}}
                                 <a href="{{ URL::to('guias/' . $guia->uuid . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -90,6 +100,8 @@
                                         <i class="material-icons mdl-color-text--red">delete</i>
                                     </a>
                                 {!! Form::close() !!}
+
+                                @endrole
 
                               @endif
                             </td>

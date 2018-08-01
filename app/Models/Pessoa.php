@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Pessoa\{Tipo, Fisica, Juridica, Telefone, Endereco};
+use App\Models\Pessoa\{Tipo, Fisica, Juridica, Telefone, Endereco, Contato};
 use App\Models\Schedule;
 use Emadadly\LaravelUuid\Uuids;
 
@@ -37,6 +37,11 @@ class Pessoa extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class, 'pessoa_id');
+    }
+
+    public function contatos()
+    {
+        return $this->hasMany(Contato::class, 'pessoa_id');
     }
 
     public function enderecos()

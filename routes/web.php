@@ -222,6 +222,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('contatos', '\App\Http\Controllers\PessoasController');
     Route::resource('guias', '\App\Http\Controllers\GuiasController');
     Route::resource('roles', '\App\Http\Controllers\RolesController');
+    Route::resource('contato', '\App\Http\Controllers\PessoaContatosController');
 
     Route::get('/guia/{id}/confimar-pagamento', 'GuiasController@confirmarPagamento')->name('confirmar_pagamento');
 
