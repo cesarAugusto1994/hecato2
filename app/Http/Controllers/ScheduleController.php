@@ -252,10 +252,17 @@ class ScheduleController extends Controller
     {
         $this->validate($request, $this->rules);
 
+        $data = $request->request->all();
+
         $task = Schedule::findOrFail($id);
-        $task->title = $request->input('title');
-        $task->description = $request->input('description');
+        $task->notas = $request->input('notas');
         $status = $request->input('status');
+
+        $data['inicio'] = \DateTime::createFromFormat('d/m/Y H:i', $data['inicio']);
+        $data['fim'] = \DateTime::createFromFormat('d/m/Y H:i', $data['fim']);
+
+        $task->inicio = $data['inicio'];
+        $task->fim = $data['fim'];
 
         if ($status == 1) {
 
@@ -271,7 +278,7 @@ class ScheduleController extends Controller
 
         $task->save();
 
-        return Redirect::back()->with('status', $return_msg);
+        return Redirect::route('schedule.index')->with('status', $return_msg);
     }
 
     /**
@@ -292,6 +299,6 @@ class ScheduleController extends Controller
 
         $return_msg = 'Compromisso Finalizado !!!';
 
-        return Redirect::back()->with('status', $return_msg);
+        return Redirect::route('schedule.index')->with('status', $return_msg);
     }
 }

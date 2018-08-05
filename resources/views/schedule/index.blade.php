@@ -86,8 +86,8 @@
 
           <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                <input type="text" value="" name="pessoa" class="mdl-textfield__input" id="schedule-pessoa-id" readonly required>
-                <input type="hidden" value="" name="pessoa_id" id="schedule-pessoa" required>
+                <input type="text" value="{{ $pessoa->nome }}" name="pessoa" class="mdl-textfield__input" id="schedule-pessoa-id" readonly required>
+                <input type="hidden" value="{{ $pessoa->id }}" name="pessoa_id" id="schedule-pessoa" required>
                 <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                 <label for="schedule-pessoa-id" class="mdl-textfield__label mdl-color-text--grey-700">Cliente</label>
                 <ul for="schedule-pessoa-id" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
@@ -265,7 +265,10 @@
             },
             eventClick: function(event, element, view) {
               if(event.status_id == 1 || event.status_id == 2) {
-                popularModalAndShow(event);
+                //popularModalAndShow(event);
+
+                window.location.href = '/schedule/' + event.id + '/edit';
+
               }
             },
             editable: true,
@@ -296,12 +299,16 @@
             //When u drop an event in the calendar do the following:
             eventDrop: function (event, delta, revertFunc) {
               popularModal(event);
+              //console.log('drop');
             },
             //When u resize an event in the calendar do the following:
             eventResize: function (event, delta, revertFunc) {
               popularModal(event);
+              //console.log('eventResize');
             },
             eventRender: function(event, element) {
+                //console.log('eventRender');
+                $(".formAgendamento").prop('action', adicionarAgendamento);
                 //$(element).tooltip({title: event.title});
             },
             ignoreTimezone: false,

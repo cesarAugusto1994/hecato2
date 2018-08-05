@@ -4,15 +4,18 @@
       @if($task->status_id == 1)
         {!! Form::model($task, array('action' => ['ScheduleController@iniciarAgendamento', $task->uuid], 'method' => 'PUT', 'class'=>'form-inline', 'style' => 'display:inline-block', 'role' => 'form')) !!}
             <label for="completed-{{ $task->id }}" class="mdl-js-ripple-effect">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Iniciar</button>
-                <span class="mdl-checkbox__label sr-only">Complete Task</span>
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                   <i class="material-icons mdl-color-text--grey-700">done</i></button>
+                <span class="mdl-checkbox__label sr-only">Iniciar Tarefa</span>
             </label>
         {!! Form::close() !!}
       @elseif($task->status_id == 2)
         {!! Form::model($task, array('action' => ['ScheduleController@finalizarAgendamento', $task->uuid], 'method' => 'PUT', 'class'=>'form-inline', 'style' => 'display:inline-block', 'role' => 'form')) !!}
             <label for="completed-{{ $task->id }}" class="mdl-js-ripple-effect">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Finalizar</button>
-                <span class="mdl-checkbox__label sr-only">Complete Task</span>
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons mdl-color-text--grey-700">done_outline</i>
+                </button>
+                <span class="mdl-checkbox__label sr-only">Finalizar Tarefa</span>
             </label>
         {!! Form::close() !!}
       @endif
@@ -20,8 +23,10 @@
       @if($task->status_id == 1 || $task->status_id == 2)
         {!! Form::model($task, array('action' => ['ScheduleController@cancelarAgendamento', $task->uuid], 'method' => 'PUT', 'class'=>'form-inline', 'style' => 'display:inline-block', 'role' => 'form')) !!}
             <label for="completed-{{ $task->id }}" class="mdl-js-ripple-effect">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
-                <span class="mdl-checkbox__label sr-only">Complete Task</span>
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons mdl-color-text--grey-700">not_interested</i>
+                </button>
+                <span class="mdl-checkbox__label sr-only">Cancelar Tarefa</span>
             </label>
         {!! Form::close() !!}
       @endif
@@ -64,18 +69,15 @@
         @endif
     </td>
 
-
-
     <td class="mdl-data-table__cell--non-numeric">
 
           @if($task->status_id != 3 && $task->status_id != 4)
 
-              <!--
               <a href="{{ route('schedule.edit', $task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                   <i class="material-icons mdl-color-text--grey-700">edit</i>
                   <span class="sr-only">Edit Task</span>
               </a>
-            -->
+
               {!! Form::open(array('class' => 'inline-block', 'id' => 'delete_'.$task->id, 'method' => 'DELETE', 'route' => array('schedule.destroy', $task->id))) !!}
                   {{ method_field('DELETE') }}
                   <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-taskid="{{$task->id}}">
@@ -86,7 +88,5 @@
 
           @endif
     </td>
-
-
 
 </tr>

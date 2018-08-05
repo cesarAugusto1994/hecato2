@@ -72,43 +72,44 @@
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                                            {!! Form::text('title', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
-                                            {!! Form::label('title', 'Titulo', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
+                                            {!! Form::hidden('pessoa_id', $task->pessoa->id) !!}
+                                            {!! Form::text('paciente', $task->pessoa->nome, array('id' => 'name', 'readonly' => true, 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
+                                            {!! Form::label('paciente', 'Paciente', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
                                             <span class="mdl-textfield__error">Task name is required</span>
                                         </div>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('user_level') ? 'is-invalid' :'' }}">
-                                            {!! Form::select('status_id', array('0' => 'Pendente', '1' => 'Em Andamento', '3' => 'Finalizado', '4' => 'Cancelado'), $task->status->id, array('class' => 'mdl-selectfield__select mdl-textfield__input mdl-color-text--grey-700', 'id' => 'status')) !!}
+                                            {!! Form::select('status_id', array('0' => 'Pendente', '1' => 'Em Andamento', '3' => 'Finalizado', '4' => 'Cancelado'), $task->status_id, array('class' => 'mdl-selectfield__select mdl-textfield__input mdl-color-text--grey-700', 'id' => 'status')) !!}
                                             <label for="completed">
                                                 <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                                             </label>
-                                            {!! Form::label('status_id', 'Task Status', array('class' => 'mdl-textfield__label mdl-selectfield__label mdl-color-text--grey-700')); !!}
+                                            {!! Form::label('status_id', 'Status', array('class' => 'mdl-textfield__label mdl-selectfield__label mdl-color-text--grey-700')); !!}
                                             <span class="mdl-textfield__error"></span>
                                         </div>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                                            {!! Form::text('start', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
-                                            {!! Form::label('start', 'Início', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
+                                            {!! Form::text('inicio', $task->inicio->format('d/m/Y H:i'), array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
+                                            {!! Form::label('inicio', 'Início', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                                             <span class="mdl-textfield__error">Task name is required</span>
                                         </div>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                                            {!! Form::text('end', NULL, array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
-                                            {!! Form::label('end', 'Fim', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
+                                            {!! Form::text('fim', $task->fim->format('d/m/Y H:i'), array('id' => 'task-name', 'class' => 'mdl-textfield__input mdl-color-text--black datetime')) !!}
+                                            {!! Form::label('fim', 'Fim', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
                                             <span class="mdl-textfield__error">Task name is required</span>
                                         </div>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
-                                            {!! Form::textarea('description', NULL, array('id' => 'description', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
-                                            {!! Form::label('description', 'Descrição', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
+                                            {!! Form::textarea('notas', NULL, array('id' => 'description', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
+                                            {!! Form::label('notas', 'Descrição', array('class' => 'mdl-textfield__label mdl-color-text--grey-700')); !!}
                                             <span class="mdl-textfield__error"></span>
                                         </div>
                                     </div>
@@ -153,9 +154,9 @@
 
                 {!! Form::close() !!}
 
-                {!! Form::open(array('class' => '', 'id' => 'delete', 'method' => 'DELETE', 'route' => array('schedule.destroy', $task->id))) !!}
+                {!! Form::open(array('class' => '', 'id' => 'delete', 'method' => 'Remover', 'route' => array('schedule.destroy', $task->id))) !!}
                     {{ method_field('DELETE') }}
-                    @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirm Task Deletion', 'dialogSaveBtnText' => 'Delete'])
+                    @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirmar Remoção', 'dialogSaveBtnText' => 'Remover'])
                 {!! Form::close() !!}
 
             </div>
