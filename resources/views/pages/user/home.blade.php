@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-	{{ Auth::user()->empresa }}
+	{{ Auth::user()->empresa->nome }}
 @endsection
 
 @section('breadcrumbs')

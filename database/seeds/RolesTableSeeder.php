@@ -2,7 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
-use jeremykenedy\LaravelRoles\Models\Role;
+use jeremykenedy\LaravelRoles\Models\Role; 
 
 class RolesTableSeeder extends Seeder
 {

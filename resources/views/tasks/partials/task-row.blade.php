@@ -25,11 +25,11 @@
     <td class="mdl-data-table__cell--non-numeric">
         @if ($task->completed === 1)
             <span class="badge mdl-color--green-400 mdl-color-text--white">
-                Complete
+                Finalzada
             </span>
         @else
             <span class="badge mdl-color--red-400 mdl-color-text--white">
-                Incomplete
+                Em Andamento
             </span>
         @endif
     </td>

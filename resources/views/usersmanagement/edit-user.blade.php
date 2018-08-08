@@ -1,174 +1,181 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-  Editing User {{ $user->name }}
+  Editar Usuário
 @endsection
 
-@section('template_linked_css')
-  <style type="text/css">
-    .btn-save,
-    .pw-change-container {
-      display: none;
-    }
-  </style>
+@section('header')
+  Editar Usuário
+@endsection
+
+@section('breadcrumbs')
+  <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="{{url('/')}}">
+      <span itemprop="name">
+        {{ trans('titles.app') }}
+      </span>
+    </a>
+    <i class="material-icons">chevron_right</i>
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="/users">
+      <span itemprop="name">
+        Usuários
+      </span>
+    </a>
+    <i class="material-icons">chevron_right</i>
+    <meta itemprop="position" content="2" />
+  </li>
+  <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="/users/create">
+      <span itemprop="name">
+        Editar Usuário
+      </span>
+    </a>
+    <meta itemprop="position" content="3" />
+  </li>
 @endsection
 
 @section('content')
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">
+  <div class="mdl-grid full-grid margin-top-0 padding-0">
+    <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+        <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
-            <strong>Editing User:</strong> {{ $user->name }}
+        <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+          <h2 class="mdl-card__title-text logo-style">Editar Usuário</h2>
+        </div>
 
-            <a href="/users/{{$user->id}}" class="btn btn-primary btn-xs pull-right" style="margin-left: 1em;">
-              <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-             Back  <span class="hidden-xs">to User</span>
-            </a>
+        {!! Form::model($user, array('action' => array('UsersManagementController@update', $user->id), 'method' => 'PUT')) !!}
 
-            <a href="/users" class="btn btn-info btn-xs pull-right">
-              <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-              <span class="hidden-xs">Back to </span>Users
-            </a>
+        {!! csrf_field() !!}
 
+          <div class="mdl-card__supporting-text">
+            <div class="mdl-grid full-grid padding-0">
+              <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+
+                <div class="mdl-grid ">
+
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
+                      {!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'required' => 'required', 'autocomplete' => 'off')) !!}
+                      {!! Form::label('name', trans('auth.name') , array('class' => 'mdl-textfield__label')); !!}
+                      <span class="mdl-textfield__error">Apenas letras</span>
+                    </div>
+                  </div>
+
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('email') ? 'is-invalid' :'' }}">
+                      {!! Form::email('email', NULL, array('id' => 'email', 'class' => 'mdl-textfield__input')) !!}
+                      {!! Form::label('email', trans('auth.email') , array('class' => 'mdl-textfield__label')); !!}
+                      <span class="mdl-textfield__error">Please Enter a Valid {{ trans('auth.email') }}</span>
+                    </div>
+                  </div>
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('first_name') ? 'is-invalid' :'' }}">
+                            {!! Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'mdl-textfield__input')) !!}
+                            {!! Form::label('first_name', 'Nome', array('class' => 'mdl-textfield__label')); !!}
+                            <span class="mdl-textfield__error">Letters only</span>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('last_name') ? 'is-invalid' :'' }}">
+                          {!! Form::text('last_name', NULL, array('id' => 'last_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')) !!}
+                          {!! Form::label('last_name', 'Sobrenome', array('class' => 'mdl-textfield__label')); !!}
+                          <span class="mdl-textfield__error">Letters only</span>
+                      </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
+                        <select class="mdl-selectfield__select mdl-textfield__input" name="empresa" id="empresa">
+
+                            @foreach(\App\Models\Empresa::all() as $empresa)
+                              <option value="{{ $empresa->id }}" {{ $user->empresa_id == $empresa->id ? 'selected' : '' }}>{{ $empresa->nome }}</option>
+                            @endforeach
+                        </select>
+                        <label for="role">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                        {!! Form::label('empresa', 'Empresa', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                        <span class="mdl-textfield__error">Select user access level</span>
+                      </div>
+                    </div>
+
+
+                  <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
+                      <select class="mdl-selectfield__select mdl-textfield__input" name="role" id="role">
+                        <option value=""></option>
+                        @if ($roles->count())
+                          @foreach($roles as $role)
+                            <option value="{{ $role->id }}" {{ $user->hasRole([$role->slug]) ? 'selected' : '' }}>{{ $role->name }}</option>
+                          @endforeach
+                        @endif
+                      </select>
+                      <label for="role">
+                          <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                      </label>
+                      {!! Form::label('role', trans('forms.label-userrole_id'), array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      <span class="mdl-textfield__error">Select user access level</span>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          {!! Form::model($user, array('action' => array('UsersManagementController@update', $user->id), 'method' => 'PUT')) !!}
+          <div class="mdl-card__actions padding-top-0">
+            <div class="mdl-grid padding-top-0">
+              <div class="mdl-cell mdl-cell--12-col padding-top-0 margin-top-0 margin-left-1-1">
 
-            {!! csrf_field() !!}
+                {{-- SAVE BUTTON--}}
+                <span class="save-actions">
+                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+                </span>
 
-            <div class="panel-body">
-
-              <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
-                {!! Form::label('name', 'Username' , array('class' => 'col-md-3 control-label')); !!}
-                <div class="col-md-9">
-                  <div class="input-group">
-                    {!! Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control', 'placeholder' => trans('forms.ph-username'))) !!}
-                    <label class="input-group-addon" for="name"><i class="fa fa-fw fa-user }}" aria-hidden="true"></i></label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group has-feedback row {{ $errors->has('email') ? ' has-error ' : '' }}">
-                {!! Form::label('email', 'E-mail' , array('class' => 'col-md-3 control-label')); !!}
-                <div class="col-md-9">
-                  <div class="input-group">
-                    {!! Form::text('email', old('email'), array('id' => 'email', 'class' => 'form-control', 'placeholder' => trans('forms.ph-useremail'))) !!}
-                    <label class="input-group-addon" for="email"><i class="fa fa-fw fa-envelope " aria-hidden="true"></i></label>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="form-group has-feedback row {{ $errors->has('first_name') ? ' has-error ' : '' }}">
-                {!! Form::label('first_name', trans('forms.create_user_label_firstname'), array('class' => 'col-md-3 control-label')); !!}
-                <div class="col-md-9">
-                  <div class="input-group">
-                    {!! Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_firstname'))) !!}
-                    <label class="input-group-addon" for="first_name"><i class="fa fa-fw {{ trans('forms.create_user_icon_firstname') }}" aria-hidden="true"></i></label>
-                  </div>
-                  @if ($errors->has('first_name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('first_name') }}</strong>
-                    </span>
-                  @endif
-                </div>
-              </div>
-
-              <div class="form-group has-feedback row {{ $errors->has('last_name') ? ' has-error ' : '' }}">
-                {!! Form::label('last_name', trans('forms.create_user_label_lastname'), array('class' => 'col-md-3 control-label')); !!}
-                <div class="col-md-9">
-                  <div class="input-group">
-                    {!! Form::text('last_name', NULL, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_lastname'))) !!}
-                    <label class="input-group-addon" for="last_name"><i class="fa fa-fw {{ trans('forms.create_user_icon_lastname') }}" aria-hidden="true"></i></label>
-                  </div>
-                  @if ($errors->has('last_name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('last_name') }}</strong>
-                    </span>
-                  @endif
-                </div>
-              </div>
-
-              <div class="form-group has-feedback row {{ $errors->has('role') ? ' has-error ' : '' }}">
-                {!! Form::label('role', trans('forms.create_user_label_role'), array('class' => 'col-md-3 control-label')); !!}
-                <div class="col-md-9">
-                  <div class="input-group">
-                    <select class="form-control" name="role" id="role">
-                      <option value="">{{ trans('forms.create_user_ph_role') }}</option>
-                      @if ($roles->count())
-                        @foreach($roles as $role)
-                          <option value="{{ $role->id }}" {{ $currentRole->id == $role->id ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
-                        @endforeach
-                      @endif
-                    </select>
-                    <label class="input-group-addon" for="role"><i class="fa fa-fw {{ trans('forms.create_user_icon_role') }}" aria-hidden="true"></i></label>
-                  </div>
-                  @if ($errors->has('role'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('role') }}</strong>
-                    </span>
-                  @endif
-                </div>
-              </div>
-
-              <div class="pw-change-container">
-                <div class="form-group has-feedback row">
-                  {!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
-                  <div class="col-md-9">
-                    <div class="input-group">
-                      {!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'))) !!}
-                      <label class="input-group-addon" for="password"><i class="fa fa-fw {{ trans('forms.create_user_icon_password') }}" aria-hidden="true"></i></label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group has-feedback row">
-                  {!! Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label')); !!}
-                  <div class="col-md-9">
-                    <div class="input-group">
-                      {!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
-                      <label class="input-group-addon" for="password_confirmation"><i class="fa fa-fw {{ trans('forms.create_user_icon_pw_confirmation') }}" aria-hidden="true"></i></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="panel-footer">
-
-              <div class="row">
-
-                <div class="col-xs-6">
-                  <a href="#" class="btn btn-default btn-block margin-bottom-1 btn-change-pw" title="Change Password">
-                    <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
-                    <span></span> Change Password
-                  </a>
-                </div>
-                <div class="col-xs-6">
-                  {!! Form::button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> Save Changes', array('class' => 'btn btn-success btn-block margin-bottom-1 btn-save','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => trans('modals.edit_user__modal_text_confirm_title'), 'data-message' => trans('modals.edit_user__modal_text_confirm_message'))) !!}
-                </div>
               </div>
             </div>
+          </div>
+
+            <div class="mdl-card__menu mdl-color-text--white">
+
+              <span class="save-actions">
+                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New User')) !!}
+              </span>
+
+              <a href="{{ url('/users/') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Back to Users">
+                  <i class="material-icons">reply</i>
+                  <span class="sr-only">Back to Users</span>
+              </a>
+
+            </div>
+
+            @include('dialogs.dialog-save')
 
           {!! Form::close() !!}
 
         </div>
-      </div>
     </div>
   </div>
-
-  @include('modals.modal-save')
-  @include('modals.modal-delete')
 
 @endsection
 
 @section('footer_scripts')
 
+  @include('scripts.mdl-required-input-fix')
+  @include('scripts.gmaps-address-lookup-api3')
   @include('scripts.delete-modal-script')
   @include('scripts.save-modal-script')
   @include('scripts.check-changed')
+
+  <script type="text/javascript">
+    mdl_dialog('.dialog-button-save');
+    mdl_dialog('.dialog-button-icon-save');
+  </script>
 
 @endsection

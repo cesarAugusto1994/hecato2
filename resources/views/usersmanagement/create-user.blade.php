@@ -43,7 +43,7 @@
     <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
         <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
-        <div class="mdl-card__title mdl-card--expand mdl-color--green mdl-color-text--white">
+        <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
           <h2 class="mdl-card__title-text logo-style">Novo Usuário</h2>
         </div>
 
@@ -146,7 +146,7 @@
 
                 {{-- SAVE BUTTON--}}
                 <span class="save-actions">
-                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                 </span>
 
               </div>

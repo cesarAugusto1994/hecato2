@@ -39,11 +39,12 @@
 			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($incompleteTasks) != 0) data-badge="{{ count($incompleteTasks) }}" @endif role="presentation">view_list</i>
 			Minhas Tarefas
 		</a>
+		{{--
 		<a class="mdl-navigation__link {{ Request::is('tasks/create') ? 'mdl-navigation__link--current' : null }}" href="/tasks/create">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">playlist_add</i>
 			Nova Tarefa
 		</a>
-
+--}}
 		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="/contatos">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">people</i>
 			Contatos
@@ -54,17 +55,15 @@
 			Guias
 		</a>
 
-		@role('admin')
+		@role('owner')
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" data-badge="{{ $totalUsers }}" role="presentation">contacts</i>
 				{{ Lang::get('titles.adminUserList') }}
 			</a>
-				<a class="mdl-navigation__link {{ Request::is('users/create') ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users/create') }}">
-					<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
-					{{ Lang::get('titles.adminNewUser') }}
-				</a>
-		@endrole
-		@role('owner')
+			{{--<a class="mdl-navigation__link {{ Request::is('users/create') ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users/create') }}">
+				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
+				{{ Lang::get('titles.adminNewUser') }}
+			</a>--}}
 			<a class="mdl-navigation__link {{ Request::is('roles.index') ? 'mdl-navigation__link--current' : null }}" href="{{ route('roles.index') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
 				Roles

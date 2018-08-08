@@ -115,4 +115,9 @@ class User extends Authenticatable
     {
         return $this->profiles()->detach($profile);
     }
+
+    public function empresa()
+    {
+        return $this->belongsTo('App\Models\Empresa', 'empresa_id');
+    }
 }

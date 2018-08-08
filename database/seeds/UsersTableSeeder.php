@@ -2,6 +2,7 @@
 
 use App\Models\Profile;
 use App\Models\User;
+use App\Permission;
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Role;
 
@@ -38,6 +39,12 @@ class UsersTableSeeder extends Seeder
 
             $user->profile()->save($profile);
             $user->attachRole($ownerRole);
+
+            $permissions = Permission::all();
+            foreach ($permissions as $permission) {
+              $user->attachPermission($permission);
+            }
+
             $user->save();
         }
 
