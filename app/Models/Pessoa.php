@@ -19,6 +19,11 @@ class Pessoa extends Model
       'funcionario', 'prospecto', 'paciente'
     ];
 
+    public function empresa()
+    {
+        return $this->belongsTo('App\Models\Empresa', 'empresa_id');
+    }
+
     public function tipo()
     {
         return $this->belongsTo(Tipo::class, 'tipo_id');

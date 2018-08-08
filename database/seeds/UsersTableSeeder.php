@@ -21,14 +21,14 @@ class UsersTableSeeder extends Seeder
         $adminRole = Role::whereName('Admin')->first();
         $userRole = Role::whereName('User')->first();
 
-        $seededAdminEmail = 'owner@owner.com';
-        $user = User::where('email', '=', $seededAdminEmail)->first();
+        $seededOwnerEmail = 'owner@owner.com';
+        $user = User::where('email', '=', $seededOwnerEmail)->first();
         if ($user === null) {
             $user = User::create([
                 'name'                           => $faker->userName,
                 'first_name'                     => $faker->firstName,
                 'last_name'                      => $faker->lastName,
-                'email'                          => $seededAdminEmail,
+                'email'                          => $seededOwnerEmail,
                 'password'                       => Hash::make('password'),
                 'token'                          => str_random(64),
                 'activated'                      => true,
@@ -37,15 +37,16 @@ class UsersTableSeeder extends Seeder
                 'empresa_id'                     => 1,
             ]);
 
-            $user->profile()->save($profile);
+            $user->profile()->save(new Profile());
             $user->attachRole($ownerRole);
+            $user->save();
 
             $permissions = Permission::all();
             foreach ($permissions as $permission) {
               $user->attachPermission($permission);
             }
 
-            $user->save();
+
         }
 
         // Seed test admin
@@ -62,7 +63,7 @@ class UsersTableSeeder extends Seeder
                 'activated'                      => true,
                 'signup_confirmation_ip_address' => $faker->ipv4,
                 'admin_ip_address'               => $faker->ipv4,
-                'empresa_id'                     => 1,
+                'empresa_id'                     => 2,
             ]);
 
             $user->profile()->save($profile);
@@ -83,7 +84,7 @@ class UsersTableSeeder extends Seeder
                 'activated'                      => true,
                 'signup_ip_address'              => $faker->ipv4,
                 'signup_confirmation_ip_address' => $faker->ipv4,
-                'empresa_id'                     => 1,
+                'empresa_id'                     => 2,
             ]);
 
             $user->profile()->save(new Profile());

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{User, Role};
-use App\Models\Pessoa;
+use App\Models\{Pessoa, Empresa};
 use App\Models\Pessoa\{Tipo, Grupo, Fisica as PessoaFisica, Juridica as PessoaJuridica, Endereco as PessoaEndereco, Telefone as PessoaTelefone};
 
 class PessoasController extends Controller
@@ -18,7 +18,11 @@ class PessoasController extends Controller
     {
         $user = \Auth::user();
 
-        $pessoas = Pessoa::where('empresa_id', \Auth::user()->empresa_id)->get();
+        if($user->isOwner()) {
+          $pessoas = Pessoa::all();
+        } else {
+          $pessoas = Pessoa::where('empresa_id', \Auth::user()->empresa_id)->get();
+        }
 
         return View('contatos.index', compact('pessoas'));
     }
@@ -32,8 +36,9 @@ class PessoasController extends Controller
     {
         $tipos = Tipo::all();
         $grupos = Grupo::all();
+        $empresas = Empresa::all();
 
-        return view('contatos.create', compact('tipos', 'grupos'));
+        return view('contatos.create', compact('tipos', 'grupos', 'empresas'));
     }
 
     /**
@@ -46,7 +51,7 @@ class PessoasController extends Controller
     {
         $data = $request->request->all();
 
-        $data['empresa_id'] = \Auth::user()->empresa_id;
+        //$data['empresa_id'] = \Auth::user()->empresa_id;
 
         $pessoa = Pessoa::create($data);
 

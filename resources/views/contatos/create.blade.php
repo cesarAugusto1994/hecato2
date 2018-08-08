@@ -62,10 +62,29 @@
                     </span>
                   </div>
 
+                  @role('owner')
+                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
+                      <select class="mdl-selectfield__select mdl-textfield__input" name="empresa_id" id="role">
+                        @foreach($empresas as $empresa)
+                          <option value="{{ $empresa->id }}"> {{ $empresa->nome }} </option>
+                        @endforeach
+                      </select>
+                      <label for="role">
+                          <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                      </label>
+                      {!! Form::label('grupo_id', 'Empresa', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      <span class="mdl-textfield__error">Select user access level</span>
+                    </div>
+                  </div>
+                  @else
+                    {!! Form::hidden('empresa_id', \Auth::user()->empresa_id, array('id' => 'empresa_id')) !!}
+                  @endrole
+
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
                       {!! Form::text('nome', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'required' => 'required')) !!}
-                      {!! Form::label('nome', Nome , array('class' => 'mdl-textfield__label')); !!}
+                      {!! Form::label('nome', 'Nome' , array('class' => 'mdl-textfield__label')); !!}
                       <span class="mdl-textfield__error">Informa o nome do contato</span>
                     </div>
                   </div>
@@ -88,7 +107,7 @@
                       <label for="role">
                           <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                       </label>
-                      {!! Form::label('tipo_id', Tipo, array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      {!! Form::label('tipo_id', 'Tipo', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
                       <span class="mdl-textfield__error">Select user access level</span>
                     </div>
                   </div>
@@ -179,7 +198,7 @@
                       <label for="role">
                           <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                       </label>
-                      {!! Form::label('grupo_id', Grupo, array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      {!! Form::label('grupo_id', 'Grupo', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
                       <span class="mdl-textfield__error">Select user access level</span>
                     </div>
                   </div>

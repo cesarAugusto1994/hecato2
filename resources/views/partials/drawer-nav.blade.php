@@ -31,10 +31,18 @@
 			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>
 			{{ Lang::get('titles.profile') }}
 		</a>
+		@role('admin')
 		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">alarm</i>
 			Agenda
 		</a>
+		@endrole
+		@role('user')
+		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">alarm</i>
+			Agenda
+		</a>
+		@endrole
 		<a class="mdl-navigation__link {{ Request::is('tasks') ? 'mdl-navigation__link--current' : null }}" href="/tasks">
 			<i class="material-icons mdl-badge mdl-badge--overlap" @if (count($incompleteTasks) != 0) data-badge="{{ count($incompleteTasks) }}" @endif role="presentation">view_list</i>
 			Minhas Tarefas
@@ -50,10 +58,18 @@
 			Contatos
 		</a>
 
+		@role('admin')
 		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="{{ route('guias.index') }}">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">assignment</i>
 			Guias
 		</a>
+		@endrole
+		@role('user')
+		<a class="mdl-navigation__link {{ Request::is('contatos') ? 'mdl-navigation__link--current' : null }}" href="{{ route('guias.index') }}">
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">assignment</i>
+			Guias
+		</a>
+		@endrole
 
 		@role('owner')
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">

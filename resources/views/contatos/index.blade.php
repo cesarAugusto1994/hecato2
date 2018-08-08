@@ -55,6 +55,9 @@
                     <th class="mdl-data-table__cell--non-numeric">Nome</th>
                     <th class="mdl-data-table__cell--non-numeric">Email</th>
                     <th class="mdl-data-table__cell--non-numeric">Tipo</th>
+                    @role('owner')
+                      <th class="mdl-data-table__cell--non-numeric">Empresa</th>
+                    @endrole
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Cadastro</th>
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Atualizado</th>
                     <th class="mdl-data-table__cell--non-numeric no-sort no-search">Opções</th>
@@ -67,6 +70,11 @@
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->nome}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->email}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">Pessoa {{$pessoa->tipo->nome}}</a></td>
+                            @role('owner')
+
+                            <td class="mdl-data-table__cell--non-numeric">{{$pessoa->empresa->nome}}</td>
+
+                            @endrole
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->created_at ? $pessoa->created_at->format('d/m/Y') : '' }} </a></td>
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->updated_at ? $pessoa->updated_at->format('d/m/Y') : '' }} </a></td>
                             <td class="mdl-data-table__cell--non-numeric">
@@ -82,9 +90,9 @@
                                 </a>
 
                                 {{-- DELETE ICON BUTTON AND FORM CALL --}}
-                                {!! Form::open(array('url' => route('contatos.destroy', $pessoa->id), 'class' => 'inline-block', 'id' => 'delete_'.$user->id)) !!}
+                                {!! Form::open(array('url' => route('contatos.destroy', $pessoa->id), 'class' => 'inline-block', 'id' => 'delete_'.$pessoa->id)) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$pessoa->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$user->id}}">
+                                    <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$pessoa->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$pessoa->id}}">
                                         <i class="material-icons mdl-color-text--red">delete</i>
                                     </a>
                                 {!! Form::close() !!}

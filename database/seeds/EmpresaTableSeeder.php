@@ -14,9 +14,20 @@ class EmpresaTableSeeder extends Seeder
      */
     public function run()
     {
+      /*
         $tipo = new Tipo();
         $tipo->nome = 'Pessoa Juridica';
         $tipo->save();
+        */
+
+        $empresa = new Empresa();
+        $empresa->nome = 'Hecato';
+        $empresa->email = 'hecato@hecato.com.br';
+        $empresa->informacoes = 'Hecato';
+        $empresa->site = 'hecato.com.br';
+        $empresa->aniversario_fundacao = now();
+        $empresa->tipo_id = 2;
+        $empresa->save();
 
         $empresa = new Empresa();
         $empresa->nome = 'Empresa Teste ' . str_random(12);
@@ -24,7 +35,7 @@ class EmpresaTableSeeder extends Seeder
         $empresa->informacoes = 'Empresa Teste ' . str_random(12);
         $empresa->site = 'empresa@'.str_random(12).'.com.br';
         $empresa->aniversario_fundacao = now();
-        $empresa->tipo_id = $tipo->id;
+        $empresa->tipo_id = 2;
         $empresa->save();
 
 /*
