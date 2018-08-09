@@ -156,15 +156,38 @@
                         <span class="mdl-textfield__error">Letters only</span>
                     </div>
                   </div>
+                  @php
+
+                    $telefone = null;
+
+                    $phone = $pessoa->telefones->where('tipo_contato_id', 2);
+
+                    if($phone->isNotEmpty()) {
+                      $telefone = $phone->first()->numero;
+                    }
+
+                  @endphp
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
-                        {!! Form::text('telefone_comercial', $pessoa->telefones ? $pessoa->telefones->where('tipo_contato_id', 2)->get()->first()->numero ?? '' : '', array('id' => 'telefone_comercial', 'class' => 'mdl-textfield__input')) !!}
+                        {!! Form::text('telefone_comercial', $telefone ?? '', array('id' => 'telefone_comercial', 'class' => 'mdl-textfield__input')) !!}
                         {!! Form::label('telefone_comercial', 'Telefone Comercial', array('class' => 'mdl-textfield__label')); !!}
                     </div>
                   </div>
+                  @php
+
+                    $celular = null;
+
+                    $phone = $pessoa->telefones->where('tipo_contato_id', 3);
+
+                    if($phone->isNotEmpty()) {
+                      $celular = $phone->first()->numero;
+                    }
+
+                  @endphp
+
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('first_name') ? 'is-invalid' :'' }}">
-                          {!! Form::text('celular', $pessoa->telefones ? $pessoa->telefones->where('tipo_contato_id', 3)->get()->first()->numero ?? '' : '', array('id' => 'celular', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::text('celular', $celular ?? '', array('id' => 'celular', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('celular', 'Celular', array('class' => 'mdl-textfield__label')); !!}
                           <span class="mdl-textfield__error">Letters only</span>
                       </div>
