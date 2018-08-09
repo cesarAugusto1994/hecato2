@@ -24,6 +24,11 @@ class Pessoa extends Model
         return $this->belongsTo('App\Models\Empresa', 'empresa_id');
     }
 
+    public function anexos()
+    {
+        return $this->hasMany('App\Models\Pessoa\Anexo', 'pessoa_id');
+    }
+
     public function tipo()
     {
         return $this->belongsTo(Tipo::class, 'tipo_id');
@@ -53,7 +58,6 @@ class Pessoa extends Model
     {
         return $this->hasMany(Endereco::class, 'pessoa_id');
     }
-
 
     public function agendamentos()
     {

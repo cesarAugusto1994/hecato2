@@ -88,18 +88,10 @@
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('email') ? 'is-invalid' :'' }}">
-                        {!! Form::text('aniversario', $contato->aniversario ? $contato->aniversario->format('d/m/Y') : '', array('id' => 'aniversario', 'class' => 'mdl-textfield__input datemask')) !!}
-                        {!! Form::label('aniversario', 'Aniversário' , array('class' => 'mdl-textfield__label')); !!}
-                        <span class="mdl-textfield__error">Informe a data de nascimento</span>
-                      </div>
-                    </div>
-
-                    <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('cargo') ? 'is-invalid' :'' }}">
-                        {!! Form::text('cargo', NULL, array('id' => 'cargo', 'class' => 'mdl-textfield__input')) !!}
-                        {!! Form::label('cargo', 'Cargo' , array('class' => 'mdl-textfield__label')); !!}
-                        <span class="mdl-textfield__error">Informe o cargo/span>
+                        {!! Form::text('filiacao', NULL, array('id' => 'cargo', 'class' => 'mdl-textfield__input')) !!}
+                        {!! Form::label('filiacao', 'Filiação - Parentesco' , array('class' => 'mdl-textfield__label')); !!}
+                        <span class="mdl-textfield__error">Informe a filiação</span>
                       </div>
                     </div>
 

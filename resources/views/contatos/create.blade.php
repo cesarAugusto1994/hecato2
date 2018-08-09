@@ -47,7 +47,7 @@
           <h2 class="mdl-card__title-text logo-style">Novo Contato</h2>
         </div>
 
-        {!! Form::open(array('action' => 'PessoasController@store', 'method' => 'POST', 'role' => 'form')) !!}
+        {!! Form::open(array('action' => 'PessoasController@store', 'method' => 'POST', 'role' => 'form', 'files' => true)) !!}
 
           <div class="mdl-card__supporting-text">
             <div class="mdl-grid full-grid padding-0">

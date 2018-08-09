@@ -47,7 +47,7 @@
           <h2 class="mdl-card__title-text logo-style">Editar Contato</h2>
         </div>
 
-        {!! Form::model($pessoa, array('action' => ['PessoasController@update', $pessoa->id], 'method' => 'PUT', 'role' => 'form')) !!}
+        {!! Form::model($pessoa, array('action' => ['PessoasController@update', $pessoa->id], 'files' => true, 'method' => 'PUT', 'role' => 'form')) !!}
 
           <div class="mdl-card__supporting-text">
             <div class="mdl-grid full-grid padding-0">
@@ -89,7 +89,7 @@
                       <label for="role">
                           <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                       </label>
-                      {!! Form::label('tipo_id', Tipo, array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      {!! Form::label('tipo_id', 'Tipo', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
                       <span class="mdl-textfield__error">Select user access level</span>
                     </div>
                   </div>
@@ -180,7 +180,7 @@
                       <label for="role">
                           <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
                       </label>
-                      {!! Form::label('grupo_id', Grupo, array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                      {!! Form::label('grupo_id', 'Grupo', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
                       <span class="mdl-textfield__error">Select user access level</span>
                     </div>
                   </div>
@@ -208,8 +208,7 @@
                             <th class="mdl-data-table__cell--non-numeric">Email</th>
                             <th class="mdl-data-table__cell--non-numeric">Telefone</th>
                             <th class="mdl-data-table__cell--non-numeric">Celular</th>
-                            <th class="mdl-data-table__cell--non-numeric">Aniversário</th>
-                            <th class="mdl-data-table__cell--non-numeric">Cargo - Atividade</th>
+                            <th class="mdl-data-table__cell--non-numeric">Filiação - Parentesco</th>
                             <th class="mdl-data-table__cell--non-numeric">Opções</th>
                           </tr>
                         </thead>
@@ -221,8 +220,7 @@
                             <td class="mdl-data-table__cell--non-numeric">{{ $contato->email }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $contato->telefone }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $contato->celular }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->aniversario }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->cargo }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $contato->filiacao }}</td>
                             <td class="mdl-data-table__cell--non-numeric">
 
                               <a href="{{ route('contato.edit', $contato->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect btnEditOpenModal">
@@ -389,6 +387,7 @@
                     </div>
                   </div>
 
+
                 </div>
               </div>
 
@@ -422,6 +421,7 @@
             </div>
 
             @include('dialogs.dialog-save')
+            @include('dialogs.dialog-delete')
 
           {!! Form::close() !!}
 
@@ -429,7 +429,55 @@
     </div>
   </div>
 
-  @include('dialogs.dialog-delete')
+
+  <div class="mdl-grid full-grid margin-top-0 padding-0">
+    <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+
+
+        <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+            <h2 class="mdl-card__title-text logo-style">Arquivos</h2>
+        </div>
+
+        <div class="mdl-card__menu mdl-color-text--white">
+
+        </div>
+
+        <div class="table-responsive material-table">
+            <table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Link</th>
+              <th class="mdl-data-table__cell--non-numeric">Opções</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @foreach($pessoa->anexos as $anexo)
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">{{ $anexo->link }}</td>
+              <td class="mdl-data-table__cell--non-numeric">
+
+                {{-- DELETE ICON BUTTON AND FORM CALL --}}
+                {!! Form::open(array('url' => route('anexos.destroy', $anexo->id), 'class' => 'inline-block', 'id' => 'delete_'.$anexo->id)) !!}
+                    {!! Form::hidden('_method', 'DELETE') !!}
+                    <button type="submit"
+                     class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons mdl-color-text--red">delete</i>
+                    </button>
+                {!! Form::close() !!}
+
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+
+        </table>
+        </div>
+
+
+    </div>
+  </div>
+
 
 @endsection
 

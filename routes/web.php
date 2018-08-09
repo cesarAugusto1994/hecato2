@@ -220,6 +220,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('empresa', '\App\Http\Controllers\EmpresaController');
     Route::resource('contatos', '\App\Http\Controllers\PessoasController');
+    Route::resource('anexos', '\App\Http\Controllers\PessoaAnexosController');
     Route::resource('guias', '\App\Http\Controllers\GuiasController');
     Route::resource('roles', '\App\Http\Controllers\RolesController');
     Route::resource('contato', '\App\Http\Controllers\PessoaContatosController');

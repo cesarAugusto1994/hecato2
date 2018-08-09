@@ -4,11 +4,11 @@ namespace App\Models\Pessoa;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contato extends Model
+class Anexo extends Model
 {
-    protected $table = 'pessoa_contatos';
+    protected $table = 'pessoa_anexos';
 
-    protected $fillable = ['nome', 'email', 'celular', 'telefone', 'filiacao', 'pessoa_id'];
+    protected $fillable = ['link', 'pessoa_id'];
 
     public function pessoa()
     {

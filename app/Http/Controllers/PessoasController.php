@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\{User, Role};
 use App\Models\{Pessoa, Empresa};
 use App\Models\Pessoa\{Tipo, Grupo, Fisica as PessoaFisica, Juridica as PessoaJuridica, Endereco as PessoaEndereco, Telefone as PessoaTelefone};
+use App\Models\Pessoa\Anexo;
 
 class PessoasController extends Controller
 {
@@ -51,9 +52,15 @@ class PessoasController extends Controller
     {
         $data = $request->request->all();
 
-        //$data['empresa_id'] = \Auth::user()->empresa_id;
-
         $pessoa = Pessoa::create($data);
+
+        if ($request->hasFile('anexos') && $request->file('anexos')->isValid()) {
+            $path = $request->anexos->store('anexos');
+            Anexo::create([
+              'pessoa_id' => $pessoa->id,
+              'link' => $path
+            ]);
+        }
 
         $data['pessoa_id'] = $pessoa->id;
 
@@ -157,6 +164,14 @@ class PessoasController extends Controller
 
         $pessoa = Pessoa::findOrFail($id);
 
+        if ($request->hasFile('anexos') && $request->file('anexos')->isValid()) {
+            $path = $request->anexos->store('anexos');
+            Anexo::create([
+              'pessoa_id' => $pessoa->id,
+              'link' => $path
+            ]);
+        }
+
         $hasUpdated = $pessoa->update($data);
 
         if($hasUpdated) {
@@ -208,7 +223,7 @@ class PessoasController extends Controller
             }
         }
 
-        return redirect()->route('contatos.index');
+        return redirect()->route('contatos.edit', $pessoa->uuid)->with('success', 'Contato atualizado com sucesso!');
     }
 
     /**
@@ -240,6 +255,10 @@ class PessoasController extends Controller
 
             $pessoa->contatos->map(function($contato) {
                 $contato->delete();
+            });
+
+            $pessoa->anexos->map(function($anexo) {
+                $anexo->delete();
             });
 
             $pessoa->delete();
