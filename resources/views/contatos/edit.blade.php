@@ -454,7 +454,8 @@
           <tbody>
             @foreach($pessoa->anexos as $anexo)
             <tr>
-              <td class="mdl-data-table__cell--non-numeric">{{ $anexo->link }}</td>
+              <td class="mdl-data-table__cell--non-numeric"><a target="_blank"
+                href="{{ $anexo->link }}">{{ $anexo->link }}</a></td>
               <td class="mdl-data-table__cell--non-numeric">
 
                 {{-- DELETE ICON BUTTON AND FORM CALL --}}
