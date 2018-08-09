@@ -26,7 +26,8 @@
         "socialiteproviders/generators": "^2.0",
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/twitch": "^3.0",
-        "socialiteproviders/youtube": "^3.0"
+        "socialiteproviders/youtube": "^3.0",
+        "symfony/translation": "v3.4.14"
     },
     "require-dev": {
         "crestapps/laravel-code-generator": "^2.2",

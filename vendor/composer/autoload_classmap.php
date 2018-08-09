@@ -64,6 +64,7 @@ return array(
     'App\\Http\\Controllers\\EmpresaController' => $baseDir . '/app/Http/Controllers/EmpresaController.php',
     'App\\Http\\Controllers\\GuiasController' => $baseDir . '/app/Http/Controllers/GuiasController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\PessoaAnexosController' => $baseDir . '/app/Http/Controllers/PessoaAnexosController.php',
     'App\\Http\\Controllers\\PessoaContatosController' => $baseDir . '/app/Http/Controllers/PessoaContatosController.php',
     'App\\Http\\Controllers\\PessoasController' => $baseDir . '/app/Http/Controllers/PessoasController.php',
     'App\\Http\\Controllers\\ProfilesController' => $baseDir . '/app/Http/Controllers/ProfilesController.php',
