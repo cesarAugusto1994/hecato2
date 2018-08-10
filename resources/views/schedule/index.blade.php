@@ -84,17 +84,18 @@
 
         <div class="mdl-grid ">
 
-          <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                <input type="text" value="{{ $pessoa->nome }}" name="pessoa" class="mdl-textfield__input" id="schedule-pessoa-id" readonly required>
-                <input type="hidden" value="{{ $pessoa->id }}" name="pessoa_id" id="schedule-pessoa" required>
-                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                <label for="schedule-pessoa-id" class="mdl-textfield__label mdl-color-text--grey-700">Cliente</label>
-                <ul for="schedule-pessoa-id" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                  @foreach(\App\Models\Pessoa::all() as $pessoa)
-                    <li class="mdl-menu__item" data-val="{{ $pessoa->id }}">{{ $pessoa->nome }}</li>
-                  @endforeach
-                </ul>
+          <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
+              <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa_id">
+                @foreach(\App\Models\Pessoa::all() as $pessoa)
+                  <option value="{{ $pessoa->id }}"> {{ $pessoa->nome }} </option>
+                @endforeach
+              </select>
+              <label for="role">
+                  <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+              </label>
+              {!! Form::label('pessoa_id', 'Cliente', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+              <span class="mdl-textfield__error">Selecione um cliente</span>
             </div>
           </div>
 
