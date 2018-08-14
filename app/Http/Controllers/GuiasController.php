@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Agendamento\Guia;
 use Illuminate\Support\Facades\Validator;
+use App\Models\{Pessoa, Empresa};
 
 class GuiasController extends Controller
 {
@@ -14,11 +15,18 @@ class GuiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
 
-        $guias = Guia::where('empresa_id', $user->empresa_id)->orderByDesc('id')->get();
+        $guias = Guia::where('empresa_id', $user->empresa_id);
+
+        if($request->has('client')) {
+          $pessoa = Pessoa::uuid($request->get('client'));
+          $guias->where('pessoa_id', $pessoa->id);
+        }
+
+        $guias = $guias->orderByDesc('id')->get();
 
         return view('guias.index', compact('guias'));
     }

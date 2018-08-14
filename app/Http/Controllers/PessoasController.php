@@ -178,7 +178,7 @@ class PessoasController extends Controller
 
             $data['pessoa_id'] = $pessoa->id;
 
-            //if($data['tipo_id'] == 1) {
+            if($data['tipo_id'] == 1) {
 
                 if(!empty($data['nascimento'])) {
                     $data['nascimento'] = \DateTime::createFromFormat('d/m/Y', $data['nascimento']);
@@ -187,9 +187,25 @@ class PessoasController extends Controller
                 $pf = PessoaFisica::where('pessoa_id', $pessoa->id)->get();
                 if($pf->isNotEmpty()) {
                   $pf->first()->update($data);
+                } else {
+                  $pf = PessoaFisica::create($data);
                 }
 
-            //}
+            } else {
+
+              if(!empty($data['fundacao'])) {
+                  $data['fundacao'] = \DateTime::createFromFormat('d/m/Y', $data['fundacao']);
+              }
+
+              $pj = PessoaJuridica::where('pessoa_id', $pessoa->id)->get();
+
+              if($pj->isNotEmpty()) {
+                $pj->first()->update($data);
+              } else {
+                $pj = PessoaJuridica::create($data);
+              }
+
+            }
 
               $pe = PessoaEndereco::where('pessoa_id', $pessoa->id)->get();
 

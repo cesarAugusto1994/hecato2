@@ -69,7 +69,7 @@
                     @foreach ($guias as $guia)
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->id}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id ?? ''}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a >{{$guia->status->nome}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.show', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
                             @role('admin')
@@ -113,9 +113,15 @@
     </div>
     <div class="mdl-card__menu" style="top: -4px;">
 
-        <a href="{{ URL::to('guias/create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons mdl-color-text--white">add</i>
-        </a>
+        @if(\Request::has('client'))
+          <a href="{{ route('guias.create', ['client' => \Request::get('client')]) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+              <i class="material-icons mdl-color-text--white">add</i>
+          </a>
+        @else
+          <a href="{{ route('guias.create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+              <i class="material-icons mdl-color-text--white">add</i>
+          </a>
+        @endif
 
         @include('partials.mdl-highlighter')
 

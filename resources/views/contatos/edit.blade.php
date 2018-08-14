@@ -81,7 +81,7 @@
 
                   <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--2-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
-                      <select class="mdl-selectfield__select mdl-textfield__input" name="tipo_id" id="role">
+                      <select class="mdl-selectfield__select mdl-textfield__input" name="tipo_id" id="tipo-pessoa">
                         @foreach($tipos as $tipo)
                           <option value="{{ $tipo->id }}" {{ $pessoa->tipo_id == $tipo->id ? 'selected' : ''}}> {{ $tipo->nome }} </option>
                         @endforeach
@@ -269,29 +269,26 @@
                     </div>
                   </div>
 
-
-                  @if($pessoa->tipo_id == 1)
-
-                    <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
                           <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PF</span>
                           <span class="mdl-chip__text">Pessoa Fisica</span>
                       </span>
                     </div>
 
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
                           {!! Form::text('cpf', $pessoa->fisica->cpf, array('id' => 'cpf', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('cpf', 'CPF', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
                           {!! Form::text('rg', $pessoa->fisica->rg, array('id' => 'rg', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('rg', 'RG', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
                           {!! Form::text('nascimento', $pessoa->fisica->nascimento ? $pessoa->fisica->nascimento->format('d/m/Y') : '', array('id' => 'nascimento', 'class' => 'mdl-textfield__input date' )) !!}
                           {!! Form::label('nascimento', 'Nascimento', array('class' => 'mdl-textfield__label')); !!}
@@ -299,36 +296,32 @@
                       </div>
                     </div>
 
-                  @else
-
-                    <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                    <div class="pj-content mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
                           <span class="mdl-chip__contact mdl-color--primary mdl-color-text--white">PJ</span>
                           <span class="mdl-chip__text">Pessoa Jurídica</span>
                       </span>
                     </div>
 
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('cnpj', $pessoa->juridica->cnpj, array('id' => 'cnpj', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::text('cnpj', $pessoa->juridica->cnpj ?? '', array('id' => 'cnpj', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('cnpj', 'CNPJ', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('ie', $pessoa->juridica->ie, array('id' => 'ie', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::text('ie', $pessoa->juridica->ie ?? '', array('id' => 'ie', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('ie', 'Inscrição Estadual', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
+                    <div class="pj-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
-                          {!! Form::text('fundacao', $pessoa->juridica->fundacao ? $pessoa->juridica->fundacao->format('d/m/Y') : '', array('id' => 'funcacao', 'class' => 'mdl-textfield__input date' )) !!}
+                          {!! Form::text('fundacao', $pessoa->juridica && $pessoa->juridica->fundacao ? $pessoa->juridica->fundacao->format('d/m/Y') : '', array('id' => 'funcacao', 'class' => 'mdl-textfield__input date' )) !!}
                           {!! Form::label('fundacao', 'Funcação', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Informe uma data de fundação válida</span>
                       </div>
                     </div>
-
-                  @endif
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <span class="mdl-chip mdl-chip--contact">
@@ -478,7 +471,7 @@
             @foreach($pessoa->anexos as $anexo)
             <tr>
               <td class="mdl-data-table__cell--non-numeric"><a target="_blank"
-                href="{{ $anexo->link }}">{{ $anexo->link }}</a></td>
+                href="{{ route('anexos.show', $anexo->id) }}">{{ $anexo->link }}</a></td>
               <td class="mdl-data-table__cell--non-numeric">
 
                 {{-- DELETE ICON BUTTON AND FORM CALL --}}
@@ -514,11 +507,7 @@
     mdl_dialog('.dialog-button-save');
     mdl_dialog('.dialog-button-icon-save');
 
-    $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
-
-    @foreach ($pessoa->contatos as $contato)
-        mdl_dialog('.dialiog-trigger{{$contato->id}}','','#dialog_delete');
-    @endforeach
+    $('.date').mask("00/00/0000");
 
     var userid;
     $('.dialiog-trigger-delete').click(function(event) {
@@ -529,6 +518,36 @@
     $('#confirm').click(function(event) {
         $('form#delete_'+userid).submit();
     });
+
+    $(document).ready(function() {
+
+      @if($pessoa->tipo_id == 1)
+        $('.pf-content').show();
+        $('.pj-content').hide();
+      @else
+        $('.pf-content').hide();
+        $('.pj-content').show();
+      @endif
+
+      $("#tipo-pessoa").change(function() {
+        var item = $(this).val();
+
+        if(item == 1) {
+
+          $('.pf-content').show();
+          $('.pj-content').hide();
+
+        } else {
+
+          $('.pf-content').hide();
+          $('.pj-content').show();
+
+        }
+
+      });
+
+    })
+
 
   </script>
 

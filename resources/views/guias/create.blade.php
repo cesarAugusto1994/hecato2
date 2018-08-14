@@ -57,30 +57,26 @@
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                          <input type="text" value="" name="pessoa" class="mdl-textfield__input" id="sample5" readonly>
-                          <input type="hidden" value="" name="pessoa_id" required>
-                          <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                          <label for="sample5" class="mdl-textfield__label">Cliente</label>
-                          <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+
+                          <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa">
                             @foreach(\App\Models\Pessoa::where('paciente', true)->get() as $pessoa)
-                              <li class="mdl-menu__item" data-val="{{ $pessoa->id }}">{{ $pessoa->nome }}</li>
+                              <option value="{{ $pessoa->id }}" {{ \Request::has('client') && \Request::get('client') == $pessoa->uuid ? 'selected' : '' }}> {{ $pessoa->nome }} </option>
                             @endforeach
-                          </ul>
+                          </select>
+
                           <span class="mdl-textfield__error">Informe o Cliente</span>
                       </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                          <input type="text" value="" name="status" class="mdl-textfield__input" id="sample6" readonly>
-                          <input type="hidden" value="" name="status_id" required>
-                          <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                          <label for="sample6" class="mdl-textfield__label">Status</label>
-                          <ul for="sample6" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+
+                          <select class="mdl-selectfield__select mdl-textfield__input" name="status_id" id="status">
                             @foreach(\App\Models\Agendamento\Guia\Status::all() as $status)
-                              <li class="mdl-menu__item" data-val="{{ $status->id }}" {{ $loop->first ? 'data-selected="true"' : '' }}>{{ $status->nome }}</li>
+                              <option value="{{ $status->id }}" {{ $loop->first ? 'selected' : '' }}> {{ $status->nome }} </option>
                             @endforeach
-                          </ul>
+                          </select>
+
                           <span class="mdl-textfield__error">Informe o Status</span>
                       </div>
                     </div>

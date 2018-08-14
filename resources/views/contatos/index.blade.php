@@ -66,24 +66,29 @@
               <tbody>
                     @foreach ($pessoas as $pessoa)
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->id}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->nome}} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->email}} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">Pessoa {{$pessoa->tipo->nome}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">{{$pessoa->id}}</a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">{{$pessoa->nome}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">{{$pessoa->email}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">Pessoa {{$pessoa->tipo->nome}}</a></td>
                             @role('owner')
 
                             <td class="mdl-data-table__cell--non-numeric">{{$pessoa->empresa->nome}}</td>
 
                             @endrole
-                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->created_at ? $pessoa->created_at->format('d/m/Y') : '' }} </a></td>
-                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid) }}">{{$pessoa->updated_at ? $pessoa->updated_at->format('d/m/Y') : '' }} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">{{$pessoa->created_at ? $pessoa->created_at->format('d/m/Y') : '' }} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}">{{$pessoa->updated_at ? $pessoa->updated_at->format('d/m/Y') : '' }} </a></td>
                             <td class="mdl-data-table__cell--non-numeric">
 
                                 {{-- VIEW USER ACCOUNT ICON BUTTON --}}
-                                <a href="{{ URL::to('contatos/' . $pessoa->uuid) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Account">
-                                    <i class="material-icons mdl-color-text--blue">account_circle</i>
+                                <a href="{{ route('guias.index', ['client' => $pessoa->uuid]) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Visualizar Guias">
+                                    <i class="material-icons mdl-color-text--blue">assignment</i>
                                 </a>
 
+                                {{-- VIEW USER ACCOUNT ICON BUTTON
+                                <a href="{{ URL::to('contatos/' . $pessoa->uuid) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Conta do usuário">
+                                    <i class="material-icons mdl-color-text--blue">account_circle</i>
+                                </a>
+                                --}}
                                 {{-- EDIT USER ICON BUTTON --}}
                                 <a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="material-icons mdl-color-text--orange">edit</i>
