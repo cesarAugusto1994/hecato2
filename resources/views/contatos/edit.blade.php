@@ -278,19 +278,19 @@
 
                     <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('twitter_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('cpf', $pessoa->fisica->cpf, array('id' => 'cpf', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::text('cpf', $pessoa->fisica->cpf ?? '', array('id' => 'cpf', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('cpf', 'CPF', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
                     <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('github_username') ? 'is-invalid' :'' }}">
-                          {!! Form::text('rg', $pessoa->fisica->rg, array('id' => 'rg', 'class' => 'mdl-textfield__input')) !!}
+                          {!! Form::text('rg', $pessoa->fisica->rg ?? '', array('id' => 'rg', 'class' => 'mdl-textfield__input')) !!}
                           {!! Form::label('rg', 'RG', array('class' => 'mdl-textfield__label')); !!}
                       </div>
                     </div>
                     <div class="pf-content mdl-cell mdl-cell--4-col-tablet mdl-cell--4-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
-                          {!! Form::text('nascimento', $pessoa->fisica->nascimento ? $pessoa->fisica->nascimento->format('d/m/Y') : '', array('id' => 'nascimento', 'class' => 'mdl-textfield__input date' )) !!}
+                          {!! Form::text('nascimento', $pessoa->fisica && $pessoa->fisica->nascimento ? $pessoa->fisica->nascimento->format('d/m/Y') : '', array('id' => 'nascimento', 'class' => 'mdl-textfield__input date' )) !!}
                           {!! Form::label('nascimento', 'Nascimento', array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Informe uma data de nascimento válida</span>
                       </div>
