@@ -71,7 +71,7 @@
                             <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->id}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id ?? ''}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a >{{$guia->status->nome}}</a></td>
-                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.show', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.edit', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
                             @role('admin')
                             <td class="mdl-data-table__cell--non-numeric"><a>{{number_format($guia->valor, 2, ',', '.')}} </a></td>
                             @endrole
