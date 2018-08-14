@@ -49,7 +49,9 @@ class PessoaAnexosController extends Controller
         $anexo = Anexo::findOrFail($id);
 
         $file = \Storage::disk('local')->get($anexo->link);
-        return response($file, 200)->header('Content-Type', 'image/jpeg');
+        $mimetype = \Storage::disk('local')->mimeType($anexo->link);
+
+        return response($file, 200)->header('Content-Type', $mimetype);
     }
 
     /**
