@@ -8,15 +8,14 @@
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                          <input type="text" value="" name="pessoa" class="mdl-textfield__input" id="sample5" readonly>
-                          <input type="hidden" value="" name="pessoa_id" required>
-                          <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                          <label for="sample5" class="mdl-textfield__label">Cliente</label>
-                          <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                            @foreach(\App\Models\Pessoa::all() as $pessoa)
-                              <li class="mdl-menu__item" data-val="{{ $pessoa->id }}">{{ $pessoa->nome }}</li>
+
+                          {!! Form::label('pessoa', 'Pessoa', array('class' => 'mdl-textfield__label mdl-color-text--black')); !!}
+                          <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa">
+                            @foreach(\App\Models\Pessoa::where('paciente', true)->get() as $pessoa)
+                              <option value="{{ $pessoa->id }}" {{ $guia && $guia->pessoa_id == $pessoa->id ? 'selected' : '' }}> {{ $pessoa->nome }} </option>
                             @endforeach
-                          </ul>
+                          </select>
+
                           <span class="mdl-textfield__error">Informe o Paciente</span>
                       </div>
                     </div>

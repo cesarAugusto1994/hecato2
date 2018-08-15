@@ -45,9 +45,10 @@
                 </label>
             </div>
         </div>
-        -->
-        <a href="{{ url('/schedule/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+
+        <a href="{{ route('schedule.create', ['guia_id' => $guia->id]) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
             <i class="material-icons">add</i>
         </a>
+        -->
     </div>
 </div>

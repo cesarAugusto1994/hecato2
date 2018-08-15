@@ -187,9 +187,17 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('schedule.create');
+        $data = $request->request->all();
+
+        $guia = null;
+
+        if($request->has('guia_id')) {
+            $guia = Guia::findOrFail($request->get('guia_id'));
+        }
+
+        return view('schedule.create', compact('guia'));
     }
 
     /**
@@ -211,17 +219,10 @@ class ScheduleController extends Controller
         $data['status_id'] = 1;
         $schedule = Schedule::create($data);
 
-/*
-        $guia = new Guia();
-        $guia->valor = 150;
-        $guia->status_id = 1;
-        $guia->agendamento_id = $schedule->id;
-        $guia->empresa_id = Auth::user()->empresa_id;
-        $guia->pessoa_id = $data['pessoa_id'];
-        $guia->data_vencimento = (now()->modify('+ 7 days'));
-        $guia->save();
-*/
-        return back()->with('success', 'Agendado com sucesso!');
+        if($request->has('guia_id')) {
+            $guia = Guia::findOrFail($request->get('guia_id'));
+            return redirect()->route('guias.edit', $guia->uuid)->with('success', 'Agendado com sucesso!');
+        }
 
         return redirect()->route('schedule.index')->with('success', 'Agendado com sucesso!');
     }
