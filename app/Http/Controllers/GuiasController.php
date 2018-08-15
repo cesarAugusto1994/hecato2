@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Agendamento\Guia;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Schedule\Status;
 use App\Models\{Pessoa, Empresa};
 
 class GuiasController extends Controller
@@ -77,7 +79,6 @@ class GuiasController extends Controller
         $current = \Auth::user();
 
         $data['data_vencimento'] = \DateTime::createFromFormat('d/m/Y', $data['data_vencimento']);
-        //$data['valor'] = number_format($data['valor'], 2);
         $data['valor'] = number_format(str_replace(array('.', ','), array('', '.'), $data['valor']), 2, '.', '');
         $data['empresa_id'] = $current->empresa_id;
 
@@ -85,9 +86,10 @@ class GuiasController extends Controller
           $data['data_pagamento'] = now();
         }
 
-        Guia::create($data);
+        $guia = Guia::create($data);
 
-        return redirect()->route('guias.index')->with('success', 'Nova Guia adicionado com sucesso!');
+        return redirect()->route('guias.edit', $guia->uuid)
+        ->with('success', 'Nova Guia adicionado com sucesso!');
     }
 
     /**
@@ -113,7 +115,22 @@ class GuiasController extends Controller
     {
         $guia = Guia::uuid($id);
 
-        return view('guias.edit', compact('guia'));
+        $tasks = Schedule::where('guia_id', $guia->id)->orderByDesc('id')->get();
+        $status = Status::all();
+
+        $tasksInComplete = $tasks->filter(function($task) {
+            return $task->status_id == 1 || $task->status_id == 2;
+        });
+
+        $tasksComplete = $tasks->filter(function($task) {
+            return $task->status_id == 3;
+        });
+
+        $tasksCancelados = $tasks->filter(function($task) {
+            return $task->status_id == 4;
+        });
+
+        return view('guias.edit', compact('guia', 'tasks', 'tasksInComplete', 'tasksComplete', 'status', 'tasksCancelados'));
     }
 
     /**
@@ -149,7 +166,7 @@ class GuiasController extends Controller
         $guia = Guia::findOrFail($id);
         $guia->update($data);
 
-        return redirect()->route('guias.index')->with('success', 'Guia atulizada com sucesso!');
+        return redirect()->back()->with('success', 'Guia atulizada com sucesso!');
     }
 
     /**

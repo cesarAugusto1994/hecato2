@@ -22,7 +22,7 @@ class Schedule extends Model
 
     protected $guarded = array();
 
-    protected $fillable = ['pessoa_id', 'inicio', 'fim', 'notas', 'status_id', 'empresa_id', 'user_id', 'confirmada'];
+    protected $fillable = ['pessoa_id', 'inicio', 'fim', 'notas', 'status_id', 'empresa_id', 'user_id', 'confirmada', 'guia_id'];
 
     public function status()
     {

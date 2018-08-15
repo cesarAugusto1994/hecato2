@@ -55,7 +55,6 @@
 
     @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirmar exclusão', 'dialogSaveBtnText' => 'Excluir'])
 
-
         <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp">
             <div class=" mdl-color-text--white  mdl-shadow--2dp" style="width:100%;" itemscope itemtype="https://schema.org/Person">
 

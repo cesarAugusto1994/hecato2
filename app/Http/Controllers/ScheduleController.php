@@ -101,7 +101,7 @@ class ScheduleController extends Controller
           $agenda->status_id = 2;
           $agenda->save();
 
-          return redirect()->route('schedule.index');
+          return redirect()->back()->with('success', 'Agendamento iniciado com sucesso!');
     }
 
     public function finalizarAgendamento(Request $request, $id)
@@ -112,7 +112,7 @@ class ScheduleController extends Controller
           $agenda->status_id = 3;
           $agenda->save();
 
-          return redirect()->route('schedule.index');
+          return redirect()->back()->with('success', 'Agendamento finalizado com sucesso!');
     }
 
     public function cancelarAgendamento(Request $request, $id)
@@ -123,7 +123,7 @@ class ScheduleController extends Controller
           $agenda->status_id = 4;
           $agenda->save();
 
-          return redirect()->route('schedule.index');
+          return redirect()->back()->with('success', 'Agendamento cancelado com sucesso!');
     }
 
     public function updateData(Request $request)
@@ -205,6 +205,7 @@ class ScheduleController extends Controller
         $data['status_id'] = 1;
         $schedule = Schedule::create($data);
 
+/*
         $guia = new Guia();
         $guia->valor = 150;
         $guia->status_id = 1;
@@ -213,6 +214,8 @@ class ScheduleController extends Controller
         $guia->pessoa_id = $data['pessoa_id'];
         $guia->data_vencimento = (now()->modify('+ 7 days'));
         $guia->save();
+*/
+        return back()->with('success', 'Agendado com sucesso!');
 
         return redirect()->route('schedule.index')->with('success', 'Agendado com sucesso!');
     }
@@ -250,7 +253,7 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->rules);
+        //$this->validate($request, $this->rules);
 
         $data = $request->request->all();
 

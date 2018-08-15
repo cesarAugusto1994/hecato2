@@ -27,14 +27,11 @@ class CreateGuiasTable extends Migration
             $table->datetime('data_pagamento')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status_guia');
-            $table->integer('agendamento_id')->nullable();
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->integer('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('empresas');
-
             $table->uuid('uuid');
-
             $table->timestamps();
         });
     }
