@@ -182,7 +182,7 @@
 
       <div class="mdl-grid ">
 
-        {!! Form::text('guia_id', $guia->id, array('id' => 'guia', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
+        {!! Form::hidden('guia_id', $guia->id, array('id' => 'guia', 'class' => 'mdl-textfield__input mdl-color-text--grey-700')) !!}
 
         <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
