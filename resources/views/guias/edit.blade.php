@@ -76,7 +76,7 @@
                           {!! Form::label('status', 'Status' , array('class' => 'mdl-textfield__label')); !!}
                           <select class="mdl-selectfield__select mdl-textfield__input" name="status_id" id="status">
                             @foreach(\App\Models\Agendamento\Guia\Status::all() as $status)
-                              <option value="{{ $status->id }}" {{ $loop->first ? 'selected' : '' }}> {{ $status->nome }} </option>
+                              <option value="{{ $status->id }}" {{ $status->id == $guia->status_id ? 'selected' : '' }}> {{ $status->nome }} </option>
                             @endforeach
                           </select>
 
