@@ -188,7 +188,7 @@
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
             <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="schedule-pessoa">
               @foreach(\App\Models\Pessoa::all() as $pessoa)
-                <option value="{{ $pessoa->id }}"> {{ $pessoa->nome }} </option>
+                <option value="{{ $pessoa->id }}" {{ $pessoa->id == $guia->pessoa_id ? 'selected' : '' }}> {{ $pessoa->nome }} </option>
               @endforeach
             </select>
             <label for="role">
@@ -234,7 +234,7 @@
     {!! Form::close() !!}
   </dialog>
 
-  <input type="hidden" id="agendamentos-json" value="{{ route('agendamentos_json') }}">
+  <input type="hidden" id="agendamentos-json" value="{{ route('agendamentos_json', ['guia_id' => $guia->id]) }}">
   <input type="hidden" id="atualizar-agendamento-route" value="{{ route('atualizar_agendamento') }}">
   <input type="hidden" id="store-agendamento-route" value="{{ route('schedule.store') }}">
 

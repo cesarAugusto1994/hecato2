@@ -52,7 +52,13 @@ class ScheduleController extends Controller
         $inicio = new \DateTime($data['start']);
         $fim = new \DateTime($data['end']);
 
-        $agendamentos = Schedule::where('empresa_id', $empresa)->where('inicio', '>=', $inicio)->where('fim', '<=', $fim)->get();
+        $agendamentos = Schedule::where('empresa_id', $empresa);
+
+        if($request->has('guia_id')) {
+            $agendamentos->where('guia_id', $request->get('guia_id'));
+        }
+
+        $agendamentos = $agendamentos->where('inicio', '>=', $inicio)->where('fim', '<=', $fim)->get();
 
         $cardCollor = "#008080";
         $editable = true;
