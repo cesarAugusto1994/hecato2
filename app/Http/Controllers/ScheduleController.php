@@ -300,13 +300,16 @@ class ScheduleController extends Controller
     {
         $agenda = Schedule::findOrFail($id);
 
-        $agenda->guias->map(function($guia) {
-          $guia->delete();
-        });
+        $agendaOld = $agenda;
 
         $agenda->delete();
 
-        $return_msg = 'Compromisso Finalizado !!!';
+        $return_msg = 'Agendamento Removido !!!';
+
+        if(!empty($agendaOld->guia_id)) {
+          $guia = Guia::findOrFail($agendaOld->guia_id);
+          return Redirect::route('guias.edit', $guia->uuid)->with('status', $return_msg);
+        }
 
         return Redirect::route('schedule.index')->with('status', $return_msg);
     }

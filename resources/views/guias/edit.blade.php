@@ -145,14 +145,12 @@
           <a href="#cancelados" class="mdl-tabs__tab">Cancelados</a>
       </div>
 
-      @include('schedule/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos', 'status' => 'is-active'])
-      @include('schedule/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes'])
-      @include('schedule/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Agendamentos Finalizados'])
-      @include('schedule/partials/task-tab', ['tab' => 'cancelados', 'tasks' => $tasksCancelados, 'title' => 'Agendamentos Cancelados'])
+      @include('guias/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos', 'status' => 'is-active'])
+      @include('guias/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes'])
+      @include('guias/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Agendamentos Finalizados'])
+      @include('guias/partials/task-tab', ['tab' => 'cancelados', 'tasks' => $tasksCancelados, 'title' => 'Agendamentos Cancelados'])
 
   </div>
-
-  @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirmar exclusão', 'dialogSaveBtnText' => 'Excluir'])
 
       <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp">
           <div class=" mdl-color-text--white  mdl-shadow--2dp" style="width:100%;" itemscope itemtype="https://schema.org/Person">
