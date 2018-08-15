@@ -78,6 +78,14 @@
                   <span class="sr-only">Edit Task</span>
               </a>
 
+              {!! Form::open(array('class' => 'inline-block', 'id' => 'delete_'.$task->id, 'method' => 'DELETE', 'route' => array('schedule.destroy', $task->id))) !!}
+                  {{ method_field('DELETE') }}
+                  <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger{{$task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-taskid="{{$task->id}}">
+                      <i class="material-icons mdl-color-text--grey-700">delete_forever</i>
+                      <span class="sr-only">Delete Task</span>
+                  </a>
+              {!! Form::close() !!}
+
           @endif
     </td>
 

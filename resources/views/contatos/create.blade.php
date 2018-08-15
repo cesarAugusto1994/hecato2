@@ -138,7 +138,7 @@
                 -->
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--2-col-desktop">
                        <label class = "mdl-checkbox mdl-js-checkbox" for = "checkbox2">
-                          <input type = "checkbox" name="paciente" id = "checkbox2"
+                          <input type = "checkbox" name="paciente" id = "checkbox2" checked
                              class = "mdl-checkbox__input" value="1">
                           <span class = "mdl-checkbox__label">Paciente</span>
                        </label>
