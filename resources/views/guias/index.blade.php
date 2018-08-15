@@ -85,6 +85,7 @@
                                 <a title="Confirmar Pagamento" href="{{ route('confirmar_pagamento', $guia->uuid) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="material-icons mdl-color-text--green">money</i>
                                 </a>
+                              @endif
 
                                 @role('admin')
 
@@ -103,7 +104,7 @@
 
                                 @endrole
 
-                              @endif
+
                             </td>
                         </tr>
                     @endforeach
