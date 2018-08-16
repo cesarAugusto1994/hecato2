@@ -339,6 +339,8 @@
    }
 
     $('.calendar').fullCalendar({
+      height: 1400,
+      contentHeight: 1500,
       lang: 'pt-br',
       defaultView: 'agendaWeek',
       eventBorderColor: "#de1f1f",
