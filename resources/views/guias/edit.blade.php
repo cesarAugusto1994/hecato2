@@ -345,9 +345,12 @@
       defaultView: 'agendaWeek',
       eventBorderColor: "#de1f1f",
       eventColor: "#AC1E23",
-        minTime: '06:00:00',
-        maxTime: '22:00:00',
-       header:
+      minTime: '06:00:00',
+      maxTime: '22:00:00',
+      slotDuration: '00:15:00',
+      slotLabelInterval: 15,
+      slotLabelFormat: 'h(:mm)a',
+      header:
       {
           left: 'prev,next,today',
           center: 'title',
