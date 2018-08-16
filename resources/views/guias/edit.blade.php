@@ -161,7 +161,7 @@
                   </h4>
               </div>
 
-              <div style="padding:2em">
+              <div style="padding:2em;overflow:auto">
 
                   <div class="calendar mdl-color-text--grey-700"></div>
 
@@ -339,8 +339,6 @@
    }
 
     $('.calendar').fullCalendar({
-      height: 450,
-      contentHeight: 600,
       lang: 'pt-br',
       defaultView: 'agendaWeek',
       eventBorderColor: "#de1f1f",
