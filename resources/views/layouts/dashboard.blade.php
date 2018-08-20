@@ -163,6 +163,10 @@
 
         </script>
 
+        <script>
+            $('div.message').not('.alert-important').delay(3000).fadeOut(350);
+        </script>
+
         <script src="//maps.googleapis.com/maps/api/js?key={{ env('GOOGLEMAPS_API_KEY') }}&libraries=places&dummy=.js"></script>
 
         @yield('footer_scripts')
