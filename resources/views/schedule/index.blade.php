@@ -87,7 +87,7 @@
 
           <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('grupo_id') ? 'is-invalid' :'' }}">
-              <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa_id">
+              <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="schedule-pessoa">
                 @foreach(\App\Models\Pessoa::all() as $pessoa)
                   <option value="{{ $pessoa->id }}"> {{ $pessoa->nome }} </option>
                 @endforeach
@@ -360,21 +360,9 @@
             monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
             dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-            titleFormat: {
-                month: 'MMMM YYYY',
-                week: "MMMM YYYY",
-                day: 'dddd, DD MMMM YYYY'
-            },
-            columnFormat: {
-                month: 'ddd',
-                week: 'ddd D',
-                day: ''
-            },
+
             axisFormat: 'HH:mm',
-            timeFormat: {
-                '': 'HH:mm',
-                agenda: 'HH:mm'
-            },
+
             buttonText: {
                 prev: "<",
                 next: ">",
@@ -384,9 +372,9 @@
                 month: "Mês",
                 week: "Semana",
                 day: "Dia",
-                listMonth: "Lista Mês",
-                listWeek: "Lista Semana",
-                listDay: "Lista Dia"
+                listMonth: "Lista Mensal",
+                listWeek: "Lista Semanal",
+                listDay: "Lista Diária"
             }
 
         });

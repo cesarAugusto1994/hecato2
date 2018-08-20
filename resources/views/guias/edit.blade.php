@@ -135,10 +135,11 @@
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
       <div class="mdl-tabs__tab-bar">
-          <a href="#all" class="mdl-tabs__tab">Todos</a>
+
           <a href="#incomplete" class="mdl-tabs__tab is-active">Pendentes</a>
           <a href="#complete" class="mdl-tabs__tab">Finalizados</a>
           <a href="#cancelados" class="mdl-tabs__tab">Cancelados</a>
+          <a href="#all" class="mdl-tabs__tab">Todos</a>
       </div>
 
       @include('guias/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes', 'status' => 'is-active'])
@@ -447,26 +448,15 @@
           //$(".formAgendamento").prop('action', adicionarAgendamento);
           //$(element).tooltip({title: event.title});
       },
+      ignoreTimezone: false,
       allDayText: 'Dia Inteiro',
       monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
       monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
       dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-      titleFormat: {
-          month: 'MMMM YYYY',
-          week: "MMMM YYYY",
-          day: 'dddd, DD MMMM YYYY'
-      },
-      columnFormat: {
-          month: 'ddd',
-          week: 'ddd D',
-          day: ''
-      },
+
       axisFormat: 'HH:mm',
-      timeFormat: {
-          '': 'HH:mm',
-          agenda: 'HH:mm'
-      },
+
       buttonText: {
           prev: "<",
           next: ">",
@@ -476,9 +466,9 @@
           month: "Mês",
           week: "Semana",
           day: "Dia",
-          listMonth: "Lista Mês",
-          listWeek: "Lista Semana",
-          listDay: "Lista Dia"
+          listMonth: "Lista Mensal",
+          listWeek: "Lista Semanal",
+          listDay: "Lista Diária"
       }
 
     });
