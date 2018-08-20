@@ -26,6 +26,12 @@ class ScheduleController extends Controller
         $tasks = Schedule::where('empresa_id', \Auth::user()->empresa_id)->orderByDesc('id')->get();
         $status = Status::all();
 
+        /*$tasksInComplete = Schedule::where('empresa_id', \Auth::user()->empresa_id)->whereIn('status_id', [1,2])->orderByDesc('id')->paginate();
+
+        $tasksComplete = Schedule::where('empresa_id', \Auth::user()->empresa_id)->where('status_id', 3)->orderByDesc('id')->paginate();
+
+        $tasksCancelados = Schedule::where('empresa_id', \Auth::user()->empresa_id)->whereIn('status_id', 4)->orderByDesc('id')->paginate();
+*/
         $tasksInComplete = $tasks->filter(function($task) {
             return $task->status_id == 1 || $task->status_id == 2;
         });

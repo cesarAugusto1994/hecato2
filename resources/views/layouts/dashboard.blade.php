@@ -152,7 +152,7 @@
 
         {!! HTML::script('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js', array('type' => 'text/javascript')) !!}
 
-        <script src="{{ asset('/js/material-datetime-picker.js') }}"></script>
+        <script async src="{{ asset('/js/material-datetime-picker.js') }}"></script>
 
         <script>
 
@@ -163,7 +163,7 @@
 
         </script>
 
-        {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript', 'async' => true)) !!}
+        <script src="//maps.googleapis.com/maps/api/js?key={{ env('GOOGLEMAPS_API_KEY') }}&libraries=places&dummy=.js"></script>
 
         @yield('footer_scripts')
 

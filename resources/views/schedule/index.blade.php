@@ -145,9 +145,6 @@
 
     @include('scripts.mdl-datatables')
 
-    <script src="{{asset('js/fullcalendar/moment.min.js')}}"></script>
-    <script src="{{asset('js/fullcalendar/fullcalendar.min.js')}}"></script>
-
     <script type="text/javascript">
 
       $('.datemask').mask("00/00/0000 00:00");
@@ -215,7 +212,6 @@
          }
        })
 
-
      }
 
      function popularModalAndShow(event) {
@@ -230,9 +226,51 @@
 
      }
 
-        $('.calendar').fullCalendar({
-          height: 1400,
-          contentHeight: 1500,
+        var $calendar = $('.calendar');
+
+        $calendar.fullCalendar({
+          views: {
+            listDay: {
+              buttonText: 'list day',
+              titleFormat: "dddd, DD MMMM YYYY",
+              columnFormat: "",
+              timeFormat: "HH:mm"
+            },
+
+            listWeek: {
+              buttonText: 'list week',
+              titleFormat: "MMMM YYYY",
+              columnFormat: "ddd D",
+              timeFormat: "HH:mm"
+            },
+
+            listMonth: {
+              buttonText: 'list month',
+              titleFormat: "MMMM YYYY",
+              timeFormat: "HH:mm"
+            },
+
+            month: {
+              buttonText: 'month',
+              titleFormat: 'MMMM YYYY',
+              columnFormat: "ddd",
+              timeFormat: "HH:mm"
+            },
+
+            agendaWeek: {
+              buttonText: 'agendaWeek',
+              titleFormat: "MMMM YYYY",
+              columnFormat: "ddd D",
+              timeFormat: "HH:mm"
+            },
+
+            agendaDay: {
+              buttonText: 'agendaDay',
+              titleFormat: 'dddd, DD MMMM YYYY',
+              columnFormat: "",
+              timeFormat: "HH:mm"
+            },
+          },
           lang: 'pt-br',
           defaultView: 'agendaWeek',
           eventBorderColor: "#de1f1f",
@@ -241,12 +279,12 @@
           maxTime: '22:00:00',
           slotDuration: '00:15:00',
           slotLabelInterval: 15,
-          slotLabelFormat: 'h(:mm)a',
+          slotLabelFormat: 'HH:mm',
           header:
           {
               left: 'prev,next,today',
               center: 'title',
-              right: 'month,agendaWeek,agendaDay,listDay,listWeek,listMonth'
+              right: 'month,agendaWeek,agendaDay,listMonth,listWeek,listDay'
           },
 
             navLinks: true,
@@ -343,7 +381,10 @@
                 today: "Hoje",
                 month: "Mês",
                 week: "Semana",
-                day: "Dia"
+                day: "Dia",
+                listMonth: "Lista Mês",
+                listWeek: "Lista Semana",
+                listDay: "Lista Dia"
             }
 
         });
