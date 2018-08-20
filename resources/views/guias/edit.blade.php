@@ -419,7 +419,7 @@
 
         //jsEvent.preventDefault();
 
-          if(view.name == 'month') {
+          /*if(view.name == 'month') {
 
             setTimeout(function() {
 
@@ -429,7 +429,7 @@
               $('.calendar').fullCalendar('gotoDate', date);
               $('.calendar').fullCalendar('changeView','agendaDay');
 
-            }, 100);
+            }, 100);*/
 
           }
 
