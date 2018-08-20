@@ -40,7 +40,7 @@
 @section('content')
 
   <div class="mdl-grid full-grid margin-top-0 padding-0">
-    <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+    <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
         <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
         <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
@@ -121,10 +121,6 @@
             </div>
 
             <div class="mdl-card__menu mdl-color-text--white">
-
-              <span class="save-actions">
-                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New User')) !!}
-              </span>
 
             </div>
 
