@@ -139,16 +139,16 @@
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
       <div class="mdl-tabs__tab-bar">
-          <a href="#all" class="mdl-tabs__tab is-active">Todos</a>
-          <a href="#incomplete" class="mdl-tabs__tab">Pendentes</a>
+          <a href="#all" class="mdl-tabs__tab">Todos</a>
+          <a href="#incomplete" class="mdl-tabs__tab is-active">Pendentes</a>
           <a href="#complete" class="mdl-tabs__tab">Finalizados</a>
           <a href="#cancelados" class="mdl-tabs__tab">Cancelados</a>
       </div>
 
-      @include('guias/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos', 'status' => 'is-active'])
-      @include('guias/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes'])
+      @include('guias/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes', 'status' => 'is-active'])
       @include('guias/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Agendamentos Finalizados'])
       @include('guias/partials/task-tab', ['tab' => 'cancelados', 'tasks' => $tasksCancelados, 'title' => 'Agendamentos Cancelados'])
+      @include('guias/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos'])
 
   </div>
 
@@ -339,7 +339,7 @@
       {
           left: 'prev,next,today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay,listDay,listWeek,listMonth'
+          right: 'month,agendaWeek,agendaDay,listMonth,listWeek,listDay'
       },
       views: {
         listDay: {
@@ -383,7 +383,7 @@
       },
       lang: 'pt-br',
       displayEventTime: true,
-      defaultView: 'listWeek',
+      defaultView: 'listMonth',
       eventColor: "#AC1E23",
       minTime: '06:00:00',
       maxTime: '22:00:00',
