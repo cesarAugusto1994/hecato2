@@ -380,7 +380,7 @@
       },
       lang: 'pt-br',
       displayEventTime: true,
-      defaultView: 'listMonth',
+      defaultView: 'month',
       eventColor: "#AC1E23",
       minTime: '06:00:00',
       maxTime: '22:00:00',
