@@ -429,9 +429,9 @@
               $('.calendar').fullCalendar('gotoDate', date);
               $('.calendar').fullCalendar('changeView','agendaDay');
 
-            }, 100);*/
+            }, 100);
 
-          }
+          }*/
 
       },
       events: $("#agendamentos-json").val(),
