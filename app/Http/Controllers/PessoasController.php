@@ -55,7 +55,11 @@ class PessoasController extends Controller
         $pessoa = Pessoa::create($data);
 
         if ($request->hasFile('anexos') && $request->file('anexos')->isValid()) {
-            $path = $request->anexos->store('anexos');
+
+            $realName = $request->anexos->getClientOriginalName();
+
+            $path = $request->anexos->storeAs('anexos', $realName);
+
             Anexo::create([
               'pessoa_id' => $pessoa->id,
               'link' => $path
@@ -165,7 +169,11 @@ class PessoasController extends Controller
         $pessoa = Pessoa::findOrFail($id);
 
         if ($request->hasFile('anexos') && $request->file('anexos')->isValid()) {
-            $path = $request->anexos->store('anexos');
+
+            $realName = $request->anexos->getClientOriginalName();
+
+            $path = $request->anexos->storeAs('anexos', $realName);
+
             Anexo::create([
               'pessoa_id' => $pessoa->id,
               'link' => $path
