@@ -274,7 +274,7 @@
             },
           },
           lang: 'pt-br',
-          defaultView: 'agendaWeek',
+          defaultView: 'listWeek',
           eventBorderColor: "#de1f1f",
           eventColor: "#AC1E23",
           minTime: '06:00:00',
