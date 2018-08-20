@@ -249,9 +249,6 @@
     $('.money').mask('000.000.000.000.000,00', {reverse: true});
   </script>
 
-  <script src="{{asset('js/fullcalendar/moment.min.js')}}"></script>
-  <script src="{{asset('js/fullcalendar/fullcalendar.min.js')}}"></script>
-
   <script type="text/javascript">
 
     $('.datemask').mask("00/00/0000 00:00");
@@ -286,7 +283,7 @@
 
      var evento = event.id;
 
-     console.log(event);
+     //console.log(event);
 
      $(".formAgendamento").prop('action', atualizarAgendamento);
 
@@ -335,124 +332,158 @@
      $('#schedule-pessoa').val(event.pessoa);
      $("#schedule-notas").val(event.notas).parent().addClass('is-dirty');
      dialog.showModal();
-
    }
 
     $('.calendar').fullCalendar({
-      height: 1400,
-      contentHeight: 1500,
-      lang: 'pt-br',
-      defaultView: 'agendaWeek',
-      eventBorderColor: "#de1f1f",
-      eventColor: "#AC1E23",
-      minTime: '06:00:00',
-      maxTime: '22:00:00',
-      slotDuration: '00:15:00',
-      slotLabelInterval: 15,
-      slotLabelFormat: 'h(:mm)a',
       header:
       {
           left: 'prev,next,today',
           center: 'title',
           right: 'month,agendaWeek,agendaDay,listDay,listWeek,listMonth'
       },
-
-        navLinks: true,
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end, jsEvent, view) {
-
-            var view = $('.calendar').fullCalendar('getView');
-
-            if(view.name == 'agendaDay' || view.name == 'agendaWeek') {
-
-              $("#schedule-inicio").val(start.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
-              $("#schedule-fim").val(end.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
-
-              dialog.showModal();
-
-            }
-
+      views: {
+        listDay: {
+          buttonText: 'list day',
+          titleFormat: "dddd, DD MMMM YYYY",
+          columnFormat: "",
+          timeFormat: "HH:mm"
         },
-        eventClick: function(event, element, view) {
-          if(event.status_id == 1 || event.status_id == 2) {
-            //popularModalAndShow(event);
 
-            window.location.href = '/schedule/' + event.id + '/edit';
+        listWeek: {
+          buttonText: 'list week',
+          titleFormat: "MMMM YYYY",
+          columnFormat: "ddd D",
+          timeFormat: "HH:mm"
+        },
+
+        listMonth: {
+          buttonText: 'list month',
+          titleFormat: "MMMM YYYY"
+        },
+
+        month: {
+          buttonText: 'month',
+          titleFormat: 'MMMM YYYY',
+          columnFormat: "ddd",
+          timeFormat: "HH:mm"
+        },
+
+        agendaWeek: {
+          buttonText: 'agendaWeek',
+          titleFormat: "MMMM YYYY",
+          columnFormat: "ddd D"
+        },
+
+        agendaDay: {
+          buttonText: 'agendaDay',
+          titleFormat: 'dddd, DD MMMM YYYY',
+          columnFormat: "",
+          timeFormat: "HH:mm"
+        },
+      },
+      lang: 'pt-br',
+      displayEventTime: true,
+      defaultView: 'listWeek',
+      eventColor: "#AC1E23",
+      minTime: '06:00:00',
+      maxTime: '22:00:00',
+      slotDuration: '00:15:00',
+      slotLabelInterval: 15,
+      slotLabelFormat: 'HH:mm',
+      navLinks: true,
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end, jsEvent, view) {
+
+          var view = $('.calendar').fullCalendar('getView');
+
+          if(view.name == 'agendaDay' || view.name == 'agendaWeek') {
+
+            $("#schedule-inicio").val(start.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
+            $("#schedule-fim").val(end.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
+
+            dialog.showModal();
 
           }
-        },
-        editable: true,
-        allDaySlot: false,
-        eventLimit: true,
-        dayClick: function(date, jsEvent, view) {
 
-          jsEvent.preventDefault();
+      },
+      eventClick: function(event, element, view) {
+        if(event.status_id == 1 || event.status_id == 2) {
+          //popularModalAndShow(event);
 
-            if(view.name == 'month') {
+          window.location.href = '/schedule/' + event.id + '/edit';
 
-              setTimeout(function() {
-
-
-                $("#formConsultaModal").prop('action', $("#consultas-store").val());
-
-                $('.calendar').fullCalendar('gotoDate', date);
-                $('.calendar').fullCalendar('changeView','agendaDay');
-
-              }, 100);
-
-            }
-
-        },
-        events: $("#agendamentos-json").val(),
-        color: 'black',     // an option!
-        textColor: 'yellow', // an option!
-        //When u drop an event in the calendar do the following:
-        eventDrop: function (event, delta, revertFunc) {
-          popularModal(event);
-          //console.log('drop');
-        },
-        //When u resize an event in the calendar do the following:
-        eventResize: function (event, delta, revertFunc) {
-          popularModal(event);
-          //console.log('eventResize');
-        },
-        eventRender: function(event, element) {
-            //console.log('eventRender');
-            $(".formAgendamento").prop('action', adicionarAgendamento);
-            //$(element).tooltip({title: event.title});
-        },
-        ignoreTimezone: false,
-        allDayText: 'Dia Inteiro',
-        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
-        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-        titleFormat: {
-            month: 'MMMM YYYY',
-            week: "MMMM YYYY",
-            day: 'dddd, DD MMMM YYYY'
-        },
-        columnFormat: {
-            month: 'ddd',
-            week: 'ddd D',
-            day: ''
-        },
-        axisFormat: 'HH:mm',
-        timeFormat: {
-            '': 'HH:mm',
-            agenda: 'HH:mm'
-        },
-        buttonText: {
-            prev: "<",
-            next: ">",
-            prevYear: "Ano anterior",
-            nextYear: "Proximo ano",
-            today: "Hoje",
-            month: "Mês",
-            week: "Semana",
-            day: "Dia"
         }
+      },
+      editable: true,
+      allDaySlot: false,
+      eventLimit: true,
+      dayClick: function(date, jsEvent, view) {
+
+        //jsEvent.preventDefault();
+
+          if(view.name == 'month') {
+
+            setTimeout(function() {
+
+
+              $("#formConsultaModal").prop('action', $("#consultas-store").val());
+
+              $('.calendar').fullCalendar('gotoDate', date);
+              $('.calendar').fullCalendar('changeView','agendaDay');
+
+            }, 100);
+
+          }
+
+      },
+      events: $("#agendamentos-json").val(),
+      eventDrop: function (event, delta, revertFunc) {
+        popularModal(event);
+        //console.log('drop');
+      },
+      eventResize: function (event, delta, revertFunc) {
+        popularModal(event);
+        //console.log('eventResize');
+      },
+      eventRender: function(event, element) {
+          //console.log('eventRender');
+          //$(".formAgendamento").prop('action', adicionarAgendamento);
+          //$(element).tooltip({title: event.title});
+      },
+      allDayText: 'Dia Inteiro',
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+      titleFormat: {
+          month: 'MMMM YYYY',
+          week: "MMMM YYYY",
+          day: 'dddd, DD MMMM YYYY'
+      },
+      columnFormat: {
+          month: 'ddd',
+          week: 'ddd D',
+          day: ''
+      },
+      axisFormat: 'HH:mm',
+      timeFormat: {
+          '': 'HH:mm',
+          agenda: 'HH:mm'
+      },
+      buttonText: {
+          prev: "<",
+          next: ">",
+          prevYear: "Ano anterior",
+          nextYear: "Proximo ano",
+          today: "Hoje",
+          month: "Mês",
+          week: "Semana",
+          day: "Dia",
+          listMonth: "Lista Mês",
+          listWeek: "Lista Semana",
+          listDay: "Lista Dia"
+      }
 
     });
 

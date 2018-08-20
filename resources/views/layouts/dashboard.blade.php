@@ -37,10 +37,14 @@
 
         @yield('template_linked_css')
 
-        <link href="{{ asset('css/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
+        <!--<link href="{{ asset('css/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
         <link href="{{ asset('css/_materialFullCalendar.css') }}" rel="stylesheet">
+      -->
         <link href="{{ asset('css/getmdl-select.css') }}" rel="stylesheet">
         <link href="{{ asset('css/material-datetime-picker.css') }}" rel="stylesheet">
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.css" rel="stylesheet">
+
 
         <style type="text/css">
             @yield('template_fastload_css')
@@ -146,6 +150,8 @@
         {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js', array('type' => 'text/javascript')) !!}
         {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js', array('type' => 'text/javascript')) !!}
 
+        {!! HTML::script('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js', array('type' => 'text/javascript')) !!}
+
         <script src="{{ asset('/js/material-datetime-picker.js') }}"></script>
 
         <script>
@@ -157,7 +163,7 @@
 
         </script>
 
-        {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
+        {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript', 'async' => true)) !!}
 
         @yield('footer_scripts')
 
