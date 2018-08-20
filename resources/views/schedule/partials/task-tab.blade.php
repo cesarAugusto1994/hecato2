@@ -12,7 +12,7 @@
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700 no-sort no-search"></th>
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700 hide-mobile">ID</th>
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700">Pessoa</th>
-                        <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700">Inicio</th>
+                        <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700 mdl-data-table__header--sorted-ascending">Inicio</th>
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700">Fim</th>
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700 hide-mobile">Notas</th>
                         <th class="mdl-data-table__cell--non-numeric mdl-color-text--grey-700">Status</th>

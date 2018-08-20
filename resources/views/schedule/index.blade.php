@@ -40,16 +40,18 @@
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
         <div class="mdl-tabs__tab-bar">
-            <a href="#all" class="mdl-tabs__tab is-active">Todos</a>
-            <a href="#incomplete" class="mdl-tabs__tab">Pendentes</a>
+
+            <a href="#incomplete" class="mdl-tabs__tab is-active">Pendentes</a>
             <a href="#complete" class="mdl-tabs__tab">Finalizados</a>
             <a href="#cancelados" class="mdl-tabs__tab">Cancelados</a>
+              <a href="#all" class="mdl-tabs__tab">Todos</a>
         </div>
 
-        @include('schedule/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos', 'status' => 'is-active'])
-        @include('schedule/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes'])
+
+        @include('schedule/partials/task-tab', ['tab' => 'incomplete', 'tasks' => $tasksInComplete, 'title' => 'Agendamentos Pendentes', 'status' => 'is-active'])
         @include('schedule/partials/task-tab', ['tab' => 'complete', 'tasks' => $tasksComplete, 'title' => 'Agendamentos Finalizados'])
         @include('schedule/partials/task-tab', ['tab' => 'cancelados', 'tasks' => $tasksCancelados, 'title' => 'Agendamentos Cancelados'])
+        @include('schedule/partials/task-tab', ['tab' => 'all', 'tasks' => $tasks, 'title' => 'Agendamentos'])
 
     </div>
 

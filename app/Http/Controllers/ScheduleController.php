@@ -23,7 +23,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $tasks = Schedule::where('empresa_id', \Auth::user()->empresa_id)->orderByDesc('id')->get();
+        $tasks = Schedule::where('empresa_id', \Auth::user()->empresa_id)->orderByDesc('inicio')->get();
         $status = Status::all();
 
         /*$tasksInComplete = Schedule::where('empresa_id', \Auth::user()->empresa_id)->whereIn('status_id', [1,2])->orderByDesc('id')->paginate();
