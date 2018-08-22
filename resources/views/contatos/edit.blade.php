@@ -47,7 +47,7 @@
           <h2 class="mdl-card__title-text logo-style">Editar Contato</h2>
         </div>
 
-        {!! Form::model($pessoa, array('action' => ['PessoasController@update', $pessoa->id], 'files' => true, 'method' => 'PUT', 'role' => 'form')) !!}
+        {!! Form::model($pessoa, array('action' => ['PessoasController@update', $pessoa->id], 'id' => 'formEditContato', 'files' => true, 'method' => 'PUT', 'role' => 'form')) !!}
 
           <div class="mdl-card__supporting-text">
             <div class="mdl-grid full-grid padding-0">
@@ -416,7 +416,7 @@
 
                 {{-- SAVE BUTTON--}}
                 <span class="save-actions">
-                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+                  {!! Form::button('<i class="material-icons">save</i> Salvar', array('class' => 'mdl-button btnSalvarContato mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                 </span>
 
               </div>
@@ -425,18 +425,8 @@
 
             <div class="mdl-card__menu mdl-color-text--white">
 
-              <span class="save-actions">
-                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Salvar Contato')) !!}
-              </span>
-
-              <a href="{{ url('/contatos/') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Voltar aos contatos">
-                  <i class="material-icons">reply</i>
-                  <span class="sr-only">Voltar aos contatos</span>
-              </a>
-
             </div>
 
-            @include('dialogs.dialog-save')
             @include('dialogs.dialog-delete')
 
           {!! Form::close() !!}
@@ -504,20 +494,12 @@
   @include('scripts.mdl-datatables')
 
   <script type="text/javascript">
-    mdl_dialog('.dialog-button-save');
-    mdl_dialog('.dialog-button-icon-save');
 
     $('.date').mask("00/00/0000");
 
-    var userid;
-    $('.dialiog-trigger-delete').click(function(event) {
-        event.preventDefault();
-        userid = $(this).attr('data-userid');
-    });
-
-    $('#confirm').click(function(event) {
-        $('form#delete_'+userid).submit();
-    });
+    $(".btnSalvarContato").click(function() {
+        $("#formEditContato").submit();
+    })
 
     $(document).ready(function() {
 
