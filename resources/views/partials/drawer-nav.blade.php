@@ -31,6 +31,9 @@
 			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>
 			{{ Lang::get('titles.profile') }}
 		</a>
+
+		@role('admin|user')
+
 		@permission('view.agenda')
 		<a class="mdl-navigation__link {{ Request::is('schedule') ? 'mdl-navigation__link--current' : null }}" href="/schedule">
 			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">alarm</i>
@@ -54,12 +57,15 @@
 		</a>
 		@endpermission
 
-		<a class="mdl-navigation__link" href="{{ route('empresas.index') }}">
-			<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">contacts</i>
-			Empresas
-		</a>
+		@endrole
+
 
 		@role('owner')
+
+			<a class="mdl-navigation__link" href="{{ route('empresas.index') }}">
+				<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">contacts</i>
+				Empresas
+			</a>
 
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" data-badge="{{ $totalUsers }}" role="presentation">contacts</i>
@@ -81,7 +87,7 @@
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings_ethernet</i>
 				{{ Lang::get('titles.adminRoutes') }}
 			</a>
-			@endrole
+		@endrole
 
 
 		<div class="mdl-layout-spacer"></div>
