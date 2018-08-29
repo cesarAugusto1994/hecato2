@@ -18,112 +18,147 @@ class PermissionsTableSeeder extends Seeder
          * Add Permissions
          *
          */
-        if (Permission::where('name', '=', 'Can View Users')->first() === null) {
+        /*if (Permission::where('slug', '=', 'view.users')->first() === null) {
             Permission::create([
-                'name'        => 'Can View Users',
+                'name'        => 'Visualizar Usuários',
                 'slug'        => 'view.users',
                 'description' => 'Can view users',
-                'model'       => 'Permission',
+                'model'       => 'App\User',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Create Users')->first() === null) {
+        if (Permission::where('slug', '=', 'create.users')->first() === null) {
             Permission::create([
-                'name'        => 'Can Create Users',
+                'name'        => 'Criar Usuários',
                 'slug'        => 'create.users',
                 'description' => 'Can create new users',
-                'model'       => 'Permission',
+                'model'       => 'App\User',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Edit Users')->first() === null) {
+        if (Permission::where('slug', '=', 'edit.users')->first() === null) {
             Permission::create([
-                'name'        => 'Can Edit Users',
+                'name'        => 'Editar Usuários',
                 'slug'        => 'edit.users',
                 'description' => 'Can edit users',
-                'model'       => 'Permission',
+                'model'       => 'App\User',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Delete Users')->first() === null) {
+        if (Permission::where('slug', '=', 'delete.users')->first() === null) {
             Permission::create([
-                'name'        => 'Can Delete Users',
+                'name'        => 'Deletar Usuários',
                 'slug'        => 'delete.users',
                 'description' => 'Can delete users',
-                'model'       => 'Permission',
+                'model'       => 'App\User',
             ]);
-        }
+        }*/
 
-        if (Permission::where('name', '=', 'Can View Agenda')->first() === null) {
+        if (Permission::where('slug', '=', 'view.agenda')->first() === null) {
             Permission::create([
-                'name'        => 'Can View Agenda',
+                'name'        => 'Visualizar Agenda',
                 'slug'        => 'view.agenda',
                 'description' => 'Can view agenda',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Schedule',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Create Agenda')->first() === null) {
+        if (Permission::where('slug', '=', 'create.agenda')->first() === null) {
             Permission::create([
-                'name'        => 'Can Create Agenda',
+                'name'        => 'Criar Agenda',
                 'slug'        => 'create.agenda',
                 'description' => 'Can create new agenda',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Schedule',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Edit Agenda')->first() === null) {
+        if (Permission::where('slug', '=', 'edit.agenda')->first() === null) {
             Permission::create([
-                'name'        => 'Can Edit Agenda',
+                'name'        => 'Editar Agenda',
                 'slug'        => 'edit.agenda',
                 'description' => 'Can edit agenda',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Schedule',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Delete Agenda')->first() === null) {
+        if (Permission::where('slug', '=', 'delete.agenda')->first() === null) {
             Permission::create([
-                'name'        => 'Can Delete Agenda',
+                'name'        => 'Deletar Agenda',
                 'slug'        => 'delete.agenda',
                 'description' => 'Can delete agenda',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Schedule',
             ]);
         }
 
-
-        if (Permission::where('name', '=', 'Can View Contato')->first() === null) {
+        if (Permission::where('slug', '=', 'view.contato')->first() === null) {
             Permission::create([
-                'name'        => 'Can View Contato',
+                'name'        => 'Visualizar Contato',
                 'slug'        => 'view.contato',
                 'description' => 'Can view contato',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Pessoa',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Create Contato')->first() === null) {
+        if (Permission::where('slug', '=', 'create.contato')->first() === null) {
             Permission::create([
-                'name'        => 'Can Create Contato',
+                'name'        => 'Criar Contato',
                 'slug'        => 'create.contato',
                 'description' => 'Can create new contato',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Pessoa',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Edit Contato')->first() === null) {
+        if (Permission::where('slug', '=', 'edit.contato')->first() === null) {
             Permission::create([
-                'name'        => 'Can Edit Contato',
+                'name'        => 'Editar Contato',
                 'slug'        => 'edit.contato',
                 'description' => 'Can edit contato',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Pessoa',
             ]);
         }
 
-        if (Permission::where('name', '=', 'Can Delete Contato')->first() === null) {
+        if (Permission::where('slug', '=', 'delete.contato')->first() === null) {
             Permission::create([
-                'name'        => 'Can Delete Contato',
+                'name'        => 'Deletar Contato',
                 'slug'        => 'delete.contato',
                 'description' => 'Can delete contato',
-                'model'       => 'Permission',
+                'model'       => 'App\Models\Pessoa',
+            ]);
+        }
+
+        if (Permission::where('slug', '=', 'view.guia')->first() === null) {
+            Permission::create([
+                'name'        => 'Visualizar Guia',
+                'slug'        => 'view.guia',
+                'description' => 'Can view guia',
+                'model'       => 'App\Models\Agendamento\Guia',
+            ]);
+        }
+
+        if (Permission::where('slug', '=', 'create.guia')->first() === null) {
+            Permission::create([
+                'name'        => 'Criar Guia',
+                'slug'        => 'create.guia',
+                'description' => 'Can create new guia',
+                'model'       => 'App\Models\Agendamento\Guia',
+            ]);
+        }
+
+        if (Permission::where('slug', '=', 'edit.guia')->first() === null) {
+            Permission::create([
+                'name'        => 'Editar Guia',
+                'slug'        => 'edit.guia',
+                'description' => 'Can edit guia',
+                'model'       => 'App\Models\Agendamento\Guia',
+            ]);
+        }
+
+        if (Permission::where('slug', '=', 'delete.guia')->first() === null) {
+            Permission::create([
+                'name'        => 'Deletar Guia',
+                'slug'        => 'delete.guia',
+                'description' => 'Can delete guia',
+                'model'       => 'App\Models\Agendamento\Guia',
             ]);
         }
     }

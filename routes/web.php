@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser']], function ()
 });
 
 // Registered, activated, and is admin routes.
-Route::group(['middleware' => ['auth', 'activated', 'role:admin']], function () {
+Route::group(['middleware' => ['auth', 'activated', 'role:admin|owner']], function () {
     Route::resource('/users/deleted', 'SoftDeletesController', [
         'only' => [
             'index', 'show', 'update', 'destroy',
@@ -224,6 +224,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('guias', '\App\Http\Controllers\GuiasController');
     Route::resource('roles', '\App\Http\Controllers\RolesController');
     Route::resource('contato', '\App\Http\Controllers\PessoaContatosController');
+
+    Route::resource('permissions', '\App\Http\Controllers\PermissoesController');
 
     Route::get('/guia/{id}/confimar-pagamento', 'GuiasController@confirmarPagamento')->name('confirmar_pagamento');
 

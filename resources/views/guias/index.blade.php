@@ -87,12 +87,16 @@
                                 </a>
                               @endif
 
-                                @role('admin')
+                                @permission('edit.guia')
 
                                 {{-- EDIT USER ICON BUTTON --}}
                                 <a href="{{ URL::to('guias/' . $guia->uuid . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="material-icons mdl-color-text--orange">edit</i>
                                 </a>
+
+                                @endpermission
+
+                                @permission('delete.guia')
 
                                 {{-- DELETE ICON BUTTON AND FORM CALL --}}
                                 {!! Form::open(array('url' => route('guias.destroy', $guia->id), 'class' => 'inline-block', 'id' => 'delete_'.$guia->id)) !!}
@@ -102,7 +106,7 @@
                                     </a>
                                 {!! Form::close() !!}
 
-                                @endrole
+                                @endpermission
 
 
                             </td>
@@ -115,13 +119,17 @@
     <div class="mdl-card__menu" style="top: -4px;">
 
         @if(\Request::has('client'))
+          @permission('create.guia')
           <a href="{{ route('guias.create', ['client' => \Request::get('client')]) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
               <i class="material-icons mdl-color-text--white">add</i>
           </a>
+          @endpermission
         @else
-          <a href="{{ route('guias.create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-              <i class="material-icons mdl-color-text--white">add</i>
-          </a>
+          @permission('create.guia')
+            <a href="{{ route('guias.create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons mdl-color-text--white">add</i>
+            </a>
+          @endpermission
         @endif
 
         @include('partials.mdl-highlighter')

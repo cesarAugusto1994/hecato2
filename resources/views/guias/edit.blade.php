@@ -331,147 +331,150 @@
      dialog.showModal();
    }
 
-    $('.calendar').fullCalendar({
-      header:
-      {
-          left: 'prev,next,today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay,listMonth,listWeek,listDay'
-      },
-      views: {
-        listDay: {
-          buttonText: 'list day',
-          titleFormat: "dddd, DD MMMM YYYY",
-          columnFormat: "",
-          timeFormat: "HH:mm"
-        },
+   setTimeout(function() {
+     $('.calendar').fullCalendar({
+       header:
+       {
+           left: 'prev,next,today',
+           center: 'title',
+           right: 'month,agendaWeek,agendaDay,listMonth,listWeek'
+       },
+       views: {
+         listDay: {
+           buttonText: 'list day',
+           titleFormat: "dddd, DD MMMM YYYY",
+           columnFormat: "",
+           timeFormat: "HH:mm"
+         },
 
-        listWeek: {
-          buttonText: 'list week',
-          titleFormat: "MMMM YYYY",
-          columnFormat: "ddd D",
-          timeFormat: "HH:mm"
-        },
+         listWeek: {
+           buttonText: 'list week',
+           titleFormat: "MMMM YYYY",
+           columnFormat: "ddd D",
+           timeFormat: "HH:mm"
+         },
 
-        listMonth: {
-          buttonText: 'list month',
-          titleFormat: "MMMM YYYY"
-        },
+         listMonth: {
+           buttonText: 'list month',
+           titleFormat: "MMMM YYYY"
+         },
 
-        month: {
-          buttonText: 'month',
-          titleFormat: 'MMMM YYYY',
-          columnFormat: "ddd",
-          timeFormat: "HH:mm"
-        },
+         month: {
+           buttonText: 'month',
+           titleFormat: 'MMMM YYYY',
+           columnFormat: "ddd",
+           timeFormat: "HH:mm"
+         },
 
-        agendaWeek: {
-          buttonText: 'agendaWeek',
-          titleFormat: "MMMM YYYY",
-          columnFormat: "ddd D"
-        },
+         agendaWeek: {
+           buttonText: 'agendaWeek',
+           titleFormat: "MMMM YYYY",
+           columnFormat: "ddd D"
+         },
 
-        agendaDay: {
-          buttonText: 'agendaDay',
-          titleFormat: 'dddd, DD MMMM YYYY',
-          columnFormat: "",
-          timeFormat: "HH:mm"
-        },
-      },
-      lang: 'pt-br',
-      displayEventTime: true,
-      defaultView: 'month',
-      eventColor: "#AC1E23",
-      minTime: '06:00:00',
-      maxTime: '22:00:00',
-      slotDuration: '00:15:00',
-      slotLabelInterval: 15,
-      slotLabelFormat: 'HH:mm',
-      navLinks: true,
-      selectable: true,
-      selectHelper: true,
-      select: function(start, end, jsEvent, view) {
+         agendaDay: {
+           buttonText: 'agendaDay',
+           titleFormat: 'dddd, DD MMMM YYYY',
+           columnFormat: "",
+           timeFormat: "HH:mm"
+         },
+       },
+       lang: 'pt-br',
+       displayEventTime: true,
+       defaultView: 'month',
+       eventColor: "#AC1E23",
+       minTime: '06:00:00',
+       maxTime: '22:00:00',
+       slotDuration: '00:15:00',
+       slotLabelInterval: 15,
+       slotLabelFormat: 'HH:mm',
+       navLinks: true,
+       selectable: true,
+       selectHelper: true,
+       select: function(start, end, jsEvent, view) {
 
-          var view = $('.calendar').fullCalendar('getView');
+           var view = $('.calendar').fullCalendar('getView');
 
-          if(view.name == 'agendaDay' || view.name == 'agendaWeek') {
+           if(view.name == 'agendaDay' || view.name == 'agendaWeek') {
 
-            $("#schedule-inicio").val(start.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
-            $("#schedule-fim").val(end.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
+             $("#schedule-inicio").val(start.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
+             $("#schedule-fim").val(end.format('DD/MM/YYYY HH:mm')).parent().addClass('is-dirty');
 
-            dialog.showModal();
+             dialog.showModal();
 
-          }
+           }
 
-      },
-      eventClick: function(event, element, view) {
-        if(event.status_id == 1 || event.status_id == 2) {
-          //popularModalAndShow(event);
+       },
+       eventClick: function(event, element, view) {
+         if(event.status_id == 1 || event.status_id == 2) {
+           //popularModalAndShow(event);
 
-          window.location.href = '/schedule/' + event.id + '/edit';
+           window.location.href = '/schedule/' + event.id + '/edit';
 
-        }
-      },
-      editable: true,
-      allDaySlot: false,
-      eventLimit: true,
-      dayClick: function(date, jsEvent, view) {
+         }
+       },
+       editable: true,
+       allDaySlot: false,
+       eventLimit: true,
+       dayClick: function(date, jsEvent, view) {
 
-        //jsEvent.preventDefault();
+         //jsEvent.preventDefault();
 
-          /*if(view.name == 'month') {
+           /*if(view.name == 'month') {
 
-            setTimeout(function() {
+             setTimeout(function() {
 
 
-              $("#formConsultaModal").prop('action', $("#consultas-store").val());
+               $("#formConsultaModal").prop('action', $("#consultas-store").val());
 
-              $('.calendar').fullCalendar('gotoDate', date);
-              $('.calendar').fullCalendar('changeView','agendaDay');
+               $('.calendar').fullCalendar('gotoDate', date);
+               $('.calendar').fullCalendar('changeView','agendaDay');
 
-            }, 100);
+             }, 100);
 
-          }*/
+           }*/
 
-      },
-      events: $("#agendamentos-json").val(),
-      eventDrop: function (event, delta, revertFunc) {
-        popularModal(event);
-        //console.log('drop');
-      },
-      eventResize: function (event, delta, revertFunc) {
-        popularModal(event);
-        //console.log('eventResize');
-      },
-      eventRender: function(event, element) {
-          //console.log('eventRender');
-          //$(".formAgendamento").prop('action', adicionarAgendamento);
-          //$(element).tooltip({title: event.title});
-      },
-      ignoreTimezone: false,
-      allDayText: 'Dia Inteiro',
-      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
-      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+       },
+       events: $("#agendamentos-json").val(),
+       eventDrop: function (event, delta, revertFunc) {
+         popularModal(event);
+         //console.log('drop');
+       },
+       eventResize: function (event, delta, revertFunc) {
+         popularModal(event);
+         //console.log('eventResize');
+       },
+       eventRender: function(event, element) {
+           //console.log('eventRender');
+           //$(".formAgendamento").prop('action', adicionarAgendamento);
+           //$(element).tooltip({title: event.title});
+       },
+       ignoreTimezone: false,
+       allDayText: 'Dia Inteiro',
+       monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+       monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+       dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
 
-      axisFormat: 'HH:mm',
+       axisFormat: 'HH:mm',
 
-      buttonText: {
-          prev: "<",
-          next: ">",
-          prevYear: "Ano anterior",
-          nextYear: "Proximo ano",
-          today: "Hoje",
-          month: "Mês",
-          week: "Semana",
-          day: "Dia",
-          listMonth: "Lista Mensal",
-          listWeek: "Lista Semanal",
-          listDay: "Lista Diária"
-      }
+       buttonText: {
+           prev: "<",
+           next: ">",
+           prevYear: "Ano anterior",
+           nextYear: "Proximo ano",
+           today: "Hoje",
+           month: "Mês",
+           week: "Semana",
+           day: "Dia",
+           listMonth: "Lista Mensal",
+           listWeek: "Lista Semanal",
+           listDay: "Lista Diária"
+       }
 
-    });
+     });
+   }, 3200)
+
 
     $('.fc-event').addClass('mdl-color--primary');
 

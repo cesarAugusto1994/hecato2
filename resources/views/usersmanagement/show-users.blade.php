@@ -54,6 +54,7 @@
                     <th class="mdl-data-table__cell--non-numeric">ID</th>
                     <th class="mdl-data-table__cell--non-numeric">Usuário</th>
                     <th class="mdl-data-table__cell--non-numeric">Email</th>
+                    <th class="mdl-data-table__cell--non-numeric">Empresa</th>
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Nome</th>
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Sobrenome</th>
                     <th class="mdl-data-table__cell--non-numeric">Role</th>
@@ -68,6 +69,7 @@
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->id}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->name}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->email}} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->empresa->nome}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->first_name}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->last_name}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric">
@@ -115,6 +117,9 @@
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="{{ URL::to('users/' . $user->id) }}">{{$user->updated_at}} </a></td>
                             <td class="mdl-data-table__cell--non-numeric">
 
+                                <a href="{{ route('permissions.index', ['user' => $user->id]) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Profile">
+                                    <i class="material-icons mdl-color-text--orange">vpn_key</i>
+                                </a>
 
                                 {{-- VIEW USER PROFILE ICON BUTTON --}}
                                 <a href="/profile/{{$user->name}}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Profile">

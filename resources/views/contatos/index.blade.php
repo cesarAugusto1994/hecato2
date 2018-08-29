@@ -89,11 +89,15 @@
                                     <i class="material-icons mdl-color-text--blue">account_circle</i>
                                 </a>
                                 --}}
+
+                                @permission('edit.contato')
                                 {{-- EDIT USER ICON BUTTON --}}
                                 <a href="{{ URL::to('contatos/' . $pessoa->uuid . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="material-icons mdl-color-text--orange">edit</i>
                                 </a>
+                                @endpermission
 
+                                @permission('delete.contato')
                                 {{-- DELETE ICON BUTTON AND FORM CALL --}}
                                 {!! Form::open(array('url' => route('contatos.destroy', $pessoa->id), 'class' => 'inline-block', 'id' => 'delete_'.$pessoa->id)) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
@@ -101,6 +105,7 @@
                                         <i class="material-icons mdl-color-text--red">delete</i>
                                     </a>
                                 {!! Form::close() !!}
+                                @endpermission
                             </td>
                         </tr>
                     @endforeach
@@ -114,10 +119,12 @@
 
         @include('partials.mdl-search')
 
+        @permission('create.contato')
         <a href="{{ route('contatos.create') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Add New User">
             <i class="material-icons">person_add</i>
             <span class="sr-only">Add New User</span>
         </a>
+        @endpermission
 
         <a href="{{ URL::to('/users/deleted') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Show Deleted Users">
             <i class="material-icons" aria-hidden="true">delete_sweep</i>

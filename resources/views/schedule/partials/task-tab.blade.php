@@ -46,8 +46,10 @@
             </div>
         </div>
         -->
+        @permission('create.agenda')
         <a href="{{ url('/schedule/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
             <i class="material-icons">add</i>
         </a>
+        @endpermission
     </div>
 </div>

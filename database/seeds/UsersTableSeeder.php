@@ -44,6 +44,7 @@ class UsersTableSeeder extends Seeder
             $permissions = Permission::all();
             foreach ($permissions as $permission) {
               $user->attachPermission($permission);
+              $user->save();
             }
 
 

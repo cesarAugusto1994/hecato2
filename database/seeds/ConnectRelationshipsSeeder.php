@@ -19,6 +19,11 @@ class ConnectRelationshipsSeeder extends Seeder
          */
         $permissions = Permission::all();
 
+        $roleOwner = Role::where('name', '=', 'Owner')->first();
+        foreach ($permissions as $permission) {
+            $roleOwner->attachPermission($permission);
+        }
+
         /**
          * Attach Permissions to Roles.
          */

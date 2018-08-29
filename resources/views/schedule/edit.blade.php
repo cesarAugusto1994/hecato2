@@ -39,14 +39,7 @@
         <i class="material-icons">chevron_right</i>
         <meta itemprop="position" content="2" />
     </li>
-    <li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="/schedule/{{$task->id}}/edit">
-            <span itemprop="name">
-                {{$task->title}}
-            </span>
-        </a>
-        <meta itemprop="position" content="3" />
-    </li>
+
 
 @endsection
 
@@ -58,7 +51,7 @@
 
                 <div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
                     <h2 class="mdl-card__title-text">
-                        {{$task->title}}
+                        Editar Agendamento
                     </h2>
                 </div>
 
@@ -129,8 +122,12 @@
                                     {!! Form::button('Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                                 </span>
 
+                                @permission('delete.agenda')
+
                                 {{-- DELETE TASK BUTTON--}}
                                 {!! Form::button('Remover', array('class' => 'dialog-button-delete mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--accent mdl-button-colored mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop padding-left-1 padding-right-1 ')) !!}
+
+                                @endpermission
 
                             </div>
                         </div>
@@ -138,15 +135,7 @@
 
                     <div class="mdl-card__menu mdl-color-text--white">
 
-                        {{-- SAVE ICON --}}
-                        <span class="save-actions">
-                            {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button-colored', 'title' => 'Salvar')) !!}
-                        </span>
 
-                        {{-- DELETE USER ICON --}}
-                        <a href="#" class="dialog-button-delete-icon dialiog-trigger-delete dialiog-trigger{{$task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-taskid="{{$task->id}}" title="Remover">
-                            <i class="material-icons">delete</i>
-                        </a>
 
                     </div>
 

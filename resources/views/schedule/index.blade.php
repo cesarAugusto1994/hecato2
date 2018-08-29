@@ -321,7 +321,7 @@
 
               jsEvent.preventDefault();
 
-                if(view.name == 'month') {
+                /*if(view.name == 'month') {
 
                   setTimeout(function() {
 
@@ -333,7 +333,7 @@
 
                   }, 100);
 
-                }
+                }*/
 
             },
             events: $("#agendamentos-json").val(),

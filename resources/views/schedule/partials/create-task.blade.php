@@ -67,9 +67,11 @@
         <div class="mdl-grid padding-top-0">
             <div class="mdl-cell mdl-cell--12-col padding-top-0 margin-top-0 margin-left-1-1">
 
+
                 <span class="save-actions">
                     {!! Form::button('Salvar', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                 </span>
+              
 
             </div>
         </div>
