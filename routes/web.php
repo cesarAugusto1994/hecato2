@@ -148,7 +148,7 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin|owner']], functi
 
 });
 
-    Route::resource('empresas', 'EmpresasController');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -224,6 +224,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('guias', '\App\Http\Controllers\GuiasController');
     Route::resource('roles', '\App\Http\Controllers\RolesController');
     Route::resource('contato', '\App\Http\Controllers\PessoaContatosController');
+
+    Route::resource('empresas', 'EmpresaController');
 
     Route::resource('permissions', '\App\Http\Controllers\PermissoesController');
 

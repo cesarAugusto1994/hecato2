@@ -54,15 +54,17 @@
 		</a>
 		@endpermission
 
+		<a class="mdl-navigation__link" href="{{ route('empresas.index') }}">
+			<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">contacts</i>
+			Empresas
+		</a>
+
 		@role('owner')
+
 			<a class="mdl-navigation__link {{ (Request::is('users') || Request::is('users/create') || Request::is('users/deleted')) ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons mdl-badge mdl-badge--overlap" data-badge="{{ $totalUsers }}" role="presentation">contacts</i>
 				{{ Lang::get('titles.adminUserList') }}
 			</a>
-			{{--<a class="mdl-navigation__link {{ Request::is('users/create') ? 'mdl-navigation__link--current' : null }}" href="{{ url('/users/create') }}">
-				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
-				{{ Lang::get('titles.adminNewUser') }}
-			</a>--}}
 			<a class="mdl-navigation__link {{ Request::is('themes') ? 'mdl-navigation__link--current' : null }}" href="{{ url('/themes') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">invert_colors</i>
 				{{ Lang::get('titles.adminThemesList') }}

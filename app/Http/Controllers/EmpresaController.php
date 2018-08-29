@@ -17,13 +17,13 @@ class EmpresaController extends Controller
     {
         $user = \Auth::user();
 
-        $empresaId = $user->company_id;
+        $empresaId = $user->empresa_id;
 
-        $empresa = Empresa::findOrfail($empresaId);
+        $empresas = Empresa::all();
 
         $tipos = Tipo::pluck('nome', 'id')->toArray();
 
-        return view('empresa.index', compact('empresa', 'tipos'));
+        return view('empresas.index', compact('empresas', 'tipos'));
     }
 
     /**
@@ -33,7 +33,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        $tipos = Tipo::all();
+        return view('empresas.create', compact('tipos'));
     }
 
     /**
@@ -44,7 +45,17 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->request->all();
+
+        if(!empty($data['aniversario_fundacao'])) {
+            $data['aniversario_fundacao'] = \DateTime::createFromFormat('d/m/Y', $data['aniversario_fundacao']);
+        } else {
+          $data['aniversario_fundacao'] = null;
+        }
+
+        Empresa::create($data);
+
+        return redirect()->route('empresas.index')->with('success', 'Empresa adicionada com sucesso!');
     }
 
     /**
@@ -66,7 +77,10 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empresa = Empresa::findOrFail($id);
+        $tipos = Tipo::all();
+
+        return view('empresas.edit', compact('empresa', 'tipos'));
     }
 
     /**
@@ -80,11 +94,16 @@ class EmpresaController extends Controller
     {
         $data = $request->request->all();
 
-        $empresa = Empresa::findOrfail($id);
+        if(!empty($data['aniversario_fundacao'])) {
+            $data['aniversario_fundacao'] = \DateTime::createFromFormat('d/m/Y', $data['aniversario_fundacao']);
+        } else {
+          $data['aniversario_fundacao'] = null;
+        }
 
+        $empresa = Empresa::findOrfail($id);
         $empresa->update($data);
 
-        return redirect()->back();
+        return redirect()->route('empresas.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
     /**
@@ -95,6 +114,9 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empresa = Empresa::findOrfail($id);
+        $empresa->delete();
+
+        return redirect()->route('empresas.index')->with('success', 'Empresa deletada com sucesso!');
     }
 }
