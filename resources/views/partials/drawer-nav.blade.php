@@ -63,10 +63,6 @@
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
 				{{ Lang::get('titles.adminNewUser') }}
 			</a>--}}
-			<a class="mdl-navigation__link {{ Request::is('roles.index') ? 'mdl-navigation__link--current' : null }}" href="{{ route('roles.index') }}">
-				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>
-				Roles
-			</a>
 			<a class="mdl-navigation__link {{ Request::is('themes') ? 'mdl-navigation__link--current' : null }}" href="{{ url('/themes') }}">
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">invert_colors</i>
 				{{ Lang::get('titles.adminThemesList') }}
