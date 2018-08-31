@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(TiposContatoTableSeeder::class);
         $this->call(TiposPessoaTableSeeder::class);
+        $this->call(ConfigsTableSeeder::class);
         $this->call(EmpresaTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(ScheduleStatus::class);
-
         Model::reguard();
     }
 }

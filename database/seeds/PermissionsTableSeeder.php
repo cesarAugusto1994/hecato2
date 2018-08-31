@@ -126,6 +126,15 @@ class PermissionsTableSeeder extends Seeder
             ]);
         }
 
+        if (Permission::where('slug', '=', 'view.guia.value')->first() === null) {
+            Permission::create([
+                'name'        => 'Visualizar Valor Guia',
+                'slug'        => 'view.guia.value',
+                'description' => 'Visualisar valor da Guia',
+                'model'       => 'App\Models\Agendamento\Guia',
+            ]);
+        }
+
         if (Permission::where('slug', '=', 'view.guia')->first() === null) {
             Permission::create([
                 'name'        => 'Visualizar Guia',

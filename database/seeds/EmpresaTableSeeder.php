@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Empresa;
 use App\Models\Pessoa;
+use App\Models\Empresa\Config;
 use App\Models\Pessoa\{Tipo};
 
 class EmpresaTableSeeder extends Seeder
@@ -37,6 +38,12 @@ class EmpresaTableSeeder extends Seeder
         $empresa->aniversario_fundacao = now();
         $empresa->tipo_id = 2;
         $empresa->save();
+
+        $config = new Config();
+        $config->config_id = 1;
+        $config->empresa_id = $empresa->id;
+        $config->valor = 100.00;
+        $config->save();
 
 /*
         $pessoa = new Pessoa();

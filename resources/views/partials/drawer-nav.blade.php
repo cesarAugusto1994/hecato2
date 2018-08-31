@@ -57,6 +57,11 @@
 		</a>
 		@endpermission
 
+		<a class="mdl-navigation__link {{ Request::is('configs') ? 'mdl-navigation__link--current' : null }}" href="{{ route('configs.index') }}">
+			<i class="material-icons mdl-badge mdl-badge--overlap" role="presentation">toggle_on</i>
+			Configurações
+		</a>
+
 		@endrole
 
 

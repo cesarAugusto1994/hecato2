@@ -29,7 +29,6 @@ class GuiasController extends Controller
         }
 
         $guias = $guias->orderByDesc('id')->get();
-
         return view('guias.index', compact('guias'));
     }
 
@@ -149,7 +148,6 @@ class GuiasController extends Controller
                 'pessoa_id'        => 'required|integer',
                 'status_id'        => 'required',
                 'data_vencimento'  => 'required',
-                'valor'            => 'required',
             ]
         );
 
@@ -160,8 +158,10 @@ class GuiasController extends Controller
         $current = \Auth::user();
 
         $data['data_vencimento'] = \DateTime::createFromFormat('d/m/Y', $data['data_vencimento']);
-        #$data['valor'] = number_format($data['valor'], 2, '.', ',');
-        $data['valor'] = str_replace(array('.', ','), array('', '.'), $data['valor']);
+
+        if($request->has('valor')) {
+            $data['valor'] = str_replace(array('.', ','), array('', '.'), $data['valor']);
+        }
 
         $guia = Guia::findOrFail($id);
         $guia->update($data);

@@ -55,13 +55,13 @@
                     <th class="mdl-data-table__cell--non-numeric">Agendamento</th>
                     <th class="mdl-data-table__cell--non-numeric">Status</th>
                     <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                    @role('admin')
+                    @permission('view.guia.value')
                     <th class="mdl-data-table__cell--non-numeric">Valor</th>
-                    @endrole
+                    @endpermission
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Vencimento</th>
-                    @role('admin')
+                    @permission('view.guia.value')
                     <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Pago em</th>
-                    @endrole
+                    @endpermission
                     <th class="mdl-data-table__cell--non-numeric no-sort no-search">Opções</th>
                 </tr>
               </thead>
@@ -72,13 +72,13 @@
                             <td class="mdl-data-table__cell--non-numeric"><a>{{$guia->agendamento->id ?? ''}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a >{{$guia->status->nome}}</a></td>
                             <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('contatos.edit', $guia->pessoa->uuid) }}">{{$guia->pessoa->nome}} </a></td>
-                            @role('admin')
+                            @permission('view.guia.value')
                             <td class="mdl-data-table__cell--non-numeric"><a>{{number_format($guia->valor, 2, ',', '.')}} </a></td>
-                            @endrole
+                            @endpermission
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_vencimento ? $guia->data_vencimento->format('d/m/Y') : '' }} </a></td>
-                            @role('admin')
+                            @permission('view.guia.value')
                             <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a >{{$guia->data_pagamento ? $guia->data_pagamento->format('d/m/Y') : '' }} </a></td>
-                            @endrole
+                            @endpermission
                             <td class="mdl-data-table__cell--non-numeric">
 
                               @if($guia->status_id == 1)

@@ -55,12 +55,22 @@
 
                   <div class="mdl-grid ">
 
+                    @php
+
+                          $canEdit = '';
+
+                          if(!\Auth::user()->hasPermission('edit.guia')) {
+                            $canEdit = 'disabled';
+                          }
+
+                    @endphp
+
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
 
                           {!! Form::label('pessoa', 'Paciente' , array('class' => 'mdl-textfield__label')); !!}
 
-                          <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa">
+                          <select class="mdl-selectfield__select mdl-textfield__input" name="pessoa_id" id="pessoa" {{ $canEdit }}>
                             @foreach(\App\Models\Pessoa::where('paciente', true)->get() as $pessoa)
                               <option value="{{ $pessoa->id }}" {{ \Request::has('client') && \Request::get('client') == $pessoa->uuid ? 'selected' : '' }}> {{ $pessoa->nome }} </option>
                             @endforeach
@@ -74,7 +84,7 @@
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
 
                           {!! Form::label('status', 'Status' , array('class' => 'mdl-textfield__label')); !!}
-                          <select class="mdl-selectfield__select mdl-textfield__input" name="status_id" id="status">
+                          <select class="mdl-selectfield__select mdl-textfield__input" name="status_id" id="status" {{ $canEdit }}>
                             @foreach(\App\Models\Agendamento\Guia\Status::all() as $status)
                               <option value="{{ $status->id }}" {{ $status->id == $guia->status_id ? 'selected' : '' }}> {{ $status->nome }} </option>
                             @endforeach
@@ -86,11 +96,13 @@
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('email') ? 'is-invalid' :'' }}">
-                        {!! Form::text('data_vencimento', $guia->data_vencimento->format('d/m/Y'), array('id' => 'email', 'class' => 'mdl-textfield__input datemask')) !!}
+                        {!! Form::text('data_vencimento', $guia->data_vencimento->format('d/m/Y'), array('id' => 'email', 'class' => 'mdl-textfield__input datemask', $canEdit => $canEdit)) !!}
                         {!! Form::label('data_vencimento', 'Data Vencimento' , array('class' => 'mdl-textfield__label')); !!}
                         <span class="mdl-textfield__error">Informe a data de nascimento</span>
                       </div>
                     </div>
+
+                    @permission('view.guia.value')
 
                     <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
@@ -99,6 +111,8 @@
                         <span class="mdl-textfield__error">Informe um valor</span>
                       </div>
                     </div>
+
+                    @endpermission
 
 
                   </div>
@@ -111,10 +125,14 @@
               <div class="mdl-grid padding-top-0">
                 <div class="mdl-cell mdl-cell--12-col padding-top-0 margin-top-0 margin-left-1-1">
 
+                  @permission('edit.guia')
+
                   {{-- SAVE BUTTON--}}
                   <span class="save-actions">
                     {!! Form::submit('Salvar', array('class' => 'mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
                   </span>
+
+                  @endpermission
 
                 </div>
               </div>
