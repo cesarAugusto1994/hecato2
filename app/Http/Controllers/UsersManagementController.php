@@ -94,6 +94,8 @@ class UsersManagementController extends Controller
 
             $currentUser = Auth::user();
 
+            $empresa = $request->has('empresa') ? $request->get('empresa') : $currentUser->empresa_id;
+
             $user = User::create([
                     'name'             => $request->input('name'),
                     'first_name'       => $request->input('first_name'),
@@ -102,7 +104,7 @@ class UsersManagementController extends Controller
                     'password'         => bcrypt($request->input('password')),
                     'token'            => str_random(64),
                     'admin_ip_address' => $ipAddress->getClientIp(),
-                    'empresa_id'       => $currentUser->empresa_id,
+                    'empresa_id'       => $empresa,
                     'activated'        => 1,
 
                 ]);
@@ -164,7 +166,7 @@ class UsersManagementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $currentUser = Auth::user();
         $user = User::find($id);
         $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
@@ -200,6 +202,8 @@ class UsersManagementController extends Controller
             $user->detachAllRoles();
             $user->attachRole($request->input('role'));
             //$user->activated = 1;
+
+            $user->empresa_id = $request->input('empresa');
 
             $user->updated_ip_address = $ipAddress->getClientIp();
 

@@ -36,13 +36,7 @@
 <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--12-col-desktop margin-top-0">
     <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
         <h2 class="mdl-card__title-text logo-style">
-            @if ($totalUsers === 1)
-                {{ $totalUsers }} Usuários
-            @elseif ($totalUsers > 1)
-                Total de {{ $totalUsers }} Usuários
-            @else
-                No Users :(
-            @endif
+            Usuários
         </h2>
 
     </div>

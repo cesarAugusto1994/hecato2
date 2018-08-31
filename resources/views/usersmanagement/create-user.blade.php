@@ -53,13 +53,13 @@
             <div class="mdl-grid full-grid padding-0">
               <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
 
-                <div class="mdl-grid ">
+                <div class="mdl-grid">
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
-                      {!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z,0-9]*', 'autocomplete' => 'off')) !!}
+                      {!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input', 'required' => 'required', 'autocomplete' => 'off')) !!}
                       {!! Form::label('name', trans('auth.name') , array('class' => 'mdl-textfield__label')); !!}
-                      <span class="mdl-textfield__error">Letters and numbers only</span>
+                      <span class="mdl-textfield__error">Apenas letras</span>
                     </div>
                   </div>
 
@@ -70,47 +70,60 @@
                       <span class="mdl-textfield__error">Please Enter a Valid {{ trans('auth.email') }}</span>
                     </div>
                   </div>
+
+
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('first_name') ? 'is-invalid' :'' }}">
                             {!! Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'mdl-textfield__input')) !!}
-                            {!! Form::label('first_name', 'Primeiro Nome', array('class' => 'mdl-textfield__label')); !!}
+                            {!! Form::label('first_name', 'Nome', array('class' => 'mdl-textfield__label')); !!}
                             <span class="mdl-textfield__error">Letters only</span>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('last_name') ? 'is-invalid' :'' }}">
                           {!! Form::text('last_name', NULL, array('id' => 'last_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')) !!}
-                          {!! Form::label('last_name', 'Último Nome', array('class' => 'mdl-textfield__label')); !!}
+                          {!! Form::label('last_name', 'Sobrenome', array('class' => 'mdl-textfield__label')); !!}
                           <span class="mdl-textfield__error">Letters only</span>
                       </div>
                     </div>
 
+                    <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
+                        <select class="mdl-selectfield__select mdl-textfield__input" name="empresa" id="empresa">
 
-                    <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
-                        {!! Form::text('location', NULL, array('id' => 'location', 'class' => 'mdl-textfield__input' )) !!}
-                        {!! Form::label('location', 'Localização', array('class' => 'mdl-textfield__label')); !!}
-                      <span class="mdl-textfield__error">Please Enter a Valid Location</span>
+                            @foreach(\App\Models\Empresa::all() as $empresa)
+                              <option value="{{ $empresa->id }}">{{ $empresa->nome }}</option>
+                            @endforeach
+                        </select>
+                        <label for="role">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                        {!! Form::label('empresa', 'Empresa', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                        <span class="mdl-textfield__error">Select user access level</span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
-                      <select class="mdl-selectfield__select mdl-textfield__input" name="role" id="role">
-                        <option value=""></option>
-                        @if ($roles->count())
-                          @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                          @endforeach
-                        @endif
-                      </select>
-                      <label for="role">
-                          <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
-                      </label>
-                      {!! Form::label('role', trans('forms.label-userrole_id'), array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-                      <span class="mdl-textfield__error">Select user access level</span>
+                    <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('role') ? 'is-invalid' :'' }}">
+                        <select class="mdl-selectfield__select mdl-textfield__input" name="role" id="role">
+                          <option value=""></option>
+                          @if ($roles->count())
+                            @foreach($roles as $role)
+                              <option value="{{ $role->id }}" {{ $role->name == 'User' ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @endforeach
+                          @endif
+                        </select>
+                        <label for="role">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                        {!! Form::label('role', trans('forms.label-userrole_id'), array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+                        <span class="mdl-textfield__error">Select user access level</span>
+                      </div>
                     </div>
-                  </div>
+
+
+
+
 
                   <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('password') ? 'is-invalid' :'' }}">
@@ -155,14 +168,7 @@
 
             <div class="mdl-card__menu mdl-color-text--white">
 
-              <span class="save-actions">
-                {!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New User')) !!}
-              </span>
 
-              <a href="{{ url('/users/') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Back to Users">
-                  <i class="material-icons">reply</i>
-                  <span class="sr-only">Back to Users</span>
-              </a>
 
             </div>
 

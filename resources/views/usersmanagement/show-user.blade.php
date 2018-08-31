@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-  Showing User {{ $user->name }}
+  Usuário {{ $user->name }}
 @endsection
 
 @section('header')
-  Showing {{ $user->name }}
+  Usuário {{ $user->name }}
 @endsection
 
 @php
@@ -28,7 +28,7 @@
   <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     <a itemprop="item" href="/users">
       <span itemprop="name">
-        Users List
+        Usuários
       </span>
     </a>
     <i class="material-icons">chevron_right</i>
